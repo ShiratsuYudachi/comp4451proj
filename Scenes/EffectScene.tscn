@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmamop10n3hqw"]
+
+[ext_resource type="Script" path="res://Scripts/EffectScene.cs" id="1_21whk"]
+[ext_resource type="Texture2D" uid="uid://bhki454ungt7w" path="res://Images/button.png" id="1_sci3u"]
+
+[sub_resource type="Curve" id="Curve_np7gu"]
+_data = [Vector2(0.0393258, 1), 0.0, 0.0, 0, 0, Vector2(0.820225, 0.395604), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="EffectScene" type="Node2D"]
+script = ExtResource("1_21whk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(0.99779, 1)
+emitting = false
+lifetime = 0.2
+one_shot = true
+texture = ExtResource("1_sci3u")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_np7gu")
+color = Color(0.352941, 0.607843, 0.0666667, 0.439216)

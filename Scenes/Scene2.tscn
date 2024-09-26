@@ -1,12 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://wingv4uf8vx3"]
+[gd_scene load_steps=17 format=3 uid="uid://wingv4uf8vx3"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_dd2yy"]
-[ext_resource type="Script" path="res://Scripts/Scene2.cs" id="1_koog5"]
+[ext_resource type="Script" path="res://Scripts/Map/Scene2.cs" id="1_koog5"]
 [ext_resource type="Texture2D" uid="uid://b5vygoj2aaclf" path="res://Images/Objects.png" id="2_qnpx1"]
-[ext_resource type="Script" path="res://Scripts/Flower.cs" id="3_3tljp"]
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="5_akcba"]
-[ext_resource type="Texture2D" uid="uid://b0675b8vhs804" path="res://Images/Enemy.png" id="5_nqran"]
-[ext_resource type="PackedScene" uid="uid://cmamop10n3hqw" path="res://Scenes/EffectScene.tscn" id="6_fl74b"]
+[ext_resource type="Script" path="res://Scripts/Entities/Flower.cs" id="3_3tljp"]
+[ext_resource type="Script" path="res://Scripts/Spawner.cs" id="5_1w01x"]
+[ext_resource type="PackedScene" uid="uid://xxswesylvb6y" path="res://Scenes/zombie.tscn" id="6_r0hs0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_my718"]
 texture = ExtResource("1_dd2yy")
@@ -236,60 +235,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ylug7"]
 radius = 5.56522
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_31n4v"]
-size = Vector2(80.5394, 103.551)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ndn1c"]
-atlas = ExtResource("5_nqran")
-region = Rect2(0, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f8n2n"]
-atlas = ExtResource("5_nqran")
-region = Rect2(0, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_veo3m"]
-atlas = ExtResource("5_nqran")
-region = Rect2(19, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gwpq4"]
-atlas = ExtResource("5_nqran")
-region = Rect2(38, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6biin"]
-atlas = ExtResource("5_nqran")
-region = Rect2(0, 19, 18, 18)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gosn2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ndn1c")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f8n2n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_veo3m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gwpq4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6biin")
-}],
-"loop": true,
-"name": &"moving",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd4e3"]
-size = Vector2(12, 3)
-
 [node name="Scene2" type="Node2D"]
 script = ExtResource("1_koog5")
 
@@ -335,24 +280,6 @@ position = Vector2(-0.347832, 0.347826)
 shape = SubResource("CircleShape2D_ylug7")
 metadata/_edit_lock_ = true
 
-[node name="Enemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
-script = ExtResource("5_akcba")
-effectScene = ExtResource("6_fl74b")
-
-[node name="HitArea" type="Area2D" parent="Enemy"]
-position = Vector2(3, 2)
-scale = Vector2(0.173828, 0.173828)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/HitArea"]
-position = Vector2(-11.5056, -11.5056)
-shape = SubResource("RectangleShape2D_31n4v")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
-sprite_frames = SubResource("SpriteFrames_gosn2")
-animation = &"idle"
-autoplay = "idle"
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_wd4e3")
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("5_1w01x")
+entityScene = ExtResource("6_r0hs0")

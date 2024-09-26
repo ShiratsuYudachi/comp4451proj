@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://crr4tgjp30gq8"]
+
+[ext_resource type="FontFile" uid="uid://dvm1k48ko6v5k" path="res://fonts/Noto_Sans_Mono/static/NotoSansMono-Regular.ttf" id="1_1yhqo"]
+[ext_resource type="Script" path="res://Scripts/UI/TipLabel.cs" id="2_2jggw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_30mcg"]
+font = ExtResource("1_1yhqo")
+font_size = 50
+outline_size = 11
+outline_color = Color(0.687409, 0.68546, 0.90399, 1)
+
+[node name="TipLabel" type="Label"]
+offset_left = -663.0
+offset_top = 124.0
+offset_right = 663.0
+offset_bottom = 220.0
+text = "This is a tip label"
+label_settings = SubResource("LabelSettings_30mcg")
+horizontal_alignment = 1
+script = ExtResource("2_2jggw")

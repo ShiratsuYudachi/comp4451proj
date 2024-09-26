@@ -110,6 +110,7 @@ public partial class Enemy : CharacterBody2D
 	private void Die()
 	{
 		GD.Print("Enemy defeated!");
+		TipManager.ShowTip("Enemy defeated!");
 		// 这里可以添加死亡动画、掉落物品等逻辑
 		Node2D effect = effectScene.Instantiate<Node2D>();
 		GetTree().Root.AddChild(effect);

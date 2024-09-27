@@ -15,8 +15,8 @@ public class Blink : ExecutorSpellPiece
 	public override SpellVariableType[] ParamList { get
     {
         return new SpellVariableType[] {
-            SpellVariableType.ENTITY,
-            SpellVariableType.VECTOR2
+            SpellVariableType.ENTITY, // Entity to blink
+            SpellVariableType.VECTOR2 // Blink target relative to entity
         };
     }
     }

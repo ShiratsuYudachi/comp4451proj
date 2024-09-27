@@ -1,0 +1,21 @@
+using Godot;
+using System;
+using System.Runtime.CompilerServices;
+
+public class SelectMousePos : SelectorSpellPiece
+{
+	public override string Name
+    {
+        get 
+        { 
+            return "Select Mouse Position"; 
+        }
+    }
+
+
+    public override SpellVariable Select(Node2D spellExecutor)
+    {
+        Vector2 mousePos = spellExecutor.GetGlobalMousePosition();
+        return new SpellVariable(SpellVariableType.VECTOR2, mousePos);
+    }	
+}

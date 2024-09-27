@@ -2,55 +2,59 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class SpellEvaluateTreeNode
+public class SpellEvaluationTreeNode
 {
-    public SpellPiece evaluateRoot;
+    public SpellPiece rootSpellPiece;
 
-    public SpellEvaluateTreeNode[] evaluateChildren;
+    public SpellEvaluationTreeNode[] childrenSpellPieces;
 
     public SpellVariable Evaluate(SpellExecutor spellExecutor){
-        SpellVariable[] castingParams = new SpellVariable[evaluateRoot.ParamList.Length];
+        SpellVariable[] castingParams = new SpellVariable[rootSpellPiece.ParamList.Length];
         
-        if (evaluateRoot is SelectorSpellPiece){
-            return ((SelectorSpellPiece)evaluateRoot).Select(spellExecutor);
+        if (rootSpellPiece is SelectorSpellPiece){
+            return ((SelectorSpellPiece)rootSpellPiece).Select(spellExecutor);
         }
         
         for (int i = 0; i < castingParams.Length; i++)
         {
-            castingParams[i] = evaluateChildren[i].Evaluate(spellExecutor);
+            castingParams[i] = childrenSpellPieces[i].Evaluate(spellExecutor);
         }
         
-        if (evaluateRoot is OperatorSpellPiece){
-            return ((OperatorSpellPiece)evaluateRoot).Operate(castingParams);
+        if (rootSpellPiece is OperatorSpellPiece){
+            return ((OperatorSpellPiece)rootSpellPiece).Operate(castingParams);
         }
 
-        if (evaluateRoot is ExecutorSpellPiece){
-            ((ExecutorSpellPiece)evaluateRoot).Execute(castingParams);
+        if (rootSpellPiece is ExecutorSpellPiece){
+            ((ExecutorSpellPiece)rootSpellPiece).Execute(castingParams);
         }
         return new SpellVariable(SpellVariableType.NONE, null);
+    }
+
+    public SpellEvaluationTreeNode(SpellPiece root){
+        this.rootSpellPiece = root;
+        this.childrenSpellPieces = new SpellEvaluationTreeNode[root.ParamList.Length];
     }
 }
 
 
-public partial class SpellExecutor : Node
+public partial class SpellExecutor : Node2D
 {
-    public SpellEvaluateTreeNode testEvaluateTree;
+    public SpellEvaluationTreeNode testEvaluationTree;
 	public override void _Ready()
 	{
 		GD.Print("SpellExecutor ready");
-        testEvaluateTree = new SpellEvaluateTreeNode();
-        testEvaluateTree.evaluateRoot = new Blink();
-        testEvaluateTree.evaluateChildren = new SpellEvaluateTreeNode[2];
-        testEvaluateTree.evaluateChildren[0] = new SpellEvaluateTreeNode();
-        testEvaluateTree.evaluateChildren[0].evaluateRoot = new SelectCaster();
-        testEvaluateTree.evaluateChildren[1] = new SpellEvaluateTreeNode();
-        testEvaluateTree.evaluateChildren[1].evaluateRoot = new Vector2ConstantSpellPiece(new Vector2(50, 50));
+        testEvaluationTree = new SpellEvaluationTreeNode(new Blink());
+        testEvaluationTree.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+        testEvaluationTree.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMinus());
+        testEvaluationTree.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
+        testEvaluationTree.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
+        testEvaluationTree.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 	}
 
 	public void Execute()
 	{
 		GD.Print("Executing spell");
-        testEvaluateTree.Evaluate(this);
+        testEvaluationTree.Evaluate(this);
 	}
 
     

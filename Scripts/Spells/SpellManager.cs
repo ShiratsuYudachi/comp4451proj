@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public partial class SpellManager : Node
+public partial class SpellManager : Node2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -165,7 +165,7 @@ public abstract class SelectorSpellPiece : SpellPiece
 			return new SpellVariableType[] {};
 		}
 	}
-	public abstract SpellVariable Select(Node spellExecutor);
+	public abstract SpellVariable Select(Node2D spellExecutor);
 }
 
 public class IntConstantSpellPiece : SelectorSpellPiece
@@ -183,7 +183,7 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 		Value = value;
 	}
 
-	public override SpellVariable Select(Node spellExecutor)
+	public override SpellVariable Select(Node2D spellExecutor)
 	{
 		return new SpellVariable(SpellVariableType.INT, Value);
 	}
@@ -204,7 +204,7 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 		Value = value;
 	}
 
-	public override SpellVariable Select(Node spellExecutor)
+	public override SpellVariable Select(Node2D spellExecutor)
 	{
 		return new SpellVariable(SpellVariableType.VECTOR2, Value);
 	}

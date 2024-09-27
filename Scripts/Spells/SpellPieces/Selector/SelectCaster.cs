@@ -13,7 +13,7 @@ public class SelectCaster : SelectorSpellPiece
     }
 
 
-    public override SpellVariable Select(Node spellExecutor)
+    public override SpellVariable Select(Node2D spellExecutor)
     {
         Node2D caster = spellExecutor.GetParent<Node2D>();
         return new SpellVariable(SpellVariableType.ENTITY, caster);

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="COMP4451PROJ"
 
+[global_group]
+
+Player=""
+
 [input]
 
 MoveUp={

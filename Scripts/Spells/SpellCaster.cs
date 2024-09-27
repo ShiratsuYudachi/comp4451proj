@@ -10,9 +10,9 @@ public partial class SpellCaster : Node2D
 {
     public SpellEvaluationTreeNode testEvaluationTree;
 
-	float ManaMax = 5000;
-	float Mana = 5000;
-	float ManaRegenSpeed = 100; // Mana per second
+	public float ManaMax = 5000;
+	public float Mana = 5000;
+	public float ManaRegenSpeed = 100; // Mana per second
 
 
 	public override void _Ready()

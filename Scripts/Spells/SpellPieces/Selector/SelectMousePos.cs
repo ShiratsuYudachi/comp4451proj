@@ -13,9 +13,9 @@ public class SelectMousePos : SelectorSpellPiece
     }
 
 
-    public override SpellVariable Select(Node2D spellExecutor)
+    public override SpellVariable Select(SpellCaster spellCaster)
     {
-        Vector2 mousePos = spellExecutor.GetGlobalMousePosition();
+        Vector2 mousePos = spellCaster.GetGlobalMousePosition();
         return new SpellVariable(SpellVariableType.VECTOR2, mousePos);
     }	
 }

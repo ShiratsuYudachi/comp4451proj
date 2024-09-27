@@ -2,20 +2,6 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public partial class SpellManager : Node2D
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		Vector2 inputVector = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
-	}
-}
-
 public enum SpellVariableType
 {
 	NONE,
@@ -28,8 +14,6 @@ public enum SpellVariableType
 
 public struct SpellVariable
 {
-	
-
 	public SpellVariableType Type;
 	private object _value;
 
@@ -150,12 +134,12 @@ public abstract class SpellPiece
 
 public abstract class ExecutorSpellPiece : SpellPiece
 {
-	public abstract void Execute(params SpellVariable[] args);
+	public abstract void Execute(SpellCaster spellCaster, params SpellVariable[] args);
 }
 
 public abstract class OperatorSpellPiece : SpellPiece
 {
-	public abstract SpellVariable Operate(params SpellVariable[] args);
+	public abstract SpellVariable Operate(SpellCaster spellCaster, params SpellVariable[] args);
 }
 
 public abstract class SelectorSpellPiece : SpellPiece
@@ -165,7 +149,7 @@ public abstract class SelectorSpellPiece : SpellPiece
 			return new SpellVariableType[] {};
 		}
 	}
-	public abstract SpellVariable Select(Node2D spellExecutor);
+	public abstract SpellVariable Select(SpellCaster spellCaster);
 }
 
 public class IntConstantSpellPiece : SelectorSpellPiece
@@ -183,7 +167,7 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 		Value = value;
 	}
 
-	public override SpellVariable Select(Node2D spellExecutor)
+	public override SpellVariable Select(SpellCaster spellCaster)
 	{
 		return new SpellVariable(SpellVariableType.INT, Value);
 	}
@@ -204,10 +188,43 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 		Value = value;
 	}
 
-	public override SpellVariable Select(Node2D spellExecutor)
+	public override SpellVariable Select(SpellCaster spellCaster)
 	{
 		return new SpellVariable(SpellVariableType.VECTOR2, Value);
 	}
 }
 
+public class SpellEvaluationTreeNode
+{
+    public SpellPiece rootSpellPiece;
+
+    public SpellEvaluationTreeNode[] childrenSpellPieces;
+
+    public SpellVariable Evaluate(SpellCaster spellCaster){
+        SpellVariable[] castingParams = new SpellVariable[rootSpellPiece.ParamList.Length];
+        
+        if (rootSpellPiece is SelectorSpellPiece){
+            return ((SelectorSpellPiece)rootSpellPiece).Select(spellCaster);
+        }
+        
+        for (int i = 0; i < castingParams.Length; i++)
+        {
+            castingParams[i] = childrenSpellPieces[i].Evaluate(spellCaster);
+        }
+        
+        if (rootSpellPiece is OperatorSpellPiece){
+            return ((OperatorSpellPiece)rootSpellPiece).Operate(spellCaster, castingParams);
+        }
+
+        if (rootSpellPiece is ExecutorSpellPiece){
+            ((ExecutorSpellPiece)rootSpellPiece).Execute(spellCaster, castingParams);
+        }
+        return new SpellVariable(SpellVariableType.NONE, null);
+    }
+
+    public SpellEvaluationTreeNode(SpellPiece root){
+        this.rootSpellPiece = root;
+        this.childrenSpellPieces = new SpellEvaluationTreeNode[root.ParamList.Length];
+    }
+}
 

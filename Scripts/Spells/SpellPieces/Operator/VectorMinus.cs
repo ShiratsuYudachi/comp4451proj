@@ -21,7 +21,7 @@ public class VectorMinus : OperatorSpellPiece
     }
     }
 
-    public override SpellVariable Operate(params SpellVariable[] args)
+    public override SpellVariable Operate(SpellCaster spellCaster, params SpellVariable[] args)
     {
         checkParams(args);
 

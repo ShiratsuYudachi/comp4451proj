@@ -13,9 +13,9 @@ public class SelectCaster : SelectorSpellPiece
     }
 
 
-    public override SpellVariable Select(Node2D spellExecutor)
+    public override SpellVariable Select(SpellCaster spellCaster)
     {
-        Node2D caster = spellExecutor.GetParent<Node2D>();
+        Node2D caster = spellCaster.GetParent<Node2D>();
         return new SpellVariable(SpellVariableType.ENTITY, caster);
     }	
 }

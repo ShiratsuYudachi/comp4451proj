@@ -21,12 +21,15 @@ public class Blink : ExecutorSpellPiece
     }
     }
 
-    public override void Execute(params SpellVariable[] args)
+    public override void Execute(SpellCaster spellCaster, params SpellVariable[] args)
     {
         checkParams(args);
-        
         Node2D entity = args[0].AsEntity();
         Vector2? targetRelativePos = args[1].AsVector2();
+        if (!spellCaster.TryToConsumeMana((int)targetRelativePos.Value.Length() * 5))
+        {
+            return;
+        }
         entity.Position += targetRelativePos.Value;
     }	
 }

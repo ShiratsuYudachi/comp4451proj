@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=75 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_3ue3l"]
 [ext_resource type="Texture2D" uid="uid://b5vygoj2aaclf" path="res://Images/Objects.png" id="2_ju0ij"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dnrx43iyp66qq" path="res://Images/weapon2.png" id="8_v4eww"]
 [ext_resource type="Script" path="res://Scripts/items/Weapon2.cs" id="10_e5wsr"]
 [ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet.tscn" id="11_voum3"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellExecutor.cs" id="14_nfpyg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("1_3ue3l")
@@ -755,6 +756,9 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_rwo4s")
+
+[node name="SpellExecutor" type="Node2D" parent="Player"]
+script = ExtResource("14_nfpyg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class TipManager : Control
 {
@@ -7,6 +8,10 @@ public partial class TipManager : Control
 	
 	[Export]
 	public PackedScene tipLabelScene;
+
+	[Export]
+	public PackedScene damageLabelScene;
+
 	public static TipManager instance;
 
 	public override void _Ready()
@@ -20,5 +25,14 @@ public partial class TipManager : Control
 		Label tipLabel = instance.tipLabelScene.Instantiate<Label>();
 		tipLabel.Text = tip;
 		instance.AddChild(tipLabel);
+	}
+
+	public static void ShowDamage(float damage, Vector2 worldPosition)
+	{
+		Label damageLabel = instance.damageLabelScene.Instantiate<Label>();
+		damageLabel.Text = damage.ToString();
+		damageLabel.SetPosition(new Vector2(0,0),false);
+		GD.Print("Global Position: " + damageLabel.GlobalPosition + " World Position: " + worldPosition);
+		instance.AddChild(damageLabel);
 	}
 }

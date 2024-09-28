@@ -4,18 +4,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public partial class TipLabel : Label
 {
-	public float timer = 0;
+	
+	[Export]
+	public double lifeTime = 2;
 
-	public float speed = 1f;
+	[Export]
+	public double speedMultiplier = 256;
 
-	public float getSpeedAtTime(float time){
-		return 256 * (float)Math.Exp(-2.42 * time);
+	[Export]
+	public double speedExponent = 2.42f;
+
+	public double timer = 0;
+
+	public double getSpeedAtTime(double time){
+		return speedMultiplier* (double)Math.Exp(-speedExponent * time);
 	}
 	public override void _Process(double delta)
 	{
-		timer += (float)delta;
-		this.Position = new Vector2(Position.X, Position.Y - getSpeedAtTime(timer) * (float)delta);
-		if (timer > 2)
+		timer += (double)delta;
+		this.Position = new Vector2(Position.X, (float)(Position.Y - getSpeedAtTime(timer) * (double)delta));
+		if (timer > lifeTime)
 		{
 			QueueFree();
 		}

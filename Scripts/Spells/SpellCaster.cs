@@ -46,7 +46,7 @@ public partial class SpellCaster : Node2D
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("Attack"))
+		if (Input.IsActionJustPressed("Cast"))
 		{
 			Cast();
 		}

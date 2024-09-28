@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crr4tgjp30gq8"]
 
-[ext_resource type="Script" path="res://Scripts/UI/TipLabel.cs" id="2_2jggw"]
+[ext_resource type="Script" path="res://Scripts/UI/TipLabel.cs" id="1_ioatb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_30mcg"]
 font_size = 50
@@ -15,4 +15,4 @@ offset_bottom = 220.0
 text = "This is a tip label"
 label_settings = SubResource("LabelSettings_30mcg")
 horizontal_alignment = 1
-script = ExtResource("2_2jggw")
+script = ExtResource("1_ioatb")

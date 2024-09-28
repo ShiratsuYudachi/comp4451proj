@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://wh8xkwvsdoo3"]
+
+[ext_resource type="Script" path="res://Scripts/UI/TipLabel.cs" id="1_674ef"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_30mcg"]
+font_size = 50
+outline_size = 11
+outline_color = Color(0.687409, 0.68546, 0.90399, 1)
+
+[node name="TipLabel" type="Label"]
+offset_top = -7.0
+offset_right = 120.0
+offset_bottom = 62.0
+scale = Vector2(0.1, 0.1)
+text = "100"
+label_settings = SubResource("LabelSettings_30mcg")
+script = ExtResource("1_674ef")
+lifeTime = 1.5
+speedMultiplier = 32.0
+speedExponent = 2.4

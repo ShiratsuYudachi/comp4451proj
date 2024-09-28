@@ -8,7 +8,7 @@ public partial class Spawner : Node2D
 	[Export]
 	public int entityNumLimit = 5;
 
-	private float SPAWN_INTERVAL = 2f;
+	private float SPAWN_INTERVAL = 1f;
 
 	private float spawnCooldown = 0f;
 

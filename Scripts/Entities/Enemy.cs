@@ -1,35 +1,11 @@
 using Godot;
 using System;
 
-public partial class Enemy : CharacterBody2D
+public partial class Enemy : LivingEntity
 {
-	// Called when the node enters the scene tree for the first time.
-	AnimatedSprite2D animatedSprite2D;
-	
-	[Export]
-	private PackedScene effectScene;
-
-	private enum State
-	{
-		Idle,
-		Moving
-	}
-
-	private float timer = 3;
-	private State state = State.Idle;
-
-	private Vector2 randomDirection;
-	private bool isRight = true;
-	
-	private int health = 100;
-	private float hitFlashDuration = 0.2f;
-	private float hitFlashTimer = 0f;
-
-
-
 	public override void _Ready()
 	{
-		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		base._Ready();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,41 +56,17 @@ public partial class Enemy : CharacterBody2D
 				}
 				break;
 		}
-
-		// 处理受击闪烁效果
-		if (hitFlashTimer > 0)
-		{
-			hitFlashTimer -= (float)delta;
-			if (hitFlashTimer <= 0)
-			{
-				animatedSprite2D.Modulate = Colors.White;
-			}
-		}
+		base._Process(delta);
 	}
 
-	public void OnHit(int damage)
+	public override void OnHit(int damage)
 	{
-		health -= damage;
-		GD.Print("Enemy hit for " + damage + " damage. Remaining health: " + health);
-
-		// 触发受击闪烁效果
-		animatedSprite2D.Modulate = Colors.Red;
-		hitFlashTimer = hitFlashDuration;
-
-		if (health <= 0)
-		{
-			Die();
-		}
+		
+		base.OnHit(damage);
 	}
 
-	private void Die()
+	public override void Die()
 	{
-		GD.Print("Enemy defeated!");
-		TipManager.ShowTip("Enemy defeated!");
-		// 这里可以添加死亡动画、掉落物品等逻辑
-		Node2D effect = effectScene.Instantiate<Node2D>();
-		GetTree().Root.AddChild(effect);
-		effect.GlobalPosition = GlobalPosition;
-		QueueFree(); // 从场景中移除敌人
+		base.Die();
 	}
 }

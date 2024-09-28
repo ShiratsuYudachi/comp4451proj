@@ -38,10 +38,9 @@ public partial class Weapon1 : Sprite2D
 
 	public void OnHitEnemy(Area2D area)
 	{
-		if (area.GetParent().IsInGroup("Enemy"))
+		if (area.GetParent() is LivingEntity livingEntity)
 		{
-			Enemy enemy = area.GetParent<Enemy>();
-			enemy.OnHit(10);
+			livingEntity.OnHit(10);
 		}
 	}
 }

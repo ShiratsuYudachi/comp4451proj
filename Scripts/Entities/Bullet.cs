@@ -8,6 +8,8 @@ public partial class Bullet : Node2D
 	public Vector2 velocity;
 	public float timer = 1;
 
+	public Node caster;
+
 	public override void _Ready()
 	{
 		GetNode<Area2D>("Area2D").Connect("area_entered", new Callable(this, nameof(OnHit)));
@@ -26,9 +28,9 @@ public partial class Bullet : Node2D
 
 	public void OnHit(Area2D area)
 	{
-		if (area.GetParent().IsInGroup("Enemy"))
+		if (area.GetParent() is LivingEntity livingEntity && livingEntity != caster)
 		{
-			area.GetParent<Enemy>().OnHit(10);
+			livingEntity.OnHit(10);
 			QueueFree();
 		}
 	}

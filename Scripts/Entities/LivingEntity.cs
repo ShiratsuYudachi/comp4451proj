@@ -5,6 +5,9 @@ public abstract partial class LivingEntity : CharacterBody2D
 {
 	
 	protected AnimatedSprite2D animatedSprite2D;
+
+	[Export]
+	protected PackedScene deathEffectScene;
 	
 
 	protected enum State
@@ -19,12 +22,12 @@ public abstract partial class LivingEntity : CharacterBody2D
 	protected Vector2 randomDirection;
 	protected bool isRight = true;
 	
+	public int MAX_HEALTH = 100;
 	protected int health = 100;
 	protected float hitFlashDuration = 0.2f;
 	protected float hitFlashTimer = 0f;
 
-    [Export]
-	protected PackedScene deathEffectScene;
+    
 
 
 

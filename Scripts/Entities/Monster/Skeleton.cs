@@ -1,12 +1,20 @@
 using Godot;
 using System;
 
-public partial class Enemy : LivingEntity
+public partial class Skeleton : LivingEntity
 {
+    [Export]
+    private PackedScene bulletScene;
+
 	public override void _Ready()
 	{
 		base._Ready();
+        this.animatedSprite2D.Modulate = Colors.White;
 	}
+
+    public float ATTACK_INTERVAL = 1; //s
+    private float attackTimer = 0f;
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -56,7 +64,25 @@ public partial class Enemy : LivingEntity
 				}
 				break;
 		}
+        attackTimer -= (float)delta;
+        if (attackTimer <= 0)
+        {
+            Attack();
+            attackTimer = ATTACK_INTERVAL; // 重置攻击计时器
+        }
 		base._Process(delta);
+	}
+
+	public void Attack()
+	{
+		Bullet bullet = bulletScene.Instantiate<Bullet>();
+		
+        Node2D player = GetTree().GetNodesInGroup("Player")[0] as Node2D;
+        Vector2 direction = (player.GlobalPosition - GlobalPosition).Normalized();
+        bullet.GlobalPosition = GlobalPosition;
+        bullet.velocity = direction * 100;
+		bullet.caster = this;
+		GetTree().Root.AddChild(bullet);
 	}
 
 	public override void OnHit(int damage)

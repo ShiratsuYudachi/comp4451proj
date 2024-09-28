@@ -24,6 +24,7 @@ public partial class Weapon2 : Sprite2D
 				Vector2 direction = (mousePosition - GlobalPosition).Normalized();
 				bullet.Position = GlobalPosition;
 				bullet.velocity = direction * 300; 
+				bullet.caster = GetTree().GetNodesInGroup("Player")[0] as Node2D;
 				GetTree().Root.AddChild(bullet);
 			}
 		}

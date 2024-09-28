@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PlayerControl : CharacterBody2D
+public partial class PlayerControl : LivingEntity
 {
 	public const float Speed = 100.0f;
 	private AnimatedSprite2D _animatedSprite2D;
@@ -11,6 +11,7 @@ public partial class PlayerControl : CharacterBody2D
 	{
 		base._Ready();
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		health = 114514;
 	}
 
 	public override void _PhysicsProcess(double delta)

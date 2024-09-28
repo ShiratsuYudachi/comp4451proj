@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=77 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_3ue3l"]
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_aqhh3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/items/Weapon2.cs" id="10_e5wsr"]
 [ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet.tscn" id="11_voum3"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="14_42tvs"]
+[ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/Skeleton.tscn" id="17_s8h65"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("1_3ue3l")
@@ -767,3 +768,6 @@ script = ExtResource("14_42tvs")
 
 [node name="Ui" parent="CanvasLayer" instance=ExtResource("6_d0wq3")]
 metadata/_edit_lock_ = true
+
+[node name="Zombie" parent="." instance=ExtResource("17_s8h65")]
+position = Vector2(99, -1)

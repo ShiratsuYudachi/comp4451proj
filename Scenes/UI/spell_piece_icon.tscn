@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfkoj1rwb5wjj"]
+
+[ext_resource type="Texture2D" uid="uid://b8qed5lnbda4w" path="res://Images/Spells/VectorPlus.png" id="1_2aujm"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceIcon.cs" id="2_a2g8q"]
+
+[node name="SpellPieceIcon" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_2aujm")
+script = ExtResource("2_a2g8q")

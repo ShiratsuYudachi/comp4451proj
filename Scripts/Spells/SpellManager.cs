@@ -116,6 +116,7 @@ public abstract class SpellPiece
 
 	public virtual SpellVariableType[] ParamList { get; }
 
+
 	protected void checkParams(SpellVariable[] args)
 	{
 		if (ParamList.Length != args.Length)

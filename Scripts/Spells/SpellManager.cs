@@ -217,38 +217,48 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 		return new SpellVariable(SpellVariableType.VECTOR2, Value);
 	}
 }
+// Start of Selection
 
 public class SpellEvaluationTreeNode
 {
-    public SpellPiece rootSpellPiece;
+	public SpellPiece rootSpellPiece;
 
-    public SpellEvaluationTreeNode[] childrenSpellPieces;
+	public SpellEvaluationTreeNode[] childrenSpellPieces;
 
-    public SpellVariable Evaluate(SpellCaster spellCaster){
-        SpellVariable[] castingParams = new SpellVariable[rootSpellPiece.ParamList.Length];
-        
-        if (rootSpellPiece is SelectorSpellPiece){
-            return ((SelectorSpellPiece)rootSpellPiece).Select(spellCaster);
-        }
-        
-        for (int i = 0; i < castingParams.Length; i++)
-        {
-            castingParams[i] = childrenSpellPieces[i].Evaluate(spellCaster);
-        }
-        
-        if (rootSpellPiece is OperatorSpellPiece){
-            return ((OperatorSpellPiece)rootSpellPiece).Operate(spellCaster, castingParams);
-        }
+	public SpellVariable Evaluate(SpellCaster spellCaster){
+		SpellVariable[] castingParams = new SpellVariable[rootSpellPiece.ParamList.Length];
+		
+		if (rootSpellPiece is SelectorSpellPiece){
+			return ((SelectorSpellPiece)rootSpellPiece).Select(spellCaster);
+		}
+		
+		for (int i = 0; i < castingParams.Length; i++)
+		{
+			castingParams[i] = childrenSpellPieces[i].Evaluate(spellCaster);
+		}
+		
+		if (rootSpellPiece is OperatorSpellPiece){
+			return ((OperatorSpellPiece)rootSpellPiece).Operate(spellCaster, castingParams);
+		}
 
-        if (rootSpellPiece is ExecutorSpellPiece){
-            ((ExecutorSpellPiece)rootSpellPiece).Execute(spellCaster, castingParams);
-        }
-        return new SpellVariable(SpellVariableType.NONE, null);
-    }
+		if (rootSpellPiece is ExecutorSpellPiece){
+			((ExecutorSpellPiece)rootSpellPiece).Execute(spellCaster, castingParams);
+		}
+		return new SpellVariable(SpellVariableType.NONE, null);
+	}
 
-    public SpellEvaluationTreeNode(SpellPiece root){
-        this.rootSpellPiece = root;
-        this.childrenSpellPieces = new SpellEvaluationTreeNode[root.ParamList.Length];
-    }
+	public SpellEvaluationTreeNode(SpellPiece root){
+		this.rootSpellPiece = root;
+		this.childrenSpellPieces = new SpellEvaluationTreeNode[root.ParamList.Length];
+	}
+
+	public void PrintTree(string indent = "")
+	{
+		GD.Print(indent + rootSpellPiece.Name);
+		foreach(var child in childrenSpellPieces)
+		{
+			if(child != null)
+				child.PrintTree(indent + "  ");
+		}
+	}
 }
-

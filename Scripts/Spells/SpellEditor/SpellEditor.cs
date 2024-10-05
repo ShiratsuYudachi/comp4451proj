@@ -41,6 +41,11 @@ public partial class SpellEditor : GridContainer
 		{
 			closeExistingPanel();
 		}
+
+		if (Input.IsActionJustPressed("Enter"))
+		{
+			CompileSpell().PrintTree();
+		}
 	}
 
 	public SpellPicker getSpellPicker(){
@@ -70,6 +75,54 @@ public partial class SpellEditor : GridContainer
 		spellPicker.resetPosition();
 	}
 
+	
+
+	private Vector2 getBoxCoordinateInGrid(SpellEditorBox spellEditorBox){
+		return new Vector2(spellEditorBox.GetIndex()%this.Columns, spellEditorBox.GetIndex()/this.Columns);
+	}
+
+	private SpellEditorBox getBoxAtCoordinate(Vector2 coordinate){
+		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
+			if (getBoxCoordinateInGrid(spellEditorBox) == coordinate) return spellEditorBox;
+		}
+		return null;
+	}
+
+	public SpellEvaluationTreeNode CompileSpell(){
+		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
+			if (spellEditorBox.spellPiece is ExecutorSpellPiece) return CompileBox(spellEditorBox);
+		}
+		return null;
+	}
+
+	public SpellEvaluationTreeNode CompileBox(SpellEditorBox spellEditorBox){
+		if (spellEditorBox.spellPiece is SelectorSpellPiece) return new SpellEvaluationTreeNode(spellEditorBox.spellPiece);
+		SpellEvaluationTreeNode root = new SpellEvaluationTreeNode(spellEditorBox.spellPiece);
+		root.childrenSpellPieces = new SpellEvaluationTreeNode[root.rootSpellPiece.ParamList.Length];
+
+		for (int i = 0; i < root.childrenSpellPieces.Length; i++){
+			DPad.Direction paramDirection = spellEditorBox.SpellPieceParamDirection[i];
+			Vector2 targetBoxCoordinateAtGrid = getBoxCoordinateInGrid(spellEditorBox);
+			switch(paramDirection){
+				case DPad.Direction.UP:
+					targetBoxCoordinateAtGrid.Y -= 1;
+					break;
+				case DPad.Direction.DOWN:
+					targetBoxCoordinateAtGrid.Y += 1;
+					break;
+				case DPad.Direction.LEFT:
+					targetBoxCoordinateAtGrid.X -= 1;
+					break;
+				case DPad.Direction.RIGHT:
+					targetBoxCoordinateAtGrid.X += 1;
+					break;
+			}
+			SpellEditorBox targetBox = getBoxAtCoordinate(targetBoxCoordinateAtGrid);
+			root.childrenSpellPieces[i] = CompileBox(targetBox);
+		}
+
+		return root;
+	}
 
 
 	// public TextureRect NewSpellPieceIcon(string name){

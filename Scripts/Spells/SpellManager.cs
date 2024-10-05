@@ -8,7 +8,7 @@ public enum SpellVariableType
 	INT,
 	BOOL,
 	FLOAT,
-	ENTITY,
+	LIVINGENTITY,
 	VECTOR2
 }
 
@@ -24,37 +24,37 @@ public struct SpellVariable
 			case SpellVariableType.NONE:
 				if (!(value is null))
 				{
-					throw new ArgumentException("Spell Variable Casting Error: casting "+value.GetType()+" to null");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to null");
 				}
 				break;
 			case SpellVariableType.INT:
 				if (!(value is int))
 				{
-					throw new ArgumentException("Spell Variable Casting Error: casting "+value.GetType()+" to int");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to int");
 				}
 				break;
 			case SpellVariableType.BOOL:
 				if (!(value is bool))
 				{
-						throw new ArgumentException("Spell Variable Casting Error: casting "+value.GetType()+" to bool");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to bool");
 				}
 				break;
 			case SpellVariableType.FLOAT:
 				if (!(value is float))
 				{
-					throw new ArgumentException("Spell Variable Casting Error: casting "+value.GetType()+" to float");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to float");
 				}
 				break;
-			case SpellVariableType.ENTITY:
-				if (!(value is Node2D))
+			case SpellVariableType.LIVINGENTITY:
+				if (!(value is LivingEntity))
 				{
-					throw new ArgumentException("Spell Variable Casting Error: casting "+value.GetType()+" to Node2D");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to LivingEntityD");
 				}
 				break;
 			case SpellVariableType.VECTOR2:
 				if (!(value is Vector2))
 				{
-					throw new ArgumentException("Spell Variable Casting Error: casting "+value.GetType()+" to Vector2");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to Vector2");
 				}
 				break;
 			default:
@@ -68,7 +68,7 @@ public struct SpellVariable
 	{
 		if (Type != SpellVariableType.INT)
 		{
-			throw new InvalidOperationException("Spell Variable Casting Error: casting "+Type+" to int");
+			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to int");
 		}
 		return (int)_value;
 	}
@@ -77,7 +77,7 @@ public struct SpellVariable
 	{
 		if (Type != SpellVariableType.BOOL)
 		{
-			throw new InvalidOperationException("Spell Variable Casting Error: casting "+Type+" to bool");
+			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to bool");
 		}
 		return (bool)_value;
 	}
@@ -86,25 +86,25 @@ public struct SpellVariable
 	{
 		if (Type != SpellVariableType.FLOAT)
 		{
-			throw new InvalidOperationException("Spell Variable Casting Error: casting "+Type+" to float");
+			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to float");
 		}
 		return (float)_value;
 	}
 
-	public Node2D AsEntity()
+	public LivingEntity AsEntity()
 	{
-		if (Type != SpellVariableType.ENTITY)
+		if (Type != SpellVariableType.LIVINGENTITY)
 		{
-			throw new InvalidOperationException("Spell Variable Casting Error: casting "+Type+" to Node2D");
+			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to LivingEntity");
 		}
-		return (Node2D)_value;
+		return (LivingEntity)_value;
 	}
 
 	public Vector2 AsVector2()
 	{
 		if (Type != SpellVariableType.VECTOR2)
 		{
-			throw new InvalidOperationException("Spell Variable Casting Error: casting "+Type+" to Vector2");
+			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to Vector2");
 		}
 		return (Vector2)_value;
 	}
@@ -155,9 +155,11 @@ public abstract class OperatorSpellPiece : SpellPiece
 
 public abstract class SelectorSpellPiece : SpellPiece
 {
-	public override SpellVariableType[] ParamList { 
-		get{
-			return new SpellVariableType[] {};
+	public override SpellVariableType[] ParamList
+	{
+		get
+		{
+			return new SpellVariableType[] { };
 		}
 	}
 	public abstract SpellVariable Select(SpellCaster spellCaster);
@@ -167,12 +169,14 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 {
 	public int Value;
 	public override SpellVariableType ReturnType { get { return SpellVariableType.INT; } }
-	public override string Name {
-		get{
+	public override string Name
+	{
+		get
+		{
 			return "Int: " + Value.ToString();
 		}
 	}
-	
+
 	public IntConstantSpellPiece(int value)
 	{
 		Value = value;
@@ -207,7 +211,7 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 	{
 	}
 
-	public Vector2ConstantSpellPiece(Vector2 value)	
+	public Vector2ConstantSpellPiece(Vector2 value)
 	{
 		Value = value;
 	}
@@ -222,7 +226,9 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 public class SpellEvaluationTreeNode
 {
 	public SpellPiece rootSpellPiece;
+	public SpellPiece rootSpellPiece;
 
+	public SpellEvaluationTreeNode[] childrenSpellPieces;
 	public SpellEvaluationTreeNode[] childrenSpellPieces;
 
 	public SpellVariable Evaluate(SpellCaster spellCaster){

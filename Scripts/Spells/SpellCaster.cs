@@ -1,14 +1,9 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices;
-
-
-
-
-
 public partial class SpellCaster : Node2D
 {
-    public SpellEvaluationTreeNode testEvaluationTree;
+	public SpellEvaluationTreeNode testEvaluationTree1, testEvaluationTree2;
 
 	public float ManaMax = 5000;
 	public float Mana = 5000;
@@ -18,19 +13,25 @@ public partial class SpellCaster : Node2D
 	public override void _Ready()
 	{
 		GD.Print("SpellExecutor ready");
-        testEvaluationTree = new SpellEvaluationTreeNode(new Blink());
-        testEvaluationTree.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-        testEvaluationTree.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMinus());
-        testEvaluationTree.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
-        testEvaluationTree.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
-        testEvaluationTree.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		//Blink
+		testEvaluationTree1 = new SpellEvaluationTreeNode(new Blink());
+		testEvaluationTree1.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		testEvaluationTree1.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMinus());
+		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
+		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
+		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		//MassAddMotion
+		testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
+		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
 		testEvaluationTree.PrintTree();
 	}
 
 	public void Cast()
 	{
 		GD.Print("Executing spell");
-        testEvaluationTree.Evaluate(this);
+		testEvaluationTree1.Evaluate(this);
+		testEvaluationTree2.Evaluate(this);
 	}
 
 	public bool TryToConsumeMana(int amount)
@@ -50,7 +51,7 @@ public partial class SpellCaster : Node2D
 			Cast();
 		}
 		Mana += ManaRegenSpeed * (float)delta;
-		
+
 		if (Mana > ManaMax)
 		{
 			Mana = ManaMax;

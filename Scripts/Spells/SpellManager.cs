@@ -110,11 +110,19 @@ public struct SpellVariable
 	}
 }
 
+
+
+
 public abstract class SpellPiece
 {
 	public virtual string Name { get; }
 
 	public virtual SpellVariableType[] ParamList { get; }
+
+	public virtual SpellVariableType[] ConfigList { get { return new SpellVariableType[] {}; } }
+	
+	public virtual object[] getConfigValues(){return new object[] {};} // for GUI loading config items
+	public virtual void applyConfig(object[] configs){} // for GUI saving config items
 	public virtual SpellVariableType ReturnType { get; }
 
 
@@ -180,11 +188,23 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 {
 	public Vector2 Value;
 	public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
-
+	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.VECTOR2 }; } }
 	public override string Name {
 		get{
 			return "Vector2: " + Value.ToString();
 		}
+	}
+
+	public override void applyConfig(object[] configs){
+		Value = (Vector2)configs[0];
+	}
+
+	public override object[] getConfigValues(){
+		return new object[] { Value };
+	}
+
+	public Vector2ConstantSpellPiece()	
+	{
 	}
 
 	public Vector2ConstantSpellPiece(Vector2 value)	

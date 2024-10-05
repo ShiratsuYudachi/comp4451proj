@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce8qrp15prpm1"]
+
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceConfigPanel.cs" id="1_a0j20"]
+[ext_resource type="PackedScene" uid="uid://d4hcf1otmoahi" path="res://Scenes/UI/SpellEditor/paramDirectionSelector.tscn" id="2_hcpdj"]
+[ext_resource type="PackedScene" uid="uid://bo7sbyhmcny5o" path="res://Scenes/UI/SpellEditor/config_vectorConstant.tscn" id="3_ufc1d"]
+
+[node name="SpellPieceConfigPanel" type="ItemList"]
+offset_left = -345.0
+offset_top = 312.0
+offset_right = -44.0
+offset_bottom = 633.0
+script = ExtResource("1_a0j20")
+paramSelector = ExtResource("2_hcpdj")
+configVector2Panel = ExtResource("3_ufc1d")
+
+[node name="VAlign" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 22.0
+offset_right = 260.0
+offset_bottom = 313.0
+
+[node name="DoneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 2.0
+offset_right = 299.0
+offset_bottom = 33.0
+text = "Done"

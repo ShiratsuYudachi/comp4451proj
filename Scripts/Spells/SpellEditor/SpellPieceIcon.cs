@@ -15,7 +15,7 @@ public partial class SpellPieceIcon : TextureRect
 
 
 	public void setIconForSpellPiece(string name){
-		Texture2D texture = GD.Load<Texture2D>("res://Images/spells/"+name+".png");
+		Texture2D texture = GD.Load<Texture2D>("res://Images/Spells/"+name+".png");
 		this.Texture = texture;
 	}
 }

@@ -1,16 +1,16 @@
 [gd_scene load_steps=8 format=3 uid="uid://d4hcf1otmoahi"]
 
-[ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_36y21"]
-[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSelector.cs" id="2_f08xr"]
-[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/DPad.cs" id="3_mec6f"]
-[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://Images/SpellParamDirectionButton.png" id="4_vdnyh"]
-[ext_resource type="Texture2D" uid="uid://dey1h5v0au135" path="res://Images/SpellParamDirectionButton_Pressed.png" id="5_uqmw4"]
-[ext_resource type="Texture2D" uid="uid://xcr5vful6c52" path="res://Images/SpellButtonDirectionButton_None.png" id="6_xqi68"]
-[ext_resource type="Texture2D" uid="uid://cwf2y4afip50e" path="res://Images/SpellButtonDirectionButton_None_Pressed.png" id="7_8cu3y"]
+[ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_71vtg"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSelector.cs" id="2_3i4l7"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/DPad.cs" id="3_pousf"]
+[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://Images/SpellParamDirectionButton.png" id="4_fpj8e"]
+[ext_resource type="Texture2D" uid="uid://dey1h5v0au135" path="res://Images/SpellParamDirectionButton_Pressed.png" id="5_njo5t"]
+[ext_resource type="Texture2D" uid="uid://xcr5vful6c52" path="res://Images/SpellButtonDirectionButton_None.png" id="6_osfc1"]
+[ext_resource type="Texture2D" uid="uid://cwf2y4afip50e" path="res://Images/SpellButtonDirectionButton_None_Pressed.png" id="7_na1nf"]
 
 [node name="ParamSelector" type="TextureRect" node_paths=PackedStringArray("ParamNameLabel", "dPad")]
-texture = ExtResource("1_36y21")
-script = ExtResource("2_f08xr")
+texture = ExtResource("1_71vtg")
+script = ExtResource("2_3i4l7")
 ParamNameLabel = NodePath("ParamNameLabel")
 dPad = NodePath("DPad")
 
@@ -28,7 +28,7 @@ offset_left = -24.0
 offset_top = 1.0
 offset_right = 16.0
 offset_bottom = 41.0
-script = ExtResource("3_mec6f")
+script = ExtResource("3_pousf")
 
 [node name="UpButton" type="TextureButton" parent="DPad"]
 layout_mode = 0
@@ -37,8 +37,8 @@ offset_top = -1.0
 offset_right = 216.0
 offset_bottom = 15.0
 scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("4_vdnyh")
-texture_pressed = ExtResource("5_uqmw4")
+texture_normal = ExtResource("4_fpj8e")
+texture_pressed = ExtResource("5_njo5t")
 
 [node name="DownButton" type="TextureButton" parent="DPad"]
 layout_mode = 0
@@ -48,8 +48,8 @@ offset_right = 240.0
 offset_bottom = 78.0
 rotation = -3.14159
 scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("4_vdnyh")
-texture_pressed = ExtResource("5_uqmw4")
+texture_normal = ExtResource("4_fpj8e")
+texture_pressed = ExtResource("5_njo5t")
 
 [node name="LeftButton" type="TextureButton" parent="DPad"]
 layout_mode = 0
@@ -59,8 +59,8 @@ offset_right = 195.0
 offset_bottom = 59.0
 rotation = -1.5708
 scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("4_vdnyh")
-texture_pressed = ExtResource("5_uqmw4")
+texture_normal = ExtResource("4_fpj8e")
+texture_pressed = ExtResource("5_njo5t")
 
 [node name="RightButton" type="TextureButton" parent="DPad"]
 layout_mode = 0
@@ -70,8 +70,8 @@ offset_right = 262.0
 offset_bottom = 35.0
 rotation = -4.71239
 scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("4_vdnyh")
-texture_pressed = ExtResource("5_uqmw4")
+texture_normal = ExtResource("4_fpj8e")
+texture_pressed = ExtResource("5_njo5t")
 
 [node name="NoneButton" type="TextureButton" parent="DPad"]
 layout_mode = 0
@@ -81,5 +81,5 @@ offset_right = 240.0
 offset_bottom = 59.0
 rotation = -3.14159
 scale = Vector2(1.5, 1.5)
-texture_normal = ExtResource("6_xqi68")
-texture_pressed = ExtResource("7_8cu3y")
+texture_normal = ExtResource("6_osfc1")
+texture_pressed = ExtResource("7_na1nf")

@@ -36,6 +36,11 @@ public partial class SpellEditor : GridContainer
 		else if (Input.GetMouseButtonMask() == MouseButtonMask.Right){
 			lastMouseButton = LastMouseButton.Right;
 		}
+
+		else if (Input.IsActionJustPressed("Cancel"))
+		{
+			closeExistingPanel();
+		}
 	}
 
 	public SpellPicker getSpellPicker(){
@@ -46,22 +51,23 @@ public partial class SpellEditor : GridContainer
 
 	public void setSpellPieceConfigPanelAt(SpellEditorBox spellEditorBox){
 		if (spellEditorBox.spellPiece == null) return;
-		if (spellPieceConfigPanel != null && IsInstanceValid(spellPieceConfigPanel)){
-			spellPieceConfigPanel.QueueFree();
-		}
+		closeExistingPanel();
 		spellPieceConfigPanel = spellPieceConfigPanelScene.Instantiate<SpellPieceConfigPanel>();
 		this.GetParent().AddChild(spellPieceConfigPanel);
 		spellPieceConfigPanel.Position = spellEditorBox.Position*this.Scale + this.Position;
 		spellPieceConfigPanel.setupParamSelectorsAt(spellEditorBox);
-
-		spellPicker.resetPosition();
 	}
 
 	public void setSpellPickerAt(SpellEditorBox spellEditorBox){
+		closeExistingPanel();
 		spellPicker.Position = spellEditorBox.Position*this.Scale + this.Position;
+	}
+
+	public void closeExistingPanel(){
 		if (spellPieceConfigPanel != null && IsInstanceValid(spellPieceConfigPanel)){
-			spellPieceConfigPanel.resetPosition();
+			spellPieceConfigPanel.QueueFree();
 		}
+		spellPicker.resetPosition();
 	}
 
 

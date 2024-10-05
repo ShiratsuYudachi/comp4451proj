@@ -14,7 +14,9 @@ public partial class SpellPicker : ItemList
 		string[] spellPiecesList = new string[] {
 			"Blink",
 			"GetEntityPos",
-			"VectorMinus"
+			"VectorMinus",
+			"SelectCaster",
+			"VectorConstant"
 		};
 
 		foreach (string spellPiece in spellPiecesList)
@@ -51,6 +53,10 @@ public partial class SpellPicker : ItemList
 				return new GetEntityPos();
 			case 2:
 				return new VectorMinus();
+			case 3:
+				return new SelectCaster();
+			case 4:
+				return new Vector2ConstantSpellPiece();
 			default:
 				return null;
 		}

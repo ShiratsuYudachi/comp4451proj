@@ -41,4 +41,18 @@ public partial class SpellPicker : ItemList
 	{
 
 	}
+
+	public SpellPiece getSpellPiece(int index){
+		switch (index)
+		{
+			case 0:
+				return new Blink();
+			case 1:
+				return new GetEntityPos();
+			case 2:
+				return new VectorMinus();
+			default:
+				return null;
+		}
+	}
 }

@@ -13,6 +13,11 @@ public partial class SpellEditorBox : Button
 	public SpellPieceIcon spellPieceIcon;
 
 
+	public SpellPiece spellPiece;
+
+	public DPad.Direction[] SpellPieceParamDirection = new DPad.Direction[4];
+
+
 	private bool isEditing = false;
 
 	public override void _Ready()
@@ -43,6 +48,7 @@ public partial class SpellEditorBox : Button
 			spellPicker.resetPosition();
 			isEditing = false;
 			selectedSpellPieceName = spellPicker.getSpellPieceName(index);
+			spellPiece = spellPicker.getSpellPiece(index);
 			GD.Print("SpellEditorBox selection done:" + selectedSpellPieceName);
 			spellPieceIcon.setIconForSpellPiece(selectedSpellPieceName);
 		}

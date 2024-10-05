@@ -7,7 +7,11 @@ public partial class SpellEditor : GridContainer
 	public SpellPicker spellPicker;
 
 	[Export]
+	public PackedScene spellPieceConfigPanelScene;
+
 	public SpellPieceConfigPanel spellPieceConfigPanel;
+
+
 	public enum LastMouseButton{
 		Left,
 		Right,
@@ -41,14 +45,26 @@ public partial class SpellEditor : GridContainer
 
 
 	public void setSpellPieceConfigPanelAt(SpellEditorBox spellEditorBox){
+		if (spellEditorBox.spellPiece == null) return;
+		if (spellPieceConfigPanel != null && IsInstanceValid(spellPieceConfigPanel)){
+			spellPieceConfigPanel.QueueFree();
+		}
+		spellPieceConfigPanel = spellPieceConfigPanelScene.Instantiate<SpellPieceConfigPanel>();
+		this.GetParent().AddChild(spellPieceConfigPanel);
 		spellPieceConfigPanel.Position = spellEditorBox.Position*this.Scale + this.Position;
+		spellPieceConfigPanel.setupParamSelectorsAt(spellEditorBox);
+
 		spellPicker.resetPosition();
 	}
 
 	public void setSpellPickerAt(SpellEditorBox spellEditorBox){
 		spellPicker.Position = spellEditorBox.Position*this.Scale + this.Position;
-		spellPieceConfigPanel.resetPosition();
+		if (spellPieceConfigPanel != null && IsInstanceValid(spellPieceConfigPanel)){
+			spellPieceConfigPanel.resetPosition();
+		}
 	}
+
+
 
 	// public TextureRect NewSpellPieceIcon(string name){
 	// 	TextureRect icon = spellPieceIcon.Instantiate<TextureRect>();

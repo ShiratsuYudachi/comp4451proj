@@ -115,6 +115,7 @@ public abstract class SpellPiece
 	public virtual string Name { get; }
 
 	public virtual SpellVariableType[] ParamList { get; }
+	public virtual SpellVariableType ReturnType { get; }
 
 
 	protected void checkParams(SpellVariable[] args)
@@ -135,6 +136,7 @@ public abstract class SpellPiece
 
 public abstract class ExecutorSpellPiece : SpellPiece
 {
+	public override SpellVariableType ReturnType { get { return SpellVariableType.NONE; } }
 	public abstract void Execute(SpellCaster spellCaster, params SpellVariable[] args);
 }
 
@@ -156,7 +158,7 @@ public abstract class SelectorSpellPiece : SpellPiece
 public class IntConstantSpellPiece : SelectorSpellPiece
 {
 	public int Value;
-
+	public override SpellVariableType ReturnType { get { return SpellVariableType.INT; } }
 	public override string Name {
 		get{
 			return "Int: " + Value.ToString();
@@ -177,6 +179,7 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 public class Vector2ConstantSpellPiece : SelectorSpellPiece
 {
 	public Vector2 Value;
+	public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
 
 	public override string Name {
 		get{

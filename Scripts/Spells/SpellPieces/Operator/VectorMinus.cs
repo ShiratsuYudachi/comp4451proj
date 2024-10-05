@@ -20,6 +20,7 @@ public class VectorMinus : OperatorSpellPiece
         };
     }
     }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
 
     public override SpellVariable Operate(SpellCaster spellCaster, params SpellVariable[] args)
     {

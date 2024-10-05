@@ -11,6 +11,7 @@ public class SelectCaster : SelectorSpellPiece
             return "Select Caster"; 
         }
     }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.ENTITY; } }
 
 
     public override SpellVariable Select(SpellCaster spellCaster)

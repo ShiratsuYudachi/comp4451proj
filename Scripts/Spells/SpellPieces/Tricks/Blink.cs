@@ -11,6 +11,7 @@ public class Blink : ExecutorSpellPiece
             return "Blink"; 
         }
     }
+    
 
 	public override SpellVariableType[] ParamList { get
     {

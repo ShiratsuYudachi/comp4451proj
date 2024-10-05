@@ -37,10 +37,8 @@ public partial class SpellCaster : Node2D
 		if (Mana >= amount)
 		{
 			Mana -= amount;
-			GD.Print("Consumed " + amount + " mana. " + Mana + " left.");
 			return true;
 		}
-		GD.Print("Not enough mana! " + Mana + " < " + amount);
 		return false;
 	}
 

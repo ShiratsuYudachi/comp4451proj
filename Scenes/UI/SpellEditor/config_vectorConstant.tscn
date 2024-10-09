@@ -29,6 +29,7 @@ offset_bottom = 46.0
 scale = Vector2(0.9, 0.9)
 
 [node name="X" type="Label" parent="Input"]
+layout_mode = 0
 offset_left = 109.0
 offset_top = 12.0
 offset_right = 149.0
@@ -45,6 +46,7 @@ offset_bottom = 34.0
 placeholder_text = "X value"
 
 [node name="Y" type="Label" parent="Input"]
+layout_mode = 0
 offset_left = 223.0
 offset_top = 13.0
 offset_right = 263.0
@@ -54,6 +56,7 @@ text = "Y
 label_settings = SubResource("LabelSettings_7gi40")
 
 [node name="TextEdit" type="TextEdit" parent="Input/Y"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = -2.0
 offset_right = 90.0

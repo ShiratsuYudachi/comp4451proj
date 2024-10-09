@@ -226,9 +226,6 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 public class SpellEvaluationTreeNode
 {
 	public SpellPiece rootSpellPiece;
-	public SpellPiece rootSpellPiece;
-
-	public SpellEvaluationTreeNode[] childrenSpellPieces;
 	public SpellEvaluationTreeNode[] childrenSpellPieces;
 
 	public SpellVariable Evaluate(SpellCaster spellCaster){

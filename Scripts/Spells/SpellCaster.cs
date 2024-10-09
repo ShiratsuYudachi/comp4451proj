@@ -24,7 +24,7 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
 		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
-		testEvaluationTree.PrintTree();
+		testEvaluationTree2.PrintTree();
 	}
 
 	public void Cast()

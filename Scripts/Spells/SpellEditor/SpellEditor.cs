@@ -42,7 +42,7 @@ public partial class SpellEditor : GridContainer
 			closeExistingPanel();
 		}
 
-		if (Input.IsActionJustPressed("Enter"))
+		if (Input.IsActionJustPressed("EnterN"))
 		{
 			CompileSpell().PrintTree();
 		}
@@ -92,6 +92,7 @@ public partial class SpellEditor : GridContainer
 		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
 			if (spellEditorBox.spellPiece is ExecutorSpellPiece) return CompileBox(spellEditorBox);
 		}
+		GD.Print("No executor spell piece found");
 		return null;
 	}
 

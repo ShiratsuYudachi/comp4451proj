@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://m72s3878neh2"]
+
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceConfigPanel.cs" id="1_a0j20"]
+[ext_resource type="PackedScene" uid="uid://4dl1vceda0il" path="res://Scenes/UI/SpellEditor/param_selector.tscn" id="2_hcpdj"]
+[ext_resource type="PackedScene" uid="uid://bo7sbyhmcny5o" path="res://Scenes/UI/SpellEditor/config_vectorConstant.tscn" id="3_2sbve"]
+
+[node name="SpellPieceConfigPanel" type="ItemList"]
+offset_left = -345.0
+offset_top = 312.0
+offset_right = -44.0
+offset_bottom = 633.0
+script = ExtResource("1_a0j20")
+paramSelector = ExtResource("2_hcpdj")
+configVector2Panel = ExtResource("3_2sbve")
+
+[node name="VAlign" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 22.0
+offset_right = 260.0
+offset_bottom = 313.0
+
+[node name="ParamNameLabel" type="Label" parent="VAlign"]
+layout_mode = 2
+text = "Test"
+
+[node name="Label" type="Label" parent="VAlign"]
+layout_mode = 2
+text = "Test"
+
+[node name="TextEdit" type="TextEdit" parent="VAlign/Label"]
+layout_mode = 2
+offset_left = 44.0
+offset_top = -4.0
+offset_right = 120.0
+offset_bottom = 28.0
+text = "1dw"
+placeholder_text = "1dsdad"
+
+[node name="DoneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 7.0
+offset_right = 296.0
+offset_bottom = 38.0
+text = "Done"

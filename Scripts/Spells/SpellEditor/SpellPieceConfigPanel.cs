@@ -40,6 +40,7 @@ public partial class SpellPieceConfigPanel : Control
 
 		for (int i = 0; i < spellEditorBox.spellPiece.ConfigList.Length; i++){
 			SpellVariableType type = spellEditorBox.spellPiece.ConfigList[i];
+			GD.Print("Setting up param "+ type.ToString());
 			ConfigItem newConfigItem = null;
 			switch (type){
 				case SpellVariableType.VECTOR2:

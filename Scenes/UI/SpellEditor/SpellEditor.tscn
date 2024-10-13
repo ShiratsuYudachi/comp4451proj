@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditorBox.cs" id="2_t08e2"]
 [ext_resource type="PackedScene" uid="uid://cfkoj1rwb5wjj" path="res://Scenes/UI/spell_piece_icon.tscn" id="4_gu0ot"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPicker.cs" id="5_g4anj"]
-[ext_resource type="PackedScene" uid="uid://ce8qrp15prpm1" path="res://Scenes/UI/SpellEditor/configPanel.tscn" id="6_3n7dk"]
+[ext_resource type="PackedScene" uid="uid://m72s3878neh2" path="res://Scenes/UI/SpellEditor/spell_piece_config_panel.tscn" id="6_3n7dk"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSourceDisplay.cs" id="6_tc3ob"]
 [ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://Images/SpellParamDirectionButton.png" id="7_mwueo"]
 

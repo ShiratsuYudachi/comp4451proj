@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://m72s3878neh2"]
+[gd_scene load_steps=5 format=3 uid="uid://m72s3878neh2"]
 
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceConfigPanel.cs" id="1_a0j20"]
 [ext_resource type="PackedScene" uid="uid://4dl1vceda0il" path="res://Scenes/UI/SpellEditor/param_selector.tscn" id="2_hcpdj"]
 [ext_resource type="PackedScene" uid="uid://bo7sbyhmcny5o" path="res://Scenes/UI/SpellEditor/config_vectorConstant.tscn" id="3_2sbve"]
+[ext_resource type="PackedScene" uid="uid://5jvwsepql2v6" path="res://Scenes/UI/SpellEditor/config_intConstant.tscn" id="4_dfsxr"]
 
 [node name="SpellPieceConfigPanel" type="ItemList"]
 offset_left = -345.0
@@ -12,6 +13,7 @@ offset_bottom = 633.0
 script = ExtResource("1_a0j20")
 paramSelector = ExtResource("2_hcpdj")
 configVector2Panel = ExtResource("3_2sbve")
+configIntPanel = ExtResource("4_dfsxr")
 
 [node name="VAlign" type="VBoxContainer" parent="."]
 layout_mode = 0

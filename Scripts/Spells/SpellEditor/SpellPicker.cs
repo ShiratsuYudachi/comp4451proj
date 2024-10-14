@@ -16,7 +16,8 @@ public partial class SpellPicker : ItemList
 			"GetEntityPos",
 			"VectorMinus",
 			"SelectCaster",
-			"VectorConstant"
+			"VectorConstant",
+			"IntConstant"
 		};
 
 		foreach (string spellPiece in spellPiecesList)
@@ -28,14 +29,16 @@ public partial class SpellPicker : ItemList
 		{
 			SetItemSelectable(i, false);
 		}
-		
+
 	}
 
-	public void resetPosition(){
+	public void resetPosition()
+	{
 		this.Position = spellListInitialPosition;
 	}
 
-	public string getSpellPieceName(int index){
+	public string getSpellPieceName(int index)
+	{
 		return GetItemText(index);
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +47,8 @@ public partial class SpellPicker : ItemList
 
 	}
 
-	public SpellPiece getSpellPiece(int index){
+	public SpellPiece getSpellPiece(int index)
+	{
 		switch (index)
 		{
 			case 0:
@@ -57,6 +61,8 @@ public partial class SpellPicker : ItemList
 				return new SelectCaster();
 			case 4:
 				return new Vector2ConstantSpellPiece();
+			case 5:
+				return new IntConstantSpellPiece();
 			default:
 				return null;
 		}

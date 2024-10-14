@@ -119,10 +119,10 @@ public abstract class SpellPiece
 
 	public virtual SpellVariableType[] ParamList { get; }
 
-	public virtual SpellVariableType[] ConfigList { get { return new SpellVariableType[] {}; } }
-	
-	public virtual object[] getConfigValues(){return new object[] {};} // for GUI loading config items
-	public virtual void applyConfig(object[] configs){} // for GUI saving config items
+	public virtual SpellVariableType[] ConfigList { get { return new SpellVariableType[] { }; } }
+
+	public virtual object[] getConfigValues() { return new object[] { }; } // for GUI loading config items
+	public virtual void applyConfig(object[] configs) { } // for GUI saving config items
 	public virtual SpellVariableType ReturnType { get; }
 
 
@@ -169,6 +169,7 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 {
 	public int Value;
 	public override SpellVariableType ReturnType { get { return SpellVariableType.INT; } }
+	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.INT }; } }
 	public override string Name
 	{
 		get
@@ -176,7 +177,17 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 			return "Int: " + Value.ToString();
 		}
 	}
-
+	public override void applyConfig(object[] configs)
+	{
+		Value = (int)configs[0];
+	}
+	public override object[] getConfigValues()
+	{
+		return new object[] { Value };
+	}
+	public IntConstantSpellPiece()
+	{
+	}
 	public IntConstantSpellPiece(int value)
 	{
 		Value = value;
@@ -193,21 +204,25 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 	public Vector2 Value;
 	public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
 	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.VECTOR2 }; } }
-	public override string Name {
-		get{
+	public override string Name
+	{
+		get
+		{
 			return "Vector2: " + Value.ToString();
 		}
 	}
 
-	public override void applyConfig(object[] configs){
+	public override void applyConfig(object[] configs)
+	{
 		Value = (Vector2)configs[0];
 	}
 
-	public override object[] getConfigValues(){
+	public override object[] getConfigValues()
+	{
 		return new object[] { Value };
 	}
 
-	public Vector2ConstantSpellPiece()	
+	public Vector2ConstantSpellPiece()
 	{
 	}
 
@@ -228,29 +243,34 @@ public class SpellEvaluationTreeNode
 	public SpellPiece rootSpellPiece;
 	public SpellEvaluationTreeNode[] childrenSpellPieces;
 
-	public SpellVariable Evaluate(SpellCaster spellCaster){
+	public SpellVariable Evaluate(SpellCaster spellCaster)
+	{
 		SpellVariable[] castingParams = new SpellVariable[rootSpellPiece.ParamList.Length];
-		
-		if (rootSpellPiece is SelectorSpellPiece){
+
+		if (rootSpellPiece is SelectorSpellPiece)
+		{
 			return ((SelectorSpellPiece)rootSpellPiece).Select(spellCaster);
 		}
-		
+
 		for (int i = 0; i < castingParams.Length; i++)
 		{
 			castingParams[i] = childrenSpellPieces[i].Evaluate(spellCaster);
 		}
-		
-		if (rootSpellPiece is OperatorSpellPiece){
+
+		if (rootSpellPiece is OperatorSpellPiece)
+		{
 			return ((OperatorSpellPiece)rootSpellPiece).Operate(spellCaster, castingParams);
 		}
 
-		if (rootSpellPiece is ExecutorSpellPiece){
+		if (rootSpellPiece is ExecutorSpellPiece)
+		{
 			((ExecutorSpellPiece)rootSpellPiece).Execute(spellCaster, castingParams);
 		}
 		return new SpellVariable(SpellVariableType.NONE, null);
 	}
 
-	public SpellEvaluationTreeNode(SpellPiece root){
+	public SpellEvaluationTreeNode(SpellPiece root)
+	{
 		this.rootSpellPiece = root;
 		this.childrenSpellPieces = new SpellEvaluationTreeNode[root.ParamList.Length];
 	}
@@ -258,9 +278,9 @@ public class SpellEvaluationTreeNode
 	public void PrintTree(string indent = "")
 	{
 		GD.Print(indent + rootSpellPiece.Name);
-		foreach(var child in childrenSpellPieces)
+		foreach (var child in childrenSpellPieces)
 		{
-			if(child != null)
+			if (child != null)
 				child.PrintTree(indent + "  ");
 		}
 	}

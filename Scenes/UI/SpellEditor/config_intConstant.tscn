@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://5jvwsepql2v6"]
+
+[ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_qmq7h"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ConfigIntConstant.cs" id="2_k3wub"]
+
+[node name="configIntConstant" type="TextureRect"]
+texture = ExtResource("1_qmq7h")
+script = ExtResource("2_k3wub")
+
+[node name="ParamNameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Int"
+
+[node name="Input" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 42.0
+offset_bottom = 43.0
+
+[node name="TextEdit" type="TextEdit" parent="Input"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 89.0
+offset_bottom = 35.0
+placeholder_text = "value"

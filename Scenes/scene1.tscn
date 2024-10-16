@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=79 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_3ue3l"]
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_aqhh3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/items/Weapon2.cs" id="10_e5wsr"]
 [ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet.tscn" id="11_voum3"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="14_42tvs"]
+[ext_resource type="Script" path="res://Scripts/Entities/MonsterDetector.cs" id="16_18ue1"]
 [ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/Skeleton.tscn" id="17_s8h65"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
@@ -639,6 +640,9 @@ size = Vector2(17.6, 6.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwo4s"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpyrj"]
+size = Vector2(114, 114)
+
 [node name="Scene1" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(5, 3)
@@ -763,6 +767,12 @@ shape = SubResource("RectangleShape2D_rwo4s")
 
 [node name="SpellCaster" type="Node2D" parent="Player"]
 script = ExtResource("14_42tvs")
+
+[node name="Area2D2" type="Area2D" parent="Player"]
+script = ExtResource("16_18ue1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D2"]
+shape = SubResource("RectangleShape2D_lpyrj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

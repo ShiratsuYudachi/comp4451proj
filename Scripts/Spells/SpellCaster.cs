@@ -3,7 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 public partial class SpellCaster : Node2D
 {
-	public SpellEvaluationTreeNode testEvaluationTree1, testEvaluationTree2;
+	public SpellEvaluationTreeNode testEvaluationTree1, testEvaluationTree2, testEvaluationTree3;
 
 	public float ManaMax = 5000;
 	public float Mana = 5000;
@@ -25,6 +25,10 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
 		testEvaluationTree2.PrintTree();
+		//Heal
+		testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
+		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		testEvaluationTree3.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new IntConstantSpellPiece(114));
 	}
 
 	public void Cast()
@@ -32,6 +36,7 @@ public partial class SpellCaster : Node2D
 		GD.Print("Executing spell");
 		testEvaluationTree1.Evaluate(this);
 		testEvaluationTree2.Evaluate(this);
+		testEvaluationTree3.Evaluate(this);
 	}
 
 	public bool TryToConsumeMana(int amount)

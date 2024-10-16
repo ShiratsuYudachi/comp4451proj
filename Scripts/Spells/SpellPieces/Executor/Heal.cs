@@ -13,7 +13,7 @@ public class Heal : ExecutorSpellPiece
         if (spellCaster.TryToConsumeMana(deltaMP))
         {
             int deltaHP = (int)(deltaMP * 2.61);
-            target.health = target.health + deltaHP > target.MAX_HEALTH ? target.MAX_HEALTH : target.health + deltaHP;
+            target.Health = target.Health + deltaHP > target.MaxHealth ? target.MaxHealth : target.Health + deltaHP;
         }
     }
 }

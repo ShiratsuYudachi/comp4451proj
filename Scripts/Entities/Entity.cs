@@ -26,4 +26,53 @@ public abstract partial class Entity : CharacterBody2D, IDamageable
             GetTree().Quit();
         }
     }
+    public override void _Process(double delta)
+    {
+        if (hitFlashTimer > 0)
+        {
+            hitFlashTimer -= (float)delta;
+            if (hitFlashTimer <= 0)
+            {
+                if (animatedSprite2D == null)
+                {
+                    GD.Print("No AnimatedSprite2D found!");
+                    GetTree().Quit();
+                }
+                else
+                {
+                    animatedSprite2D.Modulate = Colors.White;
+                }
+            }
+        }
+    }
+    public virtual void OnHit(int damage)
+    {
+        health -= damage;
+        GD.Print(GetType().Name + " hit for " + damage + " pts. Remaining health: " + health);
+        if (animatedSprite2D == null)
+        {
+            GD.Print("No AnimatedSprite2D found!");
+            GetTree().Quit();
+        }
+        else
+        {
+            animatedSprite2D.Modulate = Colors.Red;
+        }
+        hitFlashTimer = hitFlashDuration;
+        GameScene.ShowDamage(damage, GlobalPosition);
+        if (health <= 0) Die();
+    }
+    public virtual void Die()
+    {
+        if (this is LivingEntity) TipManager.ShowTip(GetType().Name + " defeated!");
+        else GD.Print(GetType().Name + " broken!");
+        // 这里可以添加死亡动画、掉落物品等逻辑		
+        if (deathEffectScene != null)
+        {
+            Node2D effect = deathEffectScene.Instantiate<Node2D>();
+            GetTree().Root.AddChild(effect);
+            effect.GlobalPosition = GlobalPosition;
+        }
+        QueueFree();
+    }
 }

@@ -1,11 +1,10 @@
-[gd_scene load_steps=79 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=73 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_3ue3l"]
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_aqhh3"]
-[ext_resource type="Texture2D" uid="uid://b5vygoj2aaclf" path="res://Images/Objects.png" id="2_ju0ij"]
 [ext_resource type="Texture2D" uid="uid://c0njk1ovxpn6l" path="res://MoeAssets/cheshire.png" id="3_t000s"]
 [ext_resource type="Script" path="res://Scripts/Entities/PlayerControl.cs" id="3_y2l34"]
-[ext_resource type="Script" path="res://Scripts/Entities/Flower.cs" id="5_nkgsp"]
+[ext_resource type="PackedScene" uid="uid://d085o361dqv75" path="res://Scenes/flower.tscn" id="5_inw70"]
 [ext_resource type="Script" path="res://Scripts/Map/ScenePortal.cs" id="6_3y1wr"]
 [ext_resource type="PackedScene" uid="uid://csbqiboviquls" path="res://Scenes/UI/UI.tscn" id="6_d0wq3"]
 [ext_resource type="Script" path="res://Scripts/items/WeaponControl.cs" id="6_yil0x"]
@@ -209,43 +208,6 @@ sources/1 = SubResource("TileSetAtlasSource_usjss")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtrk2"]
 size = Vector2(20, 287)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hvgrf"]
-atlas = ExtResource("2_ju0ij")
-region = Rect2(34, 51, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wnjnf"]
-atlas = ExtResource("2_ju0ij")
-region = Rect2(51, 51, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vnmwt"]
-atlas = ExtResource("2_ju0ij")
-region = Rect2(51, 51, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_07bei"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hvgrf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wnjnf")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vnmwt")
-}],
-"loop": true,
-"name": &"onStepped",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hhhoe"]
-radius = 5.56522
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lnuwi"]
 
@@ -675,23 +637,6 @@ position = Vector2(214, -1)
 shape = SubResource("RectangleShape2D_jtrk2")
 metadata/_edit_lock_ = true
 
-[node name="flower" type="AnimatedSprite2D" parent="TileMap"]
-z_index = -1
-texture_filter = 1
-position = Vector2(50.25, -22.25)
-scale = Vector2(0.71875, 0.71875)
-sprite_frames = SubResource("SpriteFrames_07bei")
-frame_progress = 0.0566997
-script = ExtResource("5_nkgsp")
-
-[node name="Area2D" type="Area2D" parent="TileMap/flower"]
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/flower/Area2D"]
-position = Vector2(-0.347832, 0.347826)
-shape = SubResource("CircleShape2D_hhhoe")
-metadata/_edit_lock_ = true
-
 [node name="ScenePortal" type="Area2D" parent="TileMap"]
 position = Vector2(164, 0)
 script = ExtResource("6_3y1wr")
@@ -700,6 +645,8 @@ targetScene = ExtResource("7_iyejr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/ScenePortal"]
 shape = SubResource("RectangleShape2D_lnuwi")
 metadata/_edit_lock_ = true
+
+[node name="Flower" parent="TileMap" instance=ExtResource("5_inw70")]
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 z_index = 11
@@ -768,10 +715,10 @@ shape = SubResource("RectangleShape2D_rwo4s")
 [node name="SpellCaster" type="Node2D" parent="Player"]
 script = ExtResource("14_42tvs")
 
-[node name="Area2D2" type="Area2D" parent="Player"]
+[node name="MonsterDetector" type="Area2D" parent="Player"]
 script = ExtResource("16_18ue1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/MonsterDetector"]
 shape = SubResource("RectangleShape2D_lpyrj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

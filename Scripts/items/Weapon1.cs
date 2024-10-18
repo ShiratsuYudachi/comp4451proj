@@ -9,7 +9,7 @@ public partial class Weapon1 : Sprite2D
 	public override void _Ready()
 	{
 		GetNode<Area2D>("Area2D").Connect("area_entered", new Callable(this, nameof(OnHitEnemy)));
-		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");	
+		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		EventManager.PlayerChangeDirection += (direction) =>
 		{
 			isRight = direction;
@@ -38,9 +38,14 @@ public partial class Weapon1 : Sprite2D
 
 	public void OnHitEnemy(Area2D area)
 	{
-		if (area.GetParent() is LivingEntity livingEntity)
+		Node node = area.GetParent();
+		if (node is LivingEntity livingEntity)
 		{
 			livingEntity.OnHit(10);
+		}
+		else if (node is MapEntity mapEntity)
+		{
+			mapEntity.OnHit(10);
 		}
 	}
 }

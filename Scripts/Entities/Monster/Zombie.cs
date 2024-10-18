@@ -7,7 +7,6 @@ public partial class Zombie : LivingEntity
 	{
 		base._Ready();
 	}
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -58,8 +57,9 @@ public partial class Zombie : LivingEntity
 		}
 		base._Process(delta);
 	}
-
-
+	public override void Attack()
+	{
+	}
 	public override void OnHit(int damage)
 	{
 

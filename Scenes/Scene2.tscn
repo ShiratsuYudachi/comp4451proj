@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://wingv4uf8vx3"]
+[gd_scene load_steps=11 format=3 uid="uid://wingv4uf8vx3"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_dd2yy"]
 [ext_resource type="Script" path="res://Scripts/Map/Scene2.cs" id="1_koog5"]
-[ext_resource type="Texture2D" uid="uid://b5vygoj2aaclf" path="res://Images/Objects.png" id="2_qnpx1"]
-[ext_resource type="Script" path="res://Scripts/Entities/Flower.cs" id="3_3tljp"]
+[ext_resource type="PackedScene" uid="uid://d085o361dqv75" path="res://Scenes/flower.tscn" id="3_8i4ws"]
 [ext_resource type="Script" path="res://Scripts/items/Spawner.cs" id="5_1w01x"]
 [ext_resource type="PackedScene" uid="uid://xxswesylvb6y" path="res://Scenes/zombie.tscn" id="6_r0hs0"]
 
@@ -198,43 +197,6 @@ sources/1 = SubResource("TileSetAtlasSource_5ib3p")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4q3rn"]
 size = Vector2(20, 287)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hvgrf"]
-atlas = ExtResource("2_qnpx1")
-region = Rect2(34, 51, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wnjnf"]
-atlas = ExtResource("2_qnpx1")
-region = Rect2(51, 51, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vnmwt"]
-atlas = ExtResource("2_qnpx1")
-region = Rect2(51, 51, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ye272"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hvgrf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wnjnf")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vnmwt")
-}],
-"loop": true,
-"name": &"onStepped",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ylug7"]
-radius = 5.56522
-
 [node name="Scene2" type="Node2D"]
 script = ExtResource("1_koog5")
 
@@ -264,21 +226,21 @@ position = Vector2(214, -1)
 shape = SubResource("RectangleShape2D_4q3rn")
 metadata/_edit_lock_ = true
 
-[node name="flower" type="AnimatedSprite2D" parent="TileMap"]
-z_index = -1
-texture_filter = 1
-position = Vector2(50.25, -22.25)
+[node name="Flower1" parent="TileMap" instance=ExtResource("3_8i4ws")]
+position = Vector2(9, -5)
 scale = Vector2(0.71875, 0.71875)
-sprite_frames = SubResource("SpriteFrames_ye272")
-script = ExtResource("3_3tljp")
 
-[node name="Area2D" type="Area2D" parent="TileMap/flower"]
-metadata/_edit_lock_ = true
+[node name="Flower2" parent="TileMap" instance=ExtResource("3_8i4ws")]
+position = Vector2(25, -5)
+scale = Vector2(0.71875, 0.71875)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/flower/Area2D"]
-position = Vector2(-0.347832, 0.347826)
-shape = SubResource("CircleShape2D_ylug7")
-metadata/_edit_lock_ = true
+[node name="Flower3" parent="TileMap" instance=ExtResource("3_8i4ws")]
+position = Vector2(41, -5)
+scale = Vector2(0.71875, 0.71875)
+
+[node name="Flower4" parent="TileMap" instance=ExtResource("3_8i4ws")]
+position = Vector2(56, -5)
+scale = Vector2(0.71875, 0.71875)
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("5_1w01x")

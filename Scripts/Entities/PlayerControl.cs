@@ -60,6 +60,9 @@ public partial class PlayerControl : LivingEntity
 			}
 		}
 	}
+	public override void Attack()
+	{
+	}
 	public override void ApplyDamage(long amount = 0L, Vector2? direction = null, Entity? source = null)
 	{
 

@@ -1,11 +1,11 @@
+#nullable enable
 using Godot;
 using System;
 
 public partial class PlayerControl : LivingEntity
 {
 	public const float Speed = 100.0f;
-	private AnimatedSprite2D _animatedSprite2D;
-	private bool isRight = true;
+	private AnimatedSprite2D? _animatedSprite2D;
 
 	public override void _Ready()
 	{
@@ -20,7 +20,7 @@ public partial class PlayerControl : LivingEntity
 		Velocity = inputVector * Speed;
 		MoveAndSlide();
 
-		if (inputVector.X > 0) 
+		if (inputVector.X > 0)
 		{
 			isRight = true;
 			EventManager.PlayerChangeDirection?.Invoke(true);
@@ -30,15 +30,38 @@ public partial class PlayerControl : LivingEntity
 			isRight = false;
 			EventManager.PlayerChangeDirection?.Invoke(false);
 		}
-		_animatedSprite2D.FlipH = !isRight;
-
-		if (inputVector.X != 0 || inputVector.Y != 0)
+		if (_animatedSprite2D != null)
 		{
-			_animatedSprite2D.Play("move");
+			_animatedSprite2D.FlipH = !isRight;
 		}
 		else
 		{
-			_animatedSprite2D.Play("idle");
+			GD.PushError("No AnimatedSprite2D node found!");
+			GetTree().Quit();
 		}
+
+		if (inputVector.X != 0 || inputVector.Y != 0)
+		{
+			if (_animatedSprite2D != null)
+			{
+				_animatedSprite2D.Play("move");
+			}
+			else
+			{
+				GD.PushError("No AnimatedSprite2D node found!");
+				GetTree().Quit();
+			}
+		}
+		else
+		{
+			if (_animatedSprite2D != null)
+			{
+				_animatedSprite2D.Play("idle");
+			}
+		}
+	}
+	public override void ApplyDamage(long amount = 0L, Vector2? direction = null, Entity? source = null)
+	{
+
 	}
 }

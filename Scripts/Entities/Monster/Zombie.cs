@@ -32,7 +32,7 @@ public partial class Zombie : LivingEntity
 				MoveAndSlide();
 
 				// 添加转向逻辑
-				if (randomDirection.X > 0) 
+				if (randomDirection.X > 0)
 				{
 					isRight = true;
 				}
@@ -62,12 +62,16 @@ public partial class Zombie : LivingEntity
 
 	public override void OnHit(int damage)
 	{
-		
+
 		base.OnHit(damage);
 	}
 
 	public override void Die()
 	{
 		base.Die();
+	}
+	public override void ApplyDamage(long amout = 0, Vector2? direction = null, Entity source = null)
+	{
+
 	}
 }

@@ -8,17 +8,12 @@ public abstract partial class LivingEntity : Entity
 	protected State state = State.Idle;
 	protected Vector2 randomDirection;
 	protected bool isRight = true;
-	public Vector2 velocity;
-	public float friction = 0.98f;
 
 	protected float hitFlashDuration = 0.2f;
     protected float hitFlashTimer = 0f;
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Vector2 offset = new Vector2((float)(velocity.X * delta), (float)(velocity.Y * delta));
-		Position += offset;
-		velocity *= friction;
 
 		if (hitFlashTimer > 0)
         {

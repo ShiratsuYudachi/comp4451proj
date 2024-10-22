@@ -4,10 +4,17 @@ using System;
 public class Heal : ExecutorSpellPiece
 {
     public override string Name { get { return "Heal"; } }
-    public override SpellVariableType[] ParamList { get { return new SpellVariableType[] { SpellVariableType.LIVINGENTITY, SpellVariableType.INT }; } }
+    public override SpellVariableType[] ParamList { 
+        get {
+            return new SpellVariableType[] {
+            SpellVariableType.LIVINGENTITY, // Target to heal
+            SpellVariableType.INT // Amount of mana to consume
+        };
+        }
+    }
     public override void Execute(SpellCaster spellCaster, params SpellVariable[] args)
     {
-        checkParams(args);
+        //checkParams(args);
         LivingEntity target = args[0].AsEntity();
         int deltaMP = args[1].AsInt();
         if (spellCaster.TryToConsumeMana(deltaMP))

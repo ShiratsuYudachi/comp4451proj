@@ -9,7 +9,10 @@ public enum SpellVariableType
 	BOOL,
 	FLOAT,
 	LIVINGENTITY,
+	MASSENTITY,
+	//NODE2D,
 	VECTOR2
+	
 }
 
 public struct SpellVariable
@@ -51,14 +54,27 @@ public struct SpellVariable
 					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to LivingEntityD");
 				}
 				break;
+			case SpellVariableType.MASSENTITY:
+				if (!(value is IMassEntity))
+				{
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to IMassEntity");
+				}
+				break;
 			case SpellVariableType.VECTOR2:
 				if (!(value is Vector2))
 				{
 					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to Vector2");
 				}
 				break;
+			// case SpellVariableType.NODE2D:
+			// 	if (!(value is Node2D))
+			// 	{
+			// 		throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to Node2D");
+			// 	}
+			// 	break;
 			default:
 				throw new ArgumentException("Invalid Spell Variable Type");
+
 		}
 		Type = type;
 		_value = value;
@@ -108,6 +124,25 @@ public struct SpellVariable
 		}
 		return (Vector2)_value;
 	}
+
+	// public Node2D AsNode2D()
+	// {
+	// 	if (Type != SpellVariableType.NODE2D && Type != SpellVariableType.LIVINGENTITY)
+	// 	{
+	// 		throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to Node2D");
+	// 	}
+	// 	return (Node2D)_value;
+	// }
+
+	public IMassEntity AsMassEntity()
+	{
+		if (Type == SpellVariableType.MASSENTITY || Type == SpellVariableType.LIVINGENTITY )
+		{
+			return (IMassEntity)_value;
+		}
+		throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to IMassEntity");
+	}
+
 }
 
 
@@ -126,20 +161,20 @@ public abstract class SpellPiece
 	public virtual SpellVariableType ReturnType { get; }
 
 
-	protected void checkParams(SpellVariable[] args)
-	{
-		if (ParamList.Length != args.Length)
-		{
-			throw new ArgumentException("SpellPiece: Invalid number of arguments");
-		}
-		for (int i = 0; i < args.Length; i++)
-		{
-			if (ParamList[i] != args[i].Type)
-			{
-				throw new ArgumentException($"SpellPiece: Invalid argument type at position {i}");
-			}
-		}
-	}
+	// protected void checkParams(SpellVariable[] args)
+	// {
+	// 	if (ParamList.Length != args.Length)
+	// 	{
+	// 		throw new ArgumentException("SpellPiece: Invalid number of arguments");
+	// 	}
+	// 	for (int i = 0; i < args.Length; i++)
+	// 	{
+	// 		if (ParamList[i] != args[i].Type)
+	// 		{
+	// 			throw new ArgumentException($"SpellPiece: Invalid argument type at position {i}");
+	// 		}
+	// 	}
+	// }
 }
 
 public abstract class ExecutorSpellPiece : SpellPiece
@@ -196,6 +231,39 @@ public class IntConstantSpellPiece : SelectorSpellPiece
 	public override SpellVariable Select(SpellCaster spellCaster)
 	{
 		return new SpellVariable(SpellVariableType.INT, Value);
+	}
+}
+public class FloatConstantSpellPiece : SelectorSpellPiece
+{
+	public float Value;
+	public override SpellVariableType ReturnType { get { return SpellVariableType.FLOAT; } }
+	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.FLOAT }; } }
+	public override string Name
+	{
+		get
+		{
+			return "Float: " + Value.ToString();
+		}
+	}
+	public override void applyConfig(object[] configs)
+	{
+		Value = (float)configs[0];
+	}
+	public override object[] getConfigValues()
+	{
+		return new object[] { Value };
+	}
+	public FloatConstantSpellPiece()
+	{
+	}
+	public FloatConstantSpellPiece(float value)
+	{
+		Value = value;
+	}
+
+	public override SpellVariable Select(SpellCaster spellCaster)
+	{
+		return new SpellVariable(SpellVariableType.FLOAT, Value);
 	}
 }
 

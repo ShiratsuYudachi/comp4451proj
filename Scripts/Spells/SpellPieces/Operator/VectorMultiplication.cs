@@ -2,21 +2,21 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class VectorMinus : OperatorSpellPiece
+public class VectorMultiplication : OperatorSpellPiece
 {
 	public override string Name
     {
         get 
         { 
-            return "Vector Minus"; 
+            return "Vector Multiplication"; 
         }
     }
 
     public override SpellVariableType[] ParamList { get
     {
         return new SpellVariableType[] {
-            SpellVariableType.VECTOR2, // Vector to subtract
-            SpellVariableType.VECTOR2 // Vector to subtract
+            SpellVariableType.VECTOR2, // Vector to multiply
+            SpellVariableType.FLOAT // Scalar to multiply
         };
     }
     }
@@ -27,8 +27,8 @@ public class VectorMinus : OperatorSpellPiece
         //checkParams(args);
 
         Vector2 vec1 = args[0].AsVector2();
-        Vector2 vec2 = args[1].AsVector2();
+        float scalar = args[1].AsFloat();
 
-        return new SpellVariable(SpellVariableType.VECTOR2, vec1 - vec2);
+        return new SpellVariable(SpellVariableType.VECTOR2, vec1 * scalar);
     }	
 }

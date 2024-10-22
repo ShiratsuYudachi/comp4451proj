@@ -24,7 +24,6 @@ public abstract partial class MapEntity : Entity
         animationPlayer?.Play("onHit");
         if (damage < hardness)
         {
-            GD.Print(GetType().Name + " parried!");
             return;
         }
         base.OnHit(damage);

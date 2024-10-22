@@ -10,6 +10,7 @@ public partial class DungeonScene : GameScene
 	float timeElapsed = 0;
 	
 	bool levelCleared = false;
+	bool done = false;
 
 	List<ScenePortal> portals = new List<ScenePortal>();
 
@@ -69,6 +70,10 @@ public partial class DungeonScene : GameScene
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		base._Process(delta);
+		if (done){
+			return;
+		}
 		if (checkWaveCompleted()){
 			StartWave(++waveNumber);
 		}
@@ -76,11 +81,12 @@ public partial class DungeonScene : GameScene
 		if (levelCleared){
 			GD.Print("[INFO] DungeonScene: Level cleared");
 			showPortals();
+			done = true;
 		}
 
 		
 
 		timeElapsed += (float)delta;
-		base._Process(delta);
+		
 	}
 }

@@ -1,10 +1,23 @@
 using Godot;
 using System;
 
-public partial class Bullet : Node2D
+public partial class Bullet : Node2D, IMassEntity
 {
-	public Vector2 velocity;
+	// Configurable
+	public Vector2 velocity { get; set; }
+	public int mass { get; set; } = 1;
 	public float timer = 5;
+
+	// Internal
+	public Vector2 massPosition { 
+		get => GlobalPosition;
+		set => GlobalPosition = value;
+	}
+	public Vector2 massVelocity { 
+		get => velocity;
+		set => velocity = value;
+	}
+	
 	public Entity caster;
 	// Called when the node enters the scene tree for the first time.
 

@@ -1,13 +1,17 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+
 public partial class SpellCaster : Node2D
 {
-	public SpellEvaluationTreeNode testEvaluationTree1, testEvaluationTree2, testEvaluationTree3;
+	public SpellEvaluationTreeNode testEvaluationTree1, testEvaluationTree2, testEvaluationTree3, blinkUp;
 
-	public float ManaMax = 5000;
-	public float Mana = 5000;
-	public float ManaRegenSpeed = 100; // Mana per second
+	public float ManaMax = 20000;
+	public float Mana = 20000;
+	public float ManaRegenSpeed = 2000; // Mana per second
+
+	List<Trigger> spellTriggers = new List<Trigger>();
 
 
 	public override void _Ready()
@@ -29,7 +33,39 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
 		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree3.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new IntConstantSpellPiece(114));
+
+		//BlinkUp
+		blinkUp = new SpellEvaluationTreeNode(new MassAddMotion());
+		blinkUp.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
+		blinkUp.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMultiplication());
+		blinkUp.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new GetEntityVelocity());
+		blinkUp.childrenSpellPieces[1].childrenSpellPieces[0].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
+		blinkUp.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new FloatConstantSpellPiece(-2f));
+		spellTriggers.Add(new OnBulletIsNear(blinkUp, this));
+
 	}
+
+	public override void _Process(double delta)
+	{
+		if (Input.IsActionJustPressed("Cast"))
+		{
+			Cast();
+		}
+
+		Mana += ManaRegenSpeed * (float)delta;
+
+		if (Mana > ManaMax)
+		{
+			Mana = ManaMax;
+		}
+
+		foreach (Trigger trigger in spellTriggers){
+			trigger.update();
+		}
+		//GD.Print("Mana: " + Mana);
+	}
+
+	
 
 	public void Cast()
 	{
@@ -47,20 +83,5 @@ public partial class SpellCaster : Node2D
 			return true;
 		}
 		return false;
-	}
-
-	public override void _Process(double delta)
-	{
-		if (Input.IsActionJustPressed("Cast"))
-		{
-			Cast();
-		}
-		Mana += ManaRegenSpeed * (float)delta;
-
-		if (Mana > ManaMax)
-		{
-			Mana = ManaMax;
-		}
-		//GD.Print("Mana: " + Mana);
 	}
 }

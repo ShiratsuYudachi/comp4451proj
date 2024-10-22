@@ -63,7 +63,7 @@ public partial class PlayerControl : LivingEntity
 
 		if (Input.IsActionJustPressed("Attack"))
 		{
-			DanmakuCaster.CastDanmaku();
+			//DanmakuCaster.CastDanmaku();
 		}
 	}
 	public override void Attack()

@@ -26,7 +26,6 @@ public partial class ScenePortal : Area2D
 
 	public void onPlayerEnter(Area2D area)
 	{
-		GD.Print("[INFO] ScenePortal: Player entered");
 		if (area.GetParent() is PlayerControl && area.GetName() != "MonsterDetector")
 		{			
 			this.CallDeferred("_deferred_switch_scene", targetSceneName);

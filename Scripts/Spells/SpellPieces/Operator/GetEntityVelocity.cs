@@ -2,13 +2,13 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public class GetEntityPos : OperatorSpellPiece
+public class GetEntityVelocity : OperatorSpellPiece
 {
     public override string Name
     {
         get
         {
-            return "Get Entity Position";
+            return "Get Entity Velocity";
         }
     }
 
@@ -17,7 +17,7 @@ public class GetEntityPos : OperatorSpellPiece
         get
         {
             return new SpellVariableType[] {
-            SpellVariableType.MASSENTITY // Entity to get position of
+            SpellVariableType.MASSENTITY // Entity to get velocity of
         };
         }
     }
@@ -26,6 +26,6 @@ public class GetEntityPos : OperatorSpellPiece
     public override SpellVariable Operate(SpellCaster spellCaster, params SpellVariable[] args)
     {
         IMassEntity entity = args[0].AsMassEntity();
-        return new SpellVariable(SpellVariableType.VECTOR2, entity.massPosition);
+        return new SpellVariable(SpellVariableType.VECTOR2, entity.massVelocity);
     }
 }

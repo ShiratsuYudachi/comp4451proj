@@ -60,6 +60,11 @@ public partial class PlayerControl : LivingEntity
 				_animatedSprite2D.Play("idle");
 			}
 		}
+
+		if (Input.IsActionJustPressed("Attack"))
+		{
+			DanmakuCaster.CastDanmaku();
+		}
 	}
 	public override void Attack()
 	{

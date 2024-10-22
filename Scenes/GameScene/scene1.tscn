@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=76 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_l7ojt"]
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="2_8no11"]
@@ -16,9 +16,10 @@
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="14_1tpvq"]
 [ext_resource type="Script" path="res://Scripts/Entities/MonsterDetector.cs" id="15_bvejb"]
 [ext_resource type="PackedScene" uid="uid://csbqiboviquls" path="res://Scenes/UI/UI.tscn" id="16_jrtdd"]
-[ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/Skeleton.tscn" id="17_52eme"]
+[ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/LivingEntities/Skeleton.tscn" id="17_52eme"]
 [ext_resource type="PackedScene" uid="uid://bgup23lkaco7i" path="res://Scenes/MapEntity/Stone.tscn" id="18_0gwti"]
 [ext_resource type="PackedScene" uid="uid://cyqi5rpvmncxj" path="res://Scenes/MapEntity/Tree.tscn" id="19_jr12h"]
+[ext_resource type="PackedScene" uid="uid://k3lplxpyrcwd" path="res://Scenes/GameScene/dungeon1.tscn" id="20_3h7nm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("2_8no11")
@@ -609,7 +610,6 @@ size = Vector2(114, 114)
 
 [node name="Scene1" type="Node2D"]
 y_sort_enabled = true
-position = Vector2(5, 3)
 script = ExtResource("1_l7ojt")
 metadata/_edit_lock_ = true
 
@@ -699,7 +699,6 @@ position = Vector2(-0.799999, -4.76837e-07)
 shape = SubResource("RectangleShape2D_2r2ui")
 
 [node name="Weapon2" type="Sprite2D" parent="Player/WeaponControl"]
-visible = false
 position = Vector2(0, -4)
 scale = Vector2(0.642857, 0.642857)
 texture = ExtResource("11_epltv")
@@ -720,7 +719,6 @@ script = ExtResource("14_1tpvq")
 script = ExtResource("15_bvejb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/MonsterDetector"]
-visible = false
 shape = SubResource("RectangleShape2D_lpyrj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -736,3 +734,12 @@ position = Vector2(32, 21)
 
 [node name="Tree" parent="." instance=ExtResource("19_jr12h")]
 position = Vector2(-38, 32)
+
+[node name="ScenePortal" type="Area2D" parent="."]
+position = Vector2(10, -88)
+script = ExtResource("3_7cdi3")
+targetScene = ExtResource("20_3h7nm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScenePortal"]
+shape = SubResource("RectangleShape2D_lnuwi")
+metadata/_edit_lock_ = true

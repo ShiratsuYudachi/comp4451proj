@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DamageTipLabel" parent="." instance=ExtResource("1_tx1rn")]
+z_index = 100
 layout_mode = 0
 offset_left = -66.0
 offset_top = -10.0

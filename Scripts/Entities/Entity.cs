@@ -13,6 +13,15 @@ public abstract partial class Entity : CharacterBody2D, IDamageable
         set { health = value; }
     }
     protected const int MAX_HEALTH = 100;
+
+    public enum Group
+    {
+        Player,
+        Enemy,
+        Map,
+        None
+    }
+    public Group group = Group.None;
     public int MaxHealth { get { return MAX_HEALTH; } }
     
     public abstract void ApplyDamage(long amout = 0L, Vector2? direction = null, Entity? source = null);

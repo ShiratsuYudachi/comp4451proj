@@ -7,9 +7,6 @@ public partial class Scene2 : GameScene
 	public override void _Ready()
 	{
 		base._Ready();
-		AddChild(ScenePortal.player);
-		AddChild(ScenePortal.ui);
-		ScenePortal.player.Position = ScenePortal.playerPos;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

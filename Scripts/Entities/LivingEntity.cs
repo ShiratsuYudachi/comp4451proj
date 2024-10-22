@@ -3,7 +3,7 @@ using Godot;
 using System;
 public abstract partial class LivingEntity : Entity
 {
-	protected enum State { Idle, Moving }
+	protected enum State { Idle, Moving, Attack }
 	protected float timer = 3;
 	protected State state = State.Idle;
 	protected Vector2 randomDirection;

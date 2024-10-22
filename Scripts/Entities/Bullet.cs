@@ -4,9 +4,10 @@ using System;
 public partial class Bullet : Node2D
 {
 	public Vector2 velocity;
-	public float timer = 1;
-	public Node caster;
+	public float timer = 5;
+	public Entity caster;
 	// Called when the node enters the scene tree for the first time.
+
 	public override void _Ready()
 	{
 		GetNode<Area2D>("Area2D").Connect("area_entered", new Callable(this, nameof(OnHit)));
@@ -25,13 +26,16 @@ public partial class Bullet : Node2D
 	public void OnHit(Area2D area)
 	{
 		if (area.Name == "MonsterDetector") return;
-		Node node = area.GetParent();
-		if (node is LivingEntity livingEntity && livingEntity != caster)
+		Node nodeOnHit = area.GetParent();
+
+		if (nodeOnHit is Entity entityOnHit && entityOnHit.group == caster.group) return;
+		
+		if (nodeOnHit is LivingEntity livingEntity && livingEntity != caster)
 		{
 			livingEntity.OnHit(5);
 			QueueFree();
 		}
-		else if (node is MapEntity mapEntity)
+		else if (nodeOnHit is MapEntity mapEntity)
 		{
 			mapEntity.OnHit(5);
 			QueueFree();

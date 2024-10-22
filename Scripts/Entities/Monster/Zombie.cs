@@ -6,6 +6,7 @@ public partial class Zombie : LivingEntity
 	public override void _Ready()
 	{
 		base._Ready();
+		group = Group.Enemy;
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

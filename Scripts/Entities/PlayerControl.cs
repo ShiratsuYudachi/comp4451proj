@@ -12,6 +12,7 @@ public partial class PlayerControl : LivingEntity
 		base._Ready();
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		health = 114514;
+		group = Group.Player;
 	}
 
 	public override void _PhysicsProcess(double delta)

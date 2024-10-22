@@ -21,6 +21,7 @@ MapEntity拥有坚韧，类似博德之门，只有伤害>某个数值时会受�
 ### 添加更多怪物
 比如自曝怪，还有精英怪和boss
 弄一个爆炸效果，实现方法是一个爆炸的类来创建制定尺寸的碰撞区域，然后在GaneScene这个类里实现CreateExplosion(vector2 position, int level)函数
+精英怪使用东方类的
 
 
 ### 添加更多法术

@@ -10,6 +10,8 @@ public partial class ScenePortal : Area2D
 	public static CanvasLayer ui;
 	public static Vector2 playerPos;
 
+	public static bool isTeleporting = false;
+
 	public override void _Ready()
 	{
 		this.Connect("area_entered", new Callable(this, nameof(onPlayerEnter)));
@@ -22,10 +24,11 @@ public partial class ScenePortal : Area2D
 
 	public void onPlayerEnter(Area2D area)
 	{
-		GD.Print(area.GetParent().Name);
+		GD.Print("[INFO] ScenePortal: Player entered");
 		if (area.GetParent() is PlayerControl)
 		{
-			playerPos = new Vector2(-212, 0);
+			isTeleporting = true;
+			playerPos = new Vector2(0, 0);
 			player = area.GetParent<PlayerControl>();
 			ui = GetTree().Root.GetNode("Scene1").GetNode<CanvasLayer>("CanvasLayer");
 			GetTree().Root.GetNode("Scene1").CallDeferred("remove_child", player);

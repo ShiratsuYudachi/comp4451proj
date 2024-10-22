@@ -14,6 +14,14 @@ public partial class GameScene : Node2D
         damageLabelScene = GD.Load<PackedScene>("res://Scenes/UI/damageTipLabel.tscn");
         instance = this;
         GD.Print("GameScene instance created: " + instance.Name);
+
+        if (ScenePortal.isTeleporting)
+        {
+            AddChild(ScenePortal.player);
+            AddChild(ScenePortal.ui);
+            ScenePortal.player.Position = ScenePortal.playerPos;
+            ScenePortal.isTeleporting = false;
+        }
     }
 
     public static void ShowDamage(float damage, Vector2 worldPosition)
@@ -21,7 +29,7 @@ public partial class GameScene : Node2D
         //Control damageLabelParent = damageLabelScene.Instantiate<Control>();
         Label damageLabel = damageLabelScene.Instantiate<Label>();
         damageLabel.Text = damage.ToString();
-        damageLabel.GlobalPosition = worldPosition;
+        damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         instance.AddChild(damageLabel);
     }
 
@@ -38,6 +46,18 @@ public partial class GameScene : Node2D
         Vector2 screenPosition = worldPosition - cameraOffset;
 
         return screenPosition;
+    }
+
+    public static void SpawnEntity(String entityName, Vector2 position){
+        PackedScene entityScene = GD.Load<PackedScene>("res://Scenes/LivingEntities/" + entityName + ".tscn");
+        if (entityScene == null)
+        {
+            GD.PrintErr("Entity scene not found: " + entityName);
+            return;
+        }
+        LivingEntity entity = entityScene.Instantiate<LivingEntity>();
+        instance.AddChild(entity);
+        entity.GlobalPosition = position;
     }
 }
 

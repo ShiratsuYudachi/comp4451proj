@@ -86,7 +86,7 @@ public partial class Skeleton : LivingEntity
 					bullet.GlobalPosition = GlobalPosition;
 					bullet.velocity = direction * 100;
 					bullet.caster = this;
-					GetTree().Root.AddChild(bullet);
+					GameScene.instance.AddChild(bullet);
 					state = State.Moving;
 					randomDirection = new Vector2(
 						(float)GD.RandRange(-1, 1),

@@ -58,8 +58,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="Tip" type="Control" parent="."]
+[node name="TipManager" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -99,6 +100,7 @@ shortcut = SubResource("Shortcut_odrcq")
 texture_normal = ExtResource("1_4f1av")
 texture_pressed = ExtResource("2_glhc7")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Control/Weapon1Button"]
 layout_mode = 0

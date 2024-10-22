@@ -34,6 +34,11 @@ public partial class GameScene : Node2D
 
     }
 
+    public static void ShowTip(string tip){
+        TipManager tipManager = UI.GetNode<TipManager>("Ui/TipManager");
+        tipManager.ShowTip(tip);
+    }
+
     public static void ShowDamage(float damage, Vector2 worldPosition)
     {
         //Control damageLabelParent = damageLabelScene.Instantiate<Control>();

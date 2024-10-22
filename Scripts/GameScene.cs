@@ -7,21 +7,31 @@ public partial class GameScene : Node2D
     public static GameScene instance;
     public static PackedScene damageLabelScene;
     public static Camera2D mainCamera;
+    public static PlayerControl player;
+
+    public static CanvasLayer UI;
 
     public override void _Ready()
     {
-        mainCamera = GetTree().CurrentScene.GetViewport().GetCamera2D();
+        if (player == null)
+        {
+            player = GD.Load<PackedScene>("res://Scenes/LivingEntities/Player.tscn").Instantiate<PlayerControl>();
+            this.AddChild(player);
+            GD.Print("[INFO] GameScene: Player created!"+player.Name);
+        }
+        if (UI == null)
+        {
+            UI = GetNode<CanvasLayer>("CanvasLayer");
+        }
+
+        if (player != null){
+            mainCamera = player.GetNode<Camera2D>("Camera2D");
+        }
+        
         damageLabelScene = GD.Load<PackedScene>("res://Scenes/UI/damageTipLabel.tscn");
         instance = this;
         GD.Print("GameScene instance created: " + instance.Name);
 
-        if (ScenePortal.isTeleporting)
-        {
-            AddChild(ScenePortal.player);
-            AddChild(ScenePortal.ui);
-            ScenePortal.player.Position = ScenePortal.playerPos;
-            ScenePortal.isTeleporting = false;
-        }
     }
 
     public static void ShowDamage(float damage, Vector2 worldPosition)

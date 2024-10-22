@@ -81,7 +81,7 @@ public partial class Skeleton : LivingEntity
 			case State.Attack:
 				if (attackAnimationFinished){
 					Bullet bullet = bulletScene.Instantiate<Bullet>();
-					Node2D player = GetTree().GetNodesInGroup("Player")[0] as Node2D;
+					Node2D player = GameScene.player as Node2D;
 					Vector2 direction = (player.GlobalPosition - GlobalPosition).Normalized();
 					bullet.GlobalPosition = GlobalPosition;
 					bullet.velocity = direction * 100;

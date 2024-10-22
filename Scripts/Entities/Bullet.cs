@@ -32,7 +32,7 @@ public partial class Bullet : Node2D
 		
 		if (nodeOnHit is LivingEntity livingEntity && livingEntity != caster)
 		{
-			livingEntity.OnHit(5);
+			livingEntity.OnHit(50);
 			QueueFree();
 		}
 		else if (nodeOnHit is MapEntity mapEntity)

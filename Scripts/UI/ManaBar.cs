@@ -9,13 +9,17 @@ public partial class ManaBar : ProgressBar
 	public override void _Ready()
 	{
 		manaTextLabel = GetNode<Label>("ManaText");
-		playerSpellCaster = GetTree().GetNodesInGroup("Player")[0].GetNode<SpellCaster>("SpellCaster");
 		manaTextLabel.Text = "0";
 	}
 
 	
 	public override void _Process(double delta)
 	{
+		if (playerSpellCaster == null)
+		{
+			playerSpellCaster = GameScene.player.GetNode<SpellCaster>("SpellCaster");
+			return;
+		}
 		manaTextLabel.Text = Mathf.Round(playerSpellCaster.Mana).ToString();
 		Value = playerSpellCaster.Mana / playerSpellCaster.ManaMax * 100;
 	}

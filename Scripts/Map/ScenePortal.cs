@@ -1,10 +1,12 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class ScenePortal : Area2D
 {
+
 	[Export]
-	public PackedScene targetScene;
+	public String targetSceneName;
 
 	public static PlayerControl player;
 	public static CanvasLayer ui;
@@ -25,16 +27,24 @@ public partial class ScenePortal : Area2D
 	public void onPlayerEnter(Area2D area)
 	{
 		GD.Print("[INFO] ScenePortal: Player entered");
-		if (area.GetParent() is PlayerControl)
-		{
-			isTeleporting = true;
-			playerPos = new Vector2(0, 0);
-			player = area.GetParent<PlayerControl>();
-			ui = GetTree().Root.GetNode("Scene1").GetNode<CanvasLayer>("CanvasLayer");
-			GetTree().Root.GetNode("Scene1").CallDeferred("remove_child", player);
-			GetTree().Root.GetNode("Scene1").CallDeferred("remove_child", ui);
-
-			GetTree().CallDeferred("change_scene_to_packed", targetScene);
+		if (area.GetParent() is PlayerControl && area.GetName() != "MonsterDetector")
+		{			
+			this.CallDeferred("_deferred_switch_scene", targetSceneName);
+			
+			//GetTree().CallDeferred("change_scene_to_packed", targetScene.ResourcePath);
 		}
+	}
+
+	public static void _deferred_switch_scene(String targetSceneName){
+		GD.Print("[INFO] ScenePortal: Switching scene to " + targetSceneName);
+		Node2D sourceSceneNode = GameScene.instance;
+		Window window = sourceSceneNode.GetTree().Root;
+		GameScene newScene = GD.Load<PackedScene>("res://Scenes/GameScene/"+targetSceneName+".tscn").Instantiate<GameScene>();
+		window.AddChild(newScene);
+		GameScene.player.Reparent(newScene);
+		GameScene.UI.Reparent(newScene);
+		GameScene.instance = newScene;
+		sourceSceneNode.Free();
+		
 	}
 }

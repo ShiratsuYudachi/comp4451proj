@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c633bjq61ou35"]
+
+[ext_resource type="Script" path="res://Scripts/Map/ScenePortal.cs" id="1_1vx7s"]
+[ext_resource type="Texture2D" uid="uid://ck6wtdkx3gy58" path="res://Images/mark.png" id="2_t75yr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ds4ee"]
+size = Vector2(29, 29)
+
+[node name="ScenePortal" type="Area2D"]
+script = ExtResource("1_1vx7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ds4ee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_t75yr")

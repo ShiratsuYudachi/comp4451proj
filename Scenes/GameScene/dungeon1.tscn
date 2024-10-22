@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://k3lplxpyrcwd"]
+[gd_scene load_steps=11 format=3 uid="uid://k3lplxpyrcwd"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="2_f5lg3"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_50gml"]
 [ext_resource type="Script" path="res://Scripts/Map/DungeonScene.cs" id="3_nrsnc"]
+[ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="4_mc012"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ujiec"]
 texture = ExtResource("2_f5lg3")
@@ -198,7 +199,7 @@ size = Vector2(18.5, 287)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq5b"]
 size = Vector2(338, 20)
 
-[node name="DungeonScene" type="Node2D"]
+[node name="GameScene" type="Node2D"]
 script = ExtResource("3_nrsnc")
 metadata/_edit_lock_ = true
 
@@ -261,3 +262,7 @@ position = Vector2(-44, 11)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2(214, -1)
 shape = SubResource("RectangleShape2D_4q3rn")
+
+[node name="ScenePortal" parent="." groups=["ScenePortal"] instance=ExtResource("4_mc012")]
+position = Vector2(143, -47)
+targetSceneName = "Scene1"

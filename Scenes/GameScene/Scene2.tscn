@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://wingv4uf8vx3"]
+[gd_scene load_steps=12 format=3 uid="uid://wingv4uf8vx3"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_dd2yy"]
 [ext_resource type="Script" path="res://Scripts/Map/Scene2.cs" id="1_koog5"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_8i4ws"]
 [ext_resource type="Script" path="res://Scripts/items/Spawner.cs" id="5_1w01x"]
+[ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="6_e0io3"]
 [ext_resource type="PackedScene" uid="uid://xxswesylvb6y" path="res://Scenes/LivingEntities/Zombie.tscn" id="6_r0hs0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_my718"]
@@ -197,7 +198,7 @@ sources/1 = SubResource("TileSetAtlasSource_5ib3p")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4q3rn"]
 size = Vector2(20, 287)
 
-[node name="Scene2" type="Node2D"]
+[node name="GameScene" type="Node2D"]
 script = ExtResource("1_koog5")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -245,3 +246,7 @@ scale = Vector2(0.71875, 0.71875)
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("5_1w01x")
 entityScene = ExtResource("6_r0hs0")
+
+[node name="ScenePortal" parent="." instance=ExtResource("6_e0io3")]
+position = Vector2(92, 34)
+targetSceneName = "Scene1"

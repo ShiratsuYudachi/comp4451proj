@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqlyph3vupc5d"]
+
+[ext_resource type="Script" path="res://Scripts/MapEntity/Flower.cs" id="1_w1a0r"]
+[ext_resource type="Texture2D" uid="uid://b5vygoj2aaclf" path="res://Images/Objects.png" id="2_0vjpd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvgrf"]
+atlas = ExtResource("2_0vjpd")
+region = Rect2(34, 51, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnjnf"]
+atlas = ExtResource("2_0vjpd")
+region = Rect2(51, 51, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnmwt"]
+atlas = ExtResource("2_0vjpd")
+region = Rect2(51, 51, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_07bei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvgrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnjnf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnmwt")
+}],
+"loop": true,
+"name": &"onStepped",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_urvh0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.25, -0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ghl3f"]
+resource_name = "onHit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yaasb"]
+_data = {
+"RESET": SubResource("Animation_urvh0"),
+"onHit": SubResource("Animation_ghl3f")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hhhoe"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d846y"]
+radius = 0.01
+
+[node name="Flower" type="CharacterBody2D"]
+script = ExtResource("1_w1a0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(-0.25, -0.25)
+scale = Vector2(0.71875, 0.71875)
+sprite_frames = SubResource("SpriteFrames_07bei")
+frame_progress = 0.0566997
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_yaasb")
+}
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-0.25, -0.25)
+scale = Vector2(0.71875, 0.71875)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-0.347832, 0.347826)
+shape = SubResource("CircleShape2D_hhhoe")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d846y")

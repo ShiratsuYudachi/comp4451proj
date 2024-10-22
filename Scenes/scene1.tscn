@@ -1,10 +1,10 @@
-[gd_scene load_steps=73 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=74 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_3ue3l"]
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_aqhh3"]
 [ext_resource type="Texture2D" uid="uid://c0njk1ovxpn6l" path="res://MoeAssets/cheshire.png" id="3_t000s"]
 [ext_resource type="Script" path="res://Scripts/Entities/PlayerControl.cs" id="3_y2l34"]
-[ext_resource type="PackedScene" uid="uid://d085o361dqv75" path="res://Scenes/flower.tscn" id="5_inw70"]
+[ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="5_inw70"]
 [ext_resource type="Script" path="res://Scripts/Map/ScenePortal.cs" id="6_3y1wr"]
 [ext_resource type="PackedScene" uid="uid://csbqiboviquls" path="res://Scenes/UI/UI.tscn" id="6_d0wq3"]
 [ext_resource type="Script" path="res://Scripts/items/WeaponControl.cs" id="6_yil0x"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="14_42tvs"]
 [ext_resource type="Script" path="res://Scripts/Entities/MonsterDetector.cs" id="16_18ue1"]
 [ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/Skeleton.tscn" id="17_s8h65"]
+[ext_resource type="PackedScene" uid="uid://bgup23lkaco7i" path="res://Scenes/MapEntity/Stone.tscn" id="18_c68i6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("1_3ue3l")
@@ -623,7 +624,6 @@ layer_1/z_index = -5
 layer_1/tile_data = PackedInt32Array(-393214, 131073, 0, -327678, 131073, 1, -262142, 131073, 2, -393213, 196609, 0, -327677, 196609, 1, -262141, 196609, 2, -393211, 131073, 0, -327675, 131073, 1, -262139, 131073, 2, -393210, 196609, 0, -327674, 196609, 1, -262138, 196609, 2, -393208, 131073, 0, -327672, 131073, 1, -262136, 131073, 2, -393207, 196609, 0, -327671, 196609, 1, -262135, 196609, 2, -10, 1, 0, 65526, 1, 1, 131062, 1, 2, -9, 65537, 0, 65527, 65537, 1, 131063, 65537, 2, 196615, 65536, 4, 262151, 65536, 4, 327687, 65536, 4, 196616, 65536, 4, 262152, 65536, 4, 327688, 131072, 5, -6, 1, 0, 65530, 1, 1, 131066, 1, 2, -5, 65537, 0, 65531, 65537, 1, 131067, 65537, 2, 7, 262144, 2, -65529, 262144, 0, 6, 262144, 2, -65530, 262144, 0, 5, 262144, 2, -65531, 262144, 0, 4, 262144, 2, -65532, 262144, 0, 3, 262144, 2, -65533, 262144, 0, 2, 262144, 2, -65534, 262144, 0, 1, 262144, 2, -65535, 262144, 0, 0, 262144, 1, -65536, 262144, 0, 262144, 327680, 2, 196608, 327680, 1, 131072, 327680, 1, 65536, 327680, 1, 327679, 262144, 2, 262143, 262144, 1, 196607, 196608, 1, 131071, 196608, 1, 65535, 196608, 1, -1, 196608, 0, 11, 262145, 1, -65525, 327680, 0, 10, 262144, 2, -65526, 262144, 0, 9, 262144, 2, -65527, 262144, 0, 8, 262144, 2, -65528, 262144, 0, 327678, 262144, 2, 262142, 262144, 0, 327677, 262144, 2, 262141, 262144, 0, 327676, 262144, 2, 262140, 262144, 0, 327675, 262144, 2, 262139, 262144, 0, 327674, 262144, 2, 262138, 262144, 0, 327673, 262144, 2, 262137, 262144, 0, 327672, 262145, 1, 262136, 262144, 0, 327671, 262144, 2, 262135, 262144, 0, 327670, 262144, 2, 262134, 262144, 0, 327669, 262144, 2, 262133, 262144, 0, 327668, 196608, 2, 262132, 196608, 0, 196614, 0, 3, 262150, 65536, 4, 327686, 65536, 4, 327685, 0, 5, 262149, 0, 3, 393222, 0, 5, 393223, 131072, 5, 196617, 131072, 4, 131080, 65536, 3, 131081, 131072, 3, 131079, 0, 3, 262153, 131072, 5, 131074, 1, 0, 196610, 1, 1, 262146, 1, 2, 131075, 65537, 0, 196611, 65537, 1, 262147, 65537, 2, -131075, 262145, 1, -65539, 262145, 2, 196619, 262145, 1, 262155, 262145, 2, -196597, 262145, 1, -131061, 262145, 2, 65547, 262145, 2, 393208, 262145, 2, -196616, 262145, 1, -131080, 262145, 2, -327686, 262145, 0, -262150, 262145, 1, -196614, 262145, 2, -327685, 262145, 0, -262149, 262145, 1, -196613, 262145, 2, -327684, 262145, 0, -262148, 262145, 1, -196612, 262145, 2, -327683, 262145, 0, -262147, 262145, 1, -196611, 262145, 2)
 layer_2/name = "PlayerLayer"
 layer_2/y_sort_enabled = true
-layer_2/tile_data = PackedInt32Array(196601, 131073, 4, 196605, 131073, 4, 65538, 196609, 4, -131071, 262145, 4)
 layer_3/name = "Layer3"
 layer_3/z_index = 10
 layer_3/tile_data = PackedInt32Array(196619, 262145, 0, 11, 262145, 0, -65525, 262145, 0, -196597, 262145, 0, -327686, 262145, 0, -327685, 262145, 0, -327684, 262145, 0, -327683, 262145, 0, -262147, 262145, 0, -262148, 262145, 0, -262149, 262145, 0, -262150, 262145, 0, -196616, 262145, 0, -131075, 262145, 0, 131074, 1, 0, 131075, 65537, 0, -6, 1, 0, -5, 65537, 0, -10, 1, 0, -9, 65537, 0, -393214, 131073, 0, -393213, 196609, 0, -393211, 131073, 0, -393210, 196609, 0, -393208, 131073, 0, -393207, 196609, 0)
@@ -719,6 +719,7 @@ script = ExtResource("14_42tvs")
 script = ExtResource("16_18ue1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/MonsterDetector"]
+visible = false
 shape = SubResource("RectangleShape2D_lpyrj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -728,3 +729,6 @@ metadata/_edit_lock_ = true
 
 [node name="Zombie" parent="." instance=ExtResource("17_s8h65")]
 position = Vector2(99, -1)
+
+[node name="Stone" parent="." instance=ExtResource("18_c68i6")]
+position = Vector2(32, 21)

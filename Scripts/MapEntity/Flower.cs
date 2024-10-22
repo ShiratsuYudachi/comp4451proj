@@ -10,7 +10,7 @@ public partial class Flower : MapEntity
 		base._Ready();
 		this.animatedSprite2D.Modulate = Colors.White;
 		this.hardness = 6;
-		Area2D collisionArea = GetNode<Area2D>("Area2D");
+		Area2D collisionArea = GetNode<Area2D>("HitBox");
 		collisionArea.BodyEntered += OnBodyEntered;
 		//collisionArea.Connect("body_entered", new Callable(this, "OnBodyEntered"));
 		collisionArea.BodyExited += OnBodyExited;

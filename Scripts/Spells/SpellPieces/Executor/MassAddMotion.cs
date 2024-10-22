@@ -10,8 +10,8 @@ public class MassAddMotion : ExecutorSpellPiece
     {
         checkParams(args);
         LivingEntity entity = args[0].AsEntity();
-        Vector2 speed = args[1].AsVector2();
-        if ((entity.speed == speed) || !spellCaster.TryToConsumeMana((int)speed.Length() * 5)) return;
-        entity.speed = speed;
+        Vector2 velocity = args[1].AsVector2();
+        if ((entity.velocity == velocity) || !spellCaster.TryToConsumeMana((int)velocity.Length() * 5)) return;
+        entity.velocity = velocity;
     }
 }

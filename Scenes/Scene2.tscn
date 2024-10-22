@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="1_dd2yy"]
 [ext_resource type="Script" path="res://Scripts/Map/Scene2.cs" id="1_koog5"]
-[ext_resource type="PackedScene" uid="uid://d085o361dqv75" path="res://Scenes/flower.tscn" id="3_8i4ws"]
+[ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_8i4ws"]
 [ext_resource type="Script" path="res://Scripts/items/Spawner.cs" id="5_1w01x"]
 [ext_resource type="PackedScene" uid="uid://xxswesylvb6y" path="res://Scenes/zombie.tscn" id="6_r0hs0"]
 

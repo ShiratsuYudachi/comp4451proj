@@ -13,7 +13,6 @@ abstract class Trigger{
             bindedSpell.Evaluate(caster);
         }
     }
-
 }
 
 class OnBulletIsNear : Trigger{

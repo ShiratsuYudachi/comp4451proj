@@ -17,7 +17,8 @@ public partial class SpellPicker : ItemList
 			"VectorMinus",
 			"SelectCaster",
 			"VectorConstant",
-			"IntConstant"
+			"IntConstant",
+			"SelectMousePos"
 		};
 
 		foreach (string spellPiece in spellPiecesList)
@@ -63,6 +64,8 @@ public partial class SpellPicker : ItemList
 				return new Vector2ConstantSpellPiece();
 			case 5:
 				return new IntConstantSpellPiece();
+			case 6:
+				return new SelectMousePos();
 			default:
 				return null;
 		}

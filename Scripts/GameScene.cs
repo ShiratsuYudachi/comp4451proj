@@ -48,6 +48,13 @@ public partial class GameScene : Node2D
         instance.AddChild(damageLabel);
     }
 
+    public static void ShowSpellAnimation(Vector2 worldPosition){
+        PackedScene spellAnimationScene = GD.Load<PackedScene>("res://Scenes/SpellCastingCircle.tscn");
+        Node2D spellAnimation = spellAnimationScene.Instantiate<Node2D>();
+        instance.AddChild(spellAnimation);
+        spellAnimation.GlobalPosition = worldPosition;
+    }
+
     public static Vector2 WorldToScreenPosition(Vector2 worldPosition)
     {
         if (mainCamera == null)

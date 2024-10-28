@@ -71,8 +71,8 @@ public partial class SpellCaster : Node2D
 	{
 		GD.Print("Executing spell");
 		testEvaluationTree1.Evaluate(this);
-		testEvaluationTree2.Evaluate(this);
-		testEvaluationTree3.Evaluate(this);
+		// testEvaluationTree2.Evaluate(this);
+		// testEvaluationTree3.Evaluate(this);
 	}
 
 	public bool TryToConsumeMana(int amount)

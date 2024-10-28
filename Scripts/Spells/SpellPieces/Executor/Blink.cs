@@ -30,6 +30,8 @@ public class Blink : ExecutorSpellPiece
         IMassEntity entity = args[0].AsMassEntity();
         Vector2 targetRelativePos = args[1].AsVector2();
         if (!spellCaster.TryToConsumeMana((int)targetRelativePos.Length() * 5 * entity.mass)) return;
+        GameScene.ShowSpellAnimation(entity.massPosition);
+        GameScene.ShowSpellAnimation(entity.massPosition + targetRelativePos);
         entity.massPosition += targetRelativePos;
     }
 }

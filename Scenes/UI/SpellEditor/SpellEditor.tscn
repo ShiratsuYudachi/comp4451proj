@@ -24,12 +24,12 @@ scale = Vector2(1.2, 1.2)
 
 [node name="SpellEditor" type="GridContainer" parent="." node_paths=PackedStringArray("spellPicker")]
 layout_mode = 0
-offset_left = 425.0
-offset_top = 188.0
-offset_right = 557.0
-offset_bottom = 285.0
+offset_left = 68.0
+offset_top = 18.0
+offset_right = 240.0
+offset_bottom = 190.0
 scale = Vector2(3, 3)
-columns = 3
+columns = 4
 script = ExtResource("1_dheh0")
 spellPicker = NodePath("../SpellsList")
 spellPieceConfigPanelScene = ExtResource("6_3n7dk")
@@ -348,6 +348,536 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_mwueo")
 
 [node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox6/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox7" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox7" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox7"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox7/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox7/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox7/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox7/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox8" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox8" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox8"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox8/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox8/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox8/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox8/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox9" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox9" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox9"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox9/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox9/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox9/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox9/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox10" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox10" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox10"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox10/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox10/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox10/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox10/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox11" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox11" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox11"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox11/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox11/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox11/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox11/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox12" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox12" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox12"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox12/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox12/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox12/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox12/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox13" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox13" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox13"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox13/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox13/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox13/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox13/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox14" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox14" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox14"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox14/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox14/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox14/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox14/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox15" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox15" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox15"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox15/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox15/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox15/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox15/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SpellEditorBox16" type="Button" parent="SpellEditor"]
+layout_mode = 2
+button_mask = 3
+icon = ExtResource("1_ep75x")
+script = ExtResource("2_t08e2")
+
+[node name="SpellPieceIcon" parent="SpellEditor/SpellEditorBox16" instance=ExtResource("4_gu0ot")]
+layout_mode = 0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="SpellEditor/SpellEditorBox16"]
+anchors_preset = 0
+script = ExtResource("6_tc3ob")
+
+[node name="SourceUp" type="TextureRect" parent="SpellEditor/SpellEditorBox16/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceDown" type="TextureRect" parent="SpellEditor/SpellEditorBox16/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceLeft" type="TextureRect" parent="SpellEditor/SpellEditorBox16/ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_mwueo")
+
+[node name="SourceRight" type="TextureRect" parent="SpellEditor/SpellEditorBox16/ParamSourceDisplay"]
 layout_mode = 0
 offset_left = 31.6667
 offset_top = 25.1111

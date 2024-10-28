@@ -21,6 +21,7 @@ public class MassAddMotion : ExecutorSpellPiece
         IMassEntity entity = args[0].AsMassEntity();
         Vector2 velocity = args[1].AsVector2();
         if ((entity.massVelocity == velocity) || !spellCaster.TryToConsumeMana((int)velocity.Length() * 5 * entity.mass)) return;
+        GameScene.ShowSpellAnimation(entity.massPosition);
         entity.massVelocity = velocity;
     }
 }

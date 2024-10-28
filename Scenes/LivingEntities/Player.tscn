@@ -430,6 +430,7 @@ limit_left = -225
 limit_top = -145
 limit_right = 225
 limit_bottom = 145
+position_smoothing_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="WeaponControl" type="Node2D" parent="."]

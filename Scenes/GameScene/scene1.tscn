@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=15 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_4joqk"]
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="2_foh33"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bgup23lkaco7i" path="res://Scenes/MapEntity/Stone.tscn" id="6_nfa0v"]
 [ext_resource type="PackedScene" uid="uid://cyqi5rpvmncxj" path="res://Scenes/MapEntity/Tree.tscn" id="7_xpblk"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="8_qryks"]
+[ext_resource type="PackedScene" uid="uid://brk3afsqxqo3f" path="res://Scenes/SpellCastingCircle.tscn" id="9_1y3p0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("2_foh33")
@@ -235,7 +236,6 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Ui" parent="CanvasLayer" instance=ExtResource("4_23oav")]
-metadata/_edit_lock_ = true
 
 [node name="Zombie" parent="." instance=ExtResource("5_x8g85")]
 position = Vector2(99, -1)
@@ -253,3 +253,6 @@ targetSceneName = "Scene2"
 [node name="ScenePortal2" parent="." instance=ExtResource("8_qryks")]
 position = Vector2(15, -63)
 targetSceneName = "dungeon1"
+
+[node name="SpellCastingCircle" parent="." instance=ExtResource("9_1y3p0")]
+position = Vector2(46, 2)

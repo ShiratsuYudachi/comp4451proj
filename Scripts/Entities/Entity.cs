@@ -8,7 +8,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     public int mass { get; set; } = 1;
     public float friction = 0.98f;
     protected int health = 100;
-    protected const int MAX_HEALTH = 100;
+    protected int MAX_HEALTH = 100;
     public Group group = Group.None;
 
     // Internal

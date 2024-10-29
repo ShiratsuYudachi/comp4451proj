@@ -9,7 +9,9 @@ public partial class Tree : MapEntity
 		group = Group.Map;
 		base._Ready();
 		this.animatedSprite2D.Modulate = Colors.White;
-		this.hardness = 10;
+		this.hardness = 20;
+		this.MAX_HEALTH = 100;
+		health = MAX_HEALTH;
 		this.animatedSprite2D.Play("default");
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

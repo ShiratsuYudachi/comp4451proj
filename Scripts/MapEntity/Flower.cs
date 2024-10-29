@@ -6,10 +6,12 @@ public partial class Flower : MapEntity
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		this.MAX_HEALTH = 10;
+		health = MAX_HEALTH;
 		group = Group.Map;
 		base._Ready();
 		this.animatedSprite2D.Modulate = Colors.White;
-		this.hardness = 6;
+		this.hardness = 5;
 		Area2D collisionArea = GetNode<Area2D>("HitBox");
 		collisionArea.BodyEntered += OnBodyEntered;
 		//collisionArea.Connect("body_entered", new Callable(this, "OnBodyEntered"));

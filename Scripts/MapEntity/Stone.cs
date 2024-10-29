@@ -6,10 +6,12 @@ public partial class Stone : MapEntity
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		this.MAX_HEALTH = 50;
+		health = MAX_HEALTH;
 		group = Group.Map;
 		base._Ready();
 		this.animatedSprite2D.Modulate = Colors.White;
-		this.hardness = 10;
+		this.hardness = 20;
 		this.animatedSprite2D.Play("default");
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

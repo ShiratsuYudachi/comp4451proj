@@ -45,12 +45,12 @@ public partial class Bullet : Node2D, IMassEntity
 		
 		if (nodeOnHit is LivingEntity livingEntity && livingEntity != caster)
 		{
-			livingEntity.OnHit(50);
+			livingEntity.OnHit(10);
 			QueueFree();
 		}
 		else if (nodeOnHit is MapEntity mapEntity)
 		{
-			mapEntity.OnHit(5);
+			mapEntity.OnHit(10);
 			QueueFree();
 		}
 	}

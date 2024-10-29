@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceConfigPanel.cs" id="1_a0j20"]
 [ext_resource type="PackedScene" uid="uid://cx2cgjamumnkw" path="res://Scenes/UI/SpellEditor/param_selector.tscn" id="2_hcpdj"]
 [ext_resource type="PackedScene" uid="uid://bo7sbyhmcny5o" path="res://Scenes/UI/SpellEditor/config_vectorConstant.tscn" id="3_2sbve"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/SpellEditor/config_intConstant.tscn" id="4_dfsxr"]
+[ext_resource type="PackedScene" uid="uid://dax0l7huiq8xy" path="res://Scenes/UI/SpellEditor/config_intConstant.tscn" id="4_dfsxr"]
 
 [node name="SpellPieceConfigPanel" type="ItemList"]
 offset_left = -345.0

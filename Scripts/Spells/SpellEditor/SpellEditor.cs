@@ -15,6 +15,9 @@ public partial class SpellEditor : GridContainer
 	[Export]
 	public Button compileButton;
 
+	[Export]
+	public Button clearButton;
+
 	
 
 	public SpellPieceConfigPanel spellPieceConfigPanel;
@@ -45,6 +48,9 @@ public partial class SpellEditor : GridContainer
 		else if (Input.GetMouseButtonMask() == MouseButtonMask.Right){
 			lastMouseButton = LastMouseButton.Right;
 		}
+		else if (Input.GetMouseButtonMask() == MouseButtonMask.Middle){
+			lastMouseButton = LastMouseButton.Middle;
+		}
 
 		else if (Input.IsActionJustPressed("Cancel"))
 		{
@@ -61,7 +67,11 @@ public partial class SpellEditor : GridContainer
 		return spellPicker;
 	}
 
-
+	public void clearEditor(){
+		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
+			spellEditorBox.clear();
+		}
+	}
 
 	public void setSpellPieceConfigPanelAt(SpellEditorBox spellEditorBox){
 		if (spellEditorBox.spellPiece == null) return;
@@ -99,18 +109,28 @@ public partial class SpellEditor : GridContainer
 
 	public void CompileSpell(){
 		SpellEvaluationTreeNode result = null;
+		SpellEditorBox rootBox = null;
+		
 		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
-			if (spellEditorBox.spellPiece is ExecutorSpellPiece) result = CompileBox(spellEditorBox);
+			if (spellEditorBox.spellPiece is ExecutorSpellPiece){
+				rootBox = spellEditorBox;
+				break;
+			}
 		}
-		if (result == null){
-			SpellWorkspace.instance.showMessage("No executor spell piece found");
+		if (rootBox == null){
+			SpellWorkspace.showMessage("No valid executor spell piece found");
 		}
 		if (spellNameInput.Text == ""){
-			SpellWorkspace.instance.showMessage("No spell name given");
+			SpellWorkspace.showMessage("No spell name given");
+		}
+
+		result = CompileBox(rootBox);
+		if (result == null){
+			SpellWorkspace.showMessage("Error in spell compilation");
 		}
 		else{
 			result.PrintTree();
-			SpellWorkspace.instance.showMessage("Spell compiled!");
+			SpellWorkspace.showMessage("Spell compiled!");
 			GameScene.playerSpellStorage.AddSpell(spellNameInput.Text, result);
 			SpellWorkspace.Refresh();
 		}
@@ -137,6 +157,9 @@ public partial class SpellEditor : GridContainer
 				case DPad.Direction.RIGHT:
 					targetBoxCoordinateAtGrid.X += 1;
 					break;
+				case DPad.Direction.NONE:
+					SpellWorkspace.showMessage("No parameter direction selected for " + spellEditorBox.selectedSpellPieceName + " at " + getBoxCoordinateInGrid(spellEditorBox));
+					return null;
 			}
 			SpellEditorBox targetBox = getBoxAtCoordinate(targetBoxCoordinateAtGrid);
 			root.childrenSpellPieces[i] = CompileBox(targetBox);

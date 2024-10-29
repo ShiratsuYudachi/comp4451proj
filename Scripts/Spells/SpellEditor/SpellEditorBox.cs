@@ -41,6 +41,8 @@ public partial class SpellEditorBox : Button
 			editingBox = this;
 		}else if (spellEditor.lastMouseButton == SpellEditor.LastMouseButton.Right){
 			spellEditor.setSpellPieceConfigPanelAt(this);
+		}else if (spellEditor.lastMouseButton == SpellEditor.LastMouseButton.Middle){
+			clear();
 		}
 	}
 
@@ -53,6 +55,12 @@ public partial class SpellEditorBox : Button
 			GD.Print("SpellEditorBox selection done:" + selectedSpellPieceName);
 			spellPieceIcon.setIconForSpellPiece(selectedSpellPieceName);
 		}
+	}
+
+	public void clear(){
+		spellPiece = null;
+		SpellPieceParamDirection = new DPad.Direction[4];
+		spellPieceIcon.clear();
 	}
 
 

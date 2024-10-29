@@ -246,6 +246,7 @@ scale = Vector2(0.71875, 0.71875)
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("5_1w01x")
 entityScene = ExtResource("6_r0hs0")
+entityNumLimit = null
 
 [node name="ScenePortal" parent="." instance=ExtResource("6_e0io3")]
 position = Vector2(92, 34)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dq8tu8gnk3q6i"]
+[gd_scene load_steps=14 format=3 uid="uid://dq8tu8gnk3q6i"]
 
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellWorkspace.cs" id="1_8f750"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditor.cs" id="2_m1cjp"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPicker.cs" id="9_c255r"]
 [ext_resource type="Script" path="res://Scripts/UI/KeyBindPanel.cs" id="10_013ec"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/StoredSpellsList.cs" id="10_wdj3n"]
+[ext_resource type="Script" path="res://Scripts/UI/TriggerBindPanel.cs" id="12_b7iuk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_twtkn"]
 font_size = 31
@@ -902,7 +903,7 @@ layout_mode = 0
 offset_left = -272.0
 offset_top = 3.0
 offset_right = -117.0
-offset_bottom = 230.0
+offset_bottom = 359.0
 max_columns = 3
 icon_scale = 0.5
 script = ExtResource("9_c255r")
@@ -941,10 +942,10 @@ text = "Clear"
 
 [node name="KeyBindPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 834.0
-offset_top = 121.0
-offset_right = 1146.0
-offset_bottom = 556.0
+offset_left = 842.0
+offset_top = 15.0
+offset_right = 1138.0
+offset_bottom = 436.0
 script = ExtResource("10_013ec")
 
 [node name="MouseL" type="ReferenceRect" parent="KeyBindPanel"]
@@ -972,6 +973,7 @@ offset_bottom = 41.0
 metadata/_edit_lock_ = true
 
 [node name="MouseR" type="ReferenceRect" parent="KeyBindPanel"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 71.0
 offset_right = 255.0
@@ -995,6 +997,7 @@ offset_bottom = 41.0
 metadata/_edit_lock_ = true
 
 [node name="Key1" type="ReferenceRect" parent="KeyBindPanel"]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 127.0
 offset_right = 254.0
@@ -1018,6 +1021,7 @@ offset_bottom = 41.0
 metadata/_edit_lock_ = true
 
 [node name="Key2" type="ReferenceRect" parent="KeyBindPanel"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 181.0
 offset_right = 255.0
@@ -1041,6 +1045,7 @@ offset_bottom = 41.0
 metadata/_edit_lock_ = true
 
 [node name="Key3" type="ReferenceRect" parent="KeyBindPanel"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 237.0
 offset_right = 255.0
@@ -1064,6 +1069,7 @@ offset_bottom = 41.0
 metadata/_edit_lock_ = true
 
 [node name="Key4" type="ReferenceRect" parent="KeyBindPanel"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 294.0
 offset_right = 255.0
@@ -1094,3 +1100,34 @@ offset_right = 892.0
 offset_bottom = 89.0
 label_settings = SubResource("LabelSettings_twtkn")
 horizontal_alignment = 1
+
+[node name="TriggerBindPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 455.0
+offset_right = 1135.0
+offset_bottom = 614.0
+script = ExtResource("12_b7iuk")
+
+[node name="OnBulletIsNear" type="ReferenceRect" parent="TriggerBindPanel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 257.0
+offset_bottom = 66.0
+
+[node name="Label" type="Label" parent="TriggerBindPanel/OnBulletIsNear"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 72.0
+offset_bottom = 41.0
+text = "OnBulletIsNear"
+metadata/_edit_lock_ = true
+
+[node name="OptionButton" type="OptionButton" parent="TriggerBindPanel/OnBulletIsNear"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 11.0
+offset_right = 275.0
+offset_bottom = 42.0

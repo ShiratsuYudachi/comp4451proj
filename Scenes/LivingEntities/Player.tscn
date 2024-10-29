@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/items/Weapon1.cs" id="5_ijqna"]
 [ext_resource type="Texture2D" uid="uid://dnrx43iyp66qq" path="res://Images/weapon2.png" id="6_akes0"]
 [ext_resource type="Script" path="res://Scripts/items/Weapon2.cs" id="7_ohanp"]
-[ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet.tscn" id="8_0e0xm"]
+[ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet/Bullet.tscn" id="8_0e0xm"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="9_7s0we"]
 [ext_resource type="Script" path="res://Scripts/Entities/EntityDetector.cs" id="10_4au02"]
 

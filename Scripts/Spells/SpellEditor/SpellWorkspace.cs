@@ -17,6 +17,7 @@ public partial class SpellWorkspace : Control
 
 	public void refresh(){
 		GetNode<KeyBindPanel>("KeyBindPanel").refreshOptions();
+		GetNode<TriggerBindPanel>("TriggerBindPanel").refreshOptions();
 		GetNode<StoredSpellsList>("StoredSpellsList").refresh();
 	}
 	public static void Refresh(){

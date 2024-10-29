@@ -86,5 +86,13 @@ public partial class GameScene : Node2D
     public static void inGameLog(string message){
         ShowTip(message); 
     }
+
+    public static Bullet CreateBullet(Vector2 position){
+        PackedScene bulletScene = GD.Load<PackedScene>("res://Scenes/Bullet/Bullet.tscn");
+        Bullet bullet = bulletScene.Instantiate<Bullet>();
+        instance.AddChild(bullet);
+        bullet.GlobalPosition = position;
+        return bullet;
+    }
 }
 

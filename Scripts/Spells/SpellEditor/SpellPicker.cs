@@ -18,7 +18,9 @@ public partial class SpellPicker : ItemList
 			"SelectCaster",
 			"VectorConstant",
 			"IntConstant",
-			"SelectMousePos"
+			"SelectMousePos",
+			"GenerateBullet",
+			"MassAddMotion"
 		};
 
 		foreach (string spellPiece in spellPiecesList)
@@ -66,6 +68,10 @@ public partial class SpellPicker : ItemList
 				return new IntConstantSpellPiece();
 			case 6:
 				return new SelectMousePos();
+			case 7:
+				return new GenerateBullet();
+			case 8:
+				return new MassAddMotion();
 			default:
 				return null;
 		}

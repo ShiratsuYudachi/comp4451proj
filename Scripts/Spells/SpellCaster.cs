@@ -44,14 +44,14 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree3.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new IntConstantSpellPiece(114));
 
-		//BlinkUp
-		SpellEvaluationTreeNode blinkUp = new SpellEvaluationTreeNode(new MassAddMotion());
-		blinkUp.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
-		blinkUp.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMultiplication());
-		blinkUp.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new GetEntityVelocity());
-		blinkUp.childrenSpellPieces[1].childrenSpellPieces[0].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
-		blinkUp.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new FloatConstantSpellPiece(-2f));
-		spellTriggers.Add(new OnBulletIsNear(blinkUp, this));
+		//BounceBullet
+		SpellEvaluationTreeNode bounceBullet = new SpellEvaluationTreeNode(new MassAddMotion());
+		bounceBullet.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
+		bounceBullet.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMultiplication());
+		bounceBullet.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new GetEntityVelocity());
+		bounceBullet.childrenSpellPieces[1].childrenSpellPieces[0].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
+		bounceBullet.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new FloatConstantSpellPiece(-2f));
+		GameScene.playerSpellStorage.AddSpell("bounceBullet", bounceBullet);
 
 	}
 
@@ -72,6 +72,12 @@ public partial class SpellCaster : Node2D
 
 	public void updateSpellSet(List<SpellEvaluationTreeNode> spells){
 		this.spells = new List<SpellEvaluationTreeNode>(spells);
+	}
+
+	public void updateTriggerSet(string[] triggerNames){
+		spellTriggers = new List<Trigger>();
+		
+		spellTriggers.Add(new OnBulletIsNear(GameScene.playerSpellStorage.getSpell(triggerNames[0]), this));
 	}
 
 	

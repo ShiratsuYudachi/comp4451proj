@@ -37,6 +37,7 @@ public partial class SpellEditor : GridContainer
 	public override void _Ready()
 	{
 		compileButton.Connect("pressed", new Callable(this, nameof(CompileSpell)));
+		clearButton.Connect("pressed", new Callable(this, nameof(ClearEditor)));
 	}
 
 	
@@ -67,7 +68,7 @@ public partial class SpellEditor : GridContainer
 		return spellPicker;
 	}
 
-	public void clearEditor(){
+	public void ClearEditor(){
 		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
 			spellEditorBox.clear();
 		}

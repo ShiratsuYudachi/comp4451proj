@@ -1,7 +1,8 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices;
-
+using System.Collections.Generic;
+using System.Linq;
 
 public enum SpellVariableType
 {
@@ -476,7 +477,7 @@ public class SpellEvaluationTreeNode
 
 	public static SpellEvaluationTreeNode loadJSON(Godot.Collections.Dictionary jsonObj)
 	{
-		// 获取拼写片段类型名称
+		// 获取拼写片���类型名称
 		string typeName = (string)jsonObj["Type"];
 		
 		// 通过反射创建对应类型的实例
@@ -513,5 +514,35 @@ public class SpellEvaluationTreeNode
 		
 		return node;
 	}
+
+}
+
+
+
+public class SpellStorage{
+	public Dictionary<string, SpellEvaluationTreeNode> spells = new Dictionary<string, SpellEvaluationTreeNode>();
+
+	public SpellStorage(){
+		
+	}
+
+	public void AddSpell(string spellName, SpellEvaluationTreeNode spell){
+		spells[spellName] = spell;
+	}	
+
+	public string[] getSpellNames(){
+		return spells.Keys.ToArray();
+	}
+
+	public SpellEvaluationTreeNode getSpell(string spellName){
+		if (spellName == "None"){
+			return null;
+		}
+		if (spells.ContainsKey(spellName)){
+			return spells[spellName];
+		}
+		return null;
+	}
+
 
 }

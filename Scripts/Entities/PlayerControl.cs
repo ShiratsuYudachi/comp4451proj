@@ -66,28 +66,28 @@ public partial class PlayerControl : LivingEntity
 
 		if (Input.IsActionJustPressed("Attack"))
 		{
-			//DanmakuCaster.CastDanmaku();
+			spellCaster?.Cast(0);
 		}
 		if (Input.IsActionJustPressed("Cast"))
 		{
-			spellCaster?.Cast();
+			spellCaster?.Cast(1);
 		}
 
 		if (Input.IsActionJustPressed("Key1"))
 		{
-			spellCaster?.Cast(0);
+			spellCaster?.Cast(2);
 		}	
 		if (Input.IsActionJustPressed("Key2"))
 		{
-			spellCaster?.Cast(1);
+			spellCaster?.Cast(3);
 		}
 		if (Input.IsActionJustPressed("Key3"))
 		{
-			spellCaster?.Cast(2);
+			spellCaster?.Cast(4);
 		}
 		if (Input.IsActionJustPressed("Key4"))
 		{
-			spellCaster?.Cast(3);
+			spellCaster?.Cast(5);
 		}
 
 

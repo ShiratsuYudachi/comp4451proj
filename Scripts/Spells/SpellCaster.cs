@@ -27,7 +27,7 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-		spells.Add(testEvaluationTree1);
+		GameScene.playerSpellStorage.AddSpell("BlinkToMousePos", testEvaluationTree1);
 		//GD.Print(testEvaluationTree1.ToJSON());
 
 		
@@ -37,7 +37,7 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
 		testEvaluationTree2.PrintTree();
 		GD.Print(testEvaluationTree2.ToJSON());
-		spells.Add(testEvaluationTree2);
+		GameScene.playerSpellStorage.AddSpell("TestAddMotion", testEvaluationTree2);
 		//Heal
 		SpellEvaluationTreeNode testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
 		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
@@ -90,6 +90,10 @@ public partial class SpellCaster : Node2D
 			trigger.update();
 		}
 		//GD.Print("Mana: " + Mana);
+	}
+
+	public void updateSpellSet(List<SpellEvaluationTreeNode> spells){
+		this.spells = new List<SpellEvaluationTreeNode>(spells);
 	}
 
 	

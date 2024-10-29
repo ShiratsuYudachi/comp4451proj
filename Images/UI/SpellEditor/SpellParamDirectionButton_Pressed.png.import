@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dey1h5v0au135"
-path="res://.godot/imported/SpellParamDirectionButton_Pressed.png-a50096bef1f0b775e8d86b8ce4ff76e5.ctex"
+path="res://.godot/imported/SpellParamDirectionButton_Pressed.png-211565a3a716e6928ad49d9afb153fc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/SpellParamDirectionButton_Pressed.png"
-dest_files=["res://.godot/imported/SpellParamDirectionButton_Pressed.png-a50096bef1f0b775e8d86b8ce4ff76e5.ctex"]
+source_file="res://Images/UI/SpellEditor/SpellParamDirectionButton_Pressed.png"
+dest_files=["res://.godot/imported/SpellParamDirectionButton_Pressed.png-211565a3a716e6928ad49d9afb153fc3.ctex"]
 
 [params]
 

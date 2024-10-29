@@ -9,6 +9,14 @@ public partial class SpellEditor : GridContainer
 	[Export]
 	public PackedScene spellPieceConfigPanelScene;
 
+	[Export]
+	public LineEdit spellNameInput;
+
+	[Export]
+	public Button compileButton;
+
+	
+
 	public SpellPieceConfigPanel spellPieceConfigPanel;
 
 
@@ -25,6 +33,7 @@ public partial class SpellEditor : GridContainer
 	
 	public override void _Ready()
 	{
+		compileButton.Connect("pressed", new Callable(this, nameof(CompileSpell)));
 	}
 
 	
@@ -44,7 +53,7 @@ public partial class SpellEditor : GridContainer
 
 		if (Input.IsActionJustPressed("EnterN"))
 		{
-			CompileSpell().PrintTree();
+			CompileSpell();
 		}
 	}
 
@@ -88,12 +97,23 @@ public partial class SpellEditor : GridContainer
 		return null;
 	}
 
-	public SpellEvaluationTreeNode CompileSpell(){
+	public void CompileSpell(){
+		SpellEvaluationTreeNode result = null;
 		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
-			if (spellEditorBox.spellPiece is ExecutorSpellPiece) return CompileBox(spellEditorBox);
+			if (spellEditorBox.spellPiece is ExecutorSpellPiece) result = CompileBox(spellEditorBox);
 		}
-		GD.Print("No executor spell piece found");
-		return null;
+		if (result == null){
+			SpellWorkspace.instance.showMessage("No executor spell piece found");
+		}
+		if (spellNameInput.Text == ""){
+			SpellWorkspace.instance.showMessage("No spell name given");
+		}
+		else{
+			result.PrintTree();
+			SpellWorkspace.instance.showMessage("Spell compiled!");
+			GameScene.playerSpellStorage.AddSpell(spellNameInput.Text, result);
+			SpellWorkspace.Refresh();
+		}
 	}
 
 	public SpellEvaluationTreeNode CompileBox(SpellEditorBox spellEditorBox){
@@ -124,6 +144,8 @@ public partial class SpellEditor : GridContainer
 
 		return root;
 	}
+
+	
 
 
 	// public TextureRect NewSpellPieceIcon(string name){

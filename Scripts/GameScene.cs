@@ -8,6 +8,7 @@ public partial class GameScene : Node2D
     public static PackedScene damageLabelScene;
     public static Camera2D mainCamera;
     public static PlayerControl player;
+    public static SpellStorage playerSpellStorage = new SpellStorage();
 
     public static CanvasLayer UI;
 

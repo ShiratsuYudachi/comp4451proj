@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lja8hpflcwuo"
-path="res://.godot/imported/SpellParamDirectionButton.png-e19c856f0ecad82460058b2134299c89.ctex"
+uid="uid://ccinqaaf1itjh"
+path="res://.godot/imported/SpellBox.png-8508526a2c0ad2446152bcc14727eee1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/SpellParamDirectionButton.png"
-dest_files=["res://.godot/imported/SpellParamDirectionButton.png-e19c856f0ecad82460058b2134299c89.ctex"]
+source_file="res://Images/UI/SpellEditor/SpellBox.png"
+dest_files=["res://.godot/imported/SpellBox.png-8508526a2c0ad2446152bcc14727eee1.ctex"]
 
 [params]
 

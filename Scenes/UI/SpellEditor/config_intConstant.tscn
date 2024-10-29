@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://5jvwsepql2v6"]
+[gd_scene load_steps=3 format=3 uid="uid://dax0l7huiq8xy"]
 
 [ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_qmq7h"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ConfigIntConstant.cs" id="2_k3wub"]

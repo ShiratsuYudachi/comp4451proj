@@ -120,12 +120,13 @@ public partial class SpellEditor : GridContainer
 		if (rootBox == null){
 			SpellWorkspace.showMessage("No valid executor spell piece found");
 		}
+		
+
+		result = CompileBox(rootBox);
 		if (spellNameInput.Text == ""){
 			SpellWorkspace.showMessage("No spell name given");
 		}
-
-		result = CompileBox(rootBox);
-		if (result == null){
+		else if (result == null){
 			SpellWorkspace.showMessage("Error in spell compilation");
 		}
 		else{

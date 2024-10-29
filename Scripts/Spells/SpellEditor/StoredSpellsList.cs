@@ -20,3 +20,6 @@ public partial class StoredSpellsList : ItemList
 		}
 	}
 }
+
+
+

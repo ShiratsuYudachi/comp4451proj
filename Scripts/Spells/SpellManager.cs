@@ -477,10 +477,9 @@ public class SpellEvaluationTreeNode
 
 	public static SpellEvaluationTreeNode loadJSON(Godot.Collections.Dictionary jsonObj)
 	{
-		// 获取拼写片���类型名称
+		
 		string typeName = (string)jsonObj["Type"];
 		
-		// 通过反射创建对应类型的实例
 		Type spellPieceType = Type.GetType(typeName);
 		if (spellPieceType == null)
 		{
@@ -528,6 +527,7 @@ public class SpellStorage{
 
 	public void AddSpell(string spellName, SpellEvaluationTreeNode spell){
 		spells[spellName] = spell;
+		SaveAllSpells();
 	}	
 
 	public string[] getSpellNames(){
@@ -544,5 +544,38 @@ public class SpellStorage{
 		return null;
 	}
 
+	public void SaveAllSpells() {
+		// Create directory if not exists
+		string dirPath = System.IO.Path.Combine(
+			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+			"SpellCompiler"
+		);
+		System.IO.Directory.CreateDirectory(dirPath);
+
+		// Save each spell
+		foreach (var spellPair in spells) {
+			string jsonPath = System.IO.Path.Combine(dirPath, $"{spellPair.Key}.json");
+			var jsonDict = spellPair.Value.ToJSON();
+			string jsonString = Json.Stringify(jsonDict);
+			System.IO.File.WriteAllText(jsonPath, jsonString);
+		}
+	}
+
+	public void LoadAllSpells() {
+		string dirPath = System.IO.Path.Combine(
+			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+			"SpellCompiler"
+		);
+
+		if (!System.IO.Directory.Exists(dirPath)) return;
+
+		spells.Clear();
+		foreach (string file in System.IO.Directory.GetFiles(dirPath, "*.json")) {
+			string spellName = System.IO.Path.GetFileNameWithoutExtension(file);
+			string jsonString = System.IO.File.ReadAllText(file);
+			var loadedDict = Json.ParseString(jsonString).AsGodotDictionary();
+			spells[spellName] = SpellEvaluationTreeNode.loadJSON(loadedDict);
+		}
+	}
 
 }

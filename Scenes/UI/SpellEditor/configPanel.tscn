@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://o2x2e0b1npa1"]
+[gd_scene load_steps=5 format=3 uid="uid://bvh1knf35dgsk"]
 
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceConfigPanel.cs" id="1_a0j20"]
 [ext_resource type="PackedScene" uid="uid://g48n6x01c7hx" path="res://Scenes/UI/SpellEditor/paramDirectionSelector.tscn" id="2_hcpdj"]

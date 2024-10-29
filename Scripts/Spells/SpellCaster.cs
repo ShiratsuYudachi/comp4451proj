@@ -24,11 +24,17 @@ public partial class SpellCaster : Node2D
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		//GD.Print(testEvaluationTree1.ToJSON());
+
+		
+		
+		
 		//MassAddMotion
 		testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
 		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
 		testEvaluationTree2.PrintTree();
+		GD.Print(testEvaluationTree2.ToJSON());
 		//Heal
 		testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
 		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
@@ -43,6 +49,29 @@ public partial class SpellCaster : Node2D
 		blinkUp.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new FloatConstantSpellPiece(-2f));
 		spellTriggers.Add(new OnBulletIsNear(blinkUp, this));
 
+		// 确保目录存在
+		string dirPath = System.IO.Path.Combine(
+			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+			"SpellCompiler"
+		);
+		System.IO.Directory.CreateDirectory(dirPath);
+		
+		// 保存测试树到JSON
+		string jsonPath = System.IO.Path.Combine(dirPath, "testSpell.json");
+		var jsonDict = testEvaluationTree2.ToJSON();
+		string jsonString = Json.Stringify(jsonDict);
+		System.IO.File.WriteAllText(jsonPath, jsonString);
+		
+		// 从JSON加载并打印树结构
+		GD.Print("Original tree:");
+		testEvaluationTree2.PrintTree();
+		
+		string loadedJsonString = System.IO.File.ReadAllText(jsonPath);
+		var loadedDict = Json.ParseString(loadedJsonString).AsGodotDictionary();
+		var loadedTree = SpellEvaluationTreeNode.loadJSON(loadedDict);
+		
+		GD.Print("\nLoaded tree:");
+		loadedTree.PrintTree();
 	}
 
 	public override void _Process(double delta)

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
+
 public enum SpellVariableType
 {
 	NONE,
@@ -159,6 +160,84 @@ public abstract class SpellPiece
 	public virtual object[] getConfigValues() { return new object[] { }; } // for GUI loading config items
 	public virtual void applyConfig(object[] configs) { } // for GUI saving config items
 	public virtual SpellVariableType ReturnType { get; }
+
+
+	public string[] configToString(object[] configValues)
+	{
+		if (configValues == null || configValues.Length == 0)
+			return new string[0];
+
+		var configTypes = ConfigList;
+		if (configTypes.Length != configValues.Length)
+			throw new ArgumentException("Config values length doesn't match ConfigList length");
+
+		var result = new string[configValues.Length];
+		
+		for (int i = 0; i < configValues.Length; i++)
+		{
+			switch (configTypes[i])
+			{
+				case SpellVariableType.INT:
+					result[i] = ((int)configValues[i]).ToString();
+					break;
+				case SpellVariableType.FLOAT:
+					result[i] = ((float)configValues[i]).ToString("F6");
+					break;
+				case SpellVariableType.BOOL:
+					result[i] = ((bool)configValues[i]).ToString();
+					break;
+				case SpellVariableType.VECTOR2:
+					var vec = (Vector2)configValues[i];
+					result[i] = $"{vec.X:F6},{vec.Y:F6}";
+					break;
+				default:
+					throw new ArgumentException($"Unsupported config type: {configTypes[i]}");
+			}
+		}
+
+		return result;
+	}
+
+	public object[] stringToConfig(string[] configStrings)
+	{
+		if (configStrings == null || configStrings.Length == 0)
+			return new object[0];
+
+		var configTypes = ConfigList;
+		if (configStrings.Length != configTypes.Length)
+			throw new ArgumentException("Config strings length doesn't match ConfigList length");
+
+		var result = new object[configStrings.Length];
+		
+		for (int i = 0; i < configStrings.Length; i++)
+		{
+			switch (configTypes[i])
+			{
+				case SpellVariableType.INT:
+					result[i] = int.Parse(configStrings[i]);
+					break;
+				case SpellVariableType.FLOAT:
+					result[i] = float.Parse(configStrings[i]);
+					break;
+				case SpellVariableType.BOOL:
+					result[i] = bool.Parse(configStrings[i]);
+					break;
+				case SpellVariableType.VECTOR2:
+					var vecParts = configStrings[i].Split(',');
+					if (vecParts.Length != 2)
+						throw new ArgumentException("Invalid Vector2 format");
+					result[i] = new Vector2(
+						float.Parse(vecParts[0]),
+						float.Parse(vecParts[1])
+					);
+					break;
+				default:
+					throw new ArgumentException($"Unsupported config type: {configTypes[i]}");
+			}
+		}
+
+		return result;
+	}
 
 
 	// protected void checkParams(SpellVariable[] args)
@@ -352,4 +431,78 @@ public class SpellEvaluationTreeNode
 				child.PrintTree(indent + "  ");
 		}
 	}
+
+
+	
+	public Godot.Collections.Dictionary ToJSON()
+    {
+        // 创建主对象
+        var jsonObj = new Godot.Collections.Dictionary();
+        
+        // 添加拼写片段类型和名称
+        jsonObj["Type"] = rootSpellPiece.GetType().Name;
+        
+        // 添加配置值（如果有）
+        var configValues = rootSpellPiece.getConfigValues();
+
+		jsonObj["config"] = rootSpellPiece.configToString(configValues);
+		
+        
+        // 递归处理子节点
+        if (childrenSpellPieces.Length > 0)
+        {
+            var childrenArray = new Godot.Collections.Array();
+            foreach (var child in childrenSpellPieces)
+            {
+                childrenArray.Add(child != null ? child.ToJSON() : null);
+            }
+            jsonObj["children"] = childrenArray;
+        }
+		else{
+			jsonObj["children"] = new Godot.Collections.Array();
+		}
+        
+        return jsonObj;
+    }
+
+	public static SpellEvaluationTreeNode loadJSON(Godot.Collections.Dictionary jsonObj)
+	{
+		// 获取拼写片段类型名称
+		string typeName = (string)jsonObj["Type"];
+		
+		// 通过反射创建对应类型的实例
+		Type spellPieceType = Type.GetType(typeName);
+		if (spellPieceType == null)
+		{
+			throw new ArgumentException($"Unknown spell piece type: {typeName}");
+		}
+		
+		SpellPiece spellPiece = (SpellPiece)Activator.CreateInstance(spellPieceType);
+		
+		// 处理配置值
+		var configArray = (Godot.Collections.Array)jsonObj["config"];
+		if (configArray.Count > 0)
+		{
+			var configStrings = new string[configArray.Count];
+			for (int i = 0; i < configArray.Count; i++)
+			{
+				configStrings[i] = (string)configArray[i];
+			}
+			spellPiece.applyConfig(spellPiece.stringToConfig(configStrings));
+		}
+		
+		// 创建树节点
+		var node = new SpellEvaluationTreeNode(spellPiece);
+		
+		// 递归处理子节点
+		var childrenArray = (Godot.Collections.Array)jsonObj["children"];
+		for (int i = 0; i < childrenArray.Count; i++)
+		{
+			var childData = (Godot.Collections.Dictionary)childrenArray[i];
+			node.childrenSpellPieces[i] = loadJSON(childData);
+		}
+		
+		return node;
+	}
+
 }

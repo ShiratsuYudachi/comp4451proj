@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/items/Weapon2.cs" id="7_ohanp"]
 [ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet.tscn" id="8_0e0xm"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="9_7s0we"]
-[ext_resource type="Script" path="res://Scripts/Entities/MonsterDetector.cs" id="10_4au02"]
+[ext_resource type="Script" path="res://Scripts/Entities/EntityDetector.cs" id="10_4au02"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ae7h"]
 atlas = ExtResource("2_ufb5r")
@@ -402,8 +402,8 @@ size = Vector2(17.6, 6.4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwo4s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpyrj"]
-size = Vector2(114, 114)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vv3j"]
+radius = 54.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 11
@@ -463,17 +463,18 @@ script = ExtResource("7_ohanp")
 bulletScene = ExtResource("8_0e0xm")
 metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox", "PlayerHitBox"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_rwo4s")
 
 [node name="SpellCaster" type="Node2D" parent="."]
 script = ExtResource("9_7s0we")
 
-[node name="MonsterDetector" type="Area2D" parent="."]
+[node name="EntityDetector" type="Area2D" parent="."]
 script = ExtResource("10_4au02")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterDetector"]
-shape = SubResource("RectangleShape2D_lpyrj")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityDetector"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_7vv3j")

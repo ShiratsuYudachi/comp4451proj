@@ -23,7 +23,7 @@ public partial class Bullet : Node2D, IMassEntity
 
 	public override void _Ready()
 	{
-		GetNode<Area2D>("Area2D").Connect("area_entered", new Callable(this, nameof(OnHit)));
+		GetNode<Area2D>("HitBox").Connect("area_entered", new Callable(this, nameof(OnHit)));
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -38,7 +38,7 @@ public partial class Bullet : Node2D, IMassEntity
 
 	public void OnHit(Area2D area)
 	{
-		if (area.Name == "MonsterDetector") return;
+		if (!area.IsInGroup("HitBox")) return;
 		Node nodeOnHit = area.GetParent();
 
 		if (nodeOnHit is Entity entityOnHit && entityOnHit.group == caster.group) return;

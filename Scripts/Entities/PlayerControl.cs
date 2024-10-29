@@ -7,10 +7,13 @@ public partial class PlayerControl : LivingEntity
 	public const float Speed = 100.0f;
 	private AnimatedSprite2D? _animatedSprite2D;
 
+	public SpellCaster? spellCaster;
+
 	public override void _Ready()
 	{
 		base._Ready();
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		spellCaster = GetNode<SpellCaster>("SpellCaster");
 		health = 114514;
 		group = Group.Player;
 	}
@@ -65,6 +68,32 @@ public partial class PlayerControl : LivingEntity
 		{
 			//DanmakuCaster.CastDanmaku();
 		}
+		if (Input.IsActionJustPressed("Cast"))
+		{
+			spellCaster?.Cast();
+		}
+
+		if (Input.IsActionJustPressed("Key1"))
+		{
+			spellCaster?.Cast(0);
+		}	
+		if (Input.IsActionJustPressed("Key2"))
+		{
+			spellCaster?.Cast(1);
+		}
+		if (Input.IsActionJustPressed("Key3"))
+		{
+			spellCaster?.Cast(2);
+		}
+		if (Input.IsActionJustPressed("Key4"))
+		{
+			spellCaster?.Cast(3);
+		}
+
+
+		
+		
+
 	}
 	public override void Attack()
 	{

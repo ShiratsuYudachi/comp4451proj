@@ -26,7 +26,7 @@ public partial class ScenePortal : Area2D
 
 	public void onPlayerEnter(Area2D area)
 	{
-		if (area.GetParent() is PlayerControl && area.GetName() != "MonsterDetector")
+		if (area.GetParent() is PlayerControl && area.IsInGroup("PlayerHitBox"))
 		{			
 			this.CallDeferred("_deferred_switch_scene", targetSceneName);
 			

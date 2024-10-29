@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://csbqiboviquls"]
+[gd_scene load_steps=13 format=3 uid="uid://csbqiboviquls"]
 
 [ext_resource type="Texture2D" uid="uid://bhki454ungt7w" path="res://Images/button.png" id="1_4f1av"]
 [ext_resource type="Script" path="res://Scripts/UI/UIControl.cs" id="1_jetj3"]
@@ -24,27 +24,11 @@ _bundled = {
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_nyyfn"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_3p2ci"]
-device = -1
-keycode = 49
-unicode = 49
-
-[sub_resource type="Shortcut" id="Shortcut_odrcq"]
-events = [SubResource("InputEventKey_3p2ci")]
-
 [sub_resource type="LabelSettings" id="LabelSettings_bty1n"]
 font_size = 13
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
-
-[sub_resource type="InputEventKey" id="InputEventKey_ssdy5"]
-device = -1
-keycode = 50
-unicode = 50
-
-[sub_resource type="Shortcut" id="Shortcut_x4hco"]
-events = [SubResource("InputEventKey_ssdy5")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0i0vx"]
 font_size = 25
@@ -96,7 +80,6 @@ scale = Vector2(2, 2)
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_nyyfn")
-shortcut = SubResource("Shortcut_odrcq")
 texture_normal = ExtResource("1_4f1av")
 texture_pressed = ExtResource("2_glhc7")
 stretch_mode = 0
@@ -131,7 +114,6 @@ offset_bottom = 33.0
 scale = Vector2(2, 2)
 toggle_mode = true
 button_group = SubResource("ButtonGroup_nyyfn")
-shortcut = SubResource("Shortcut_x4hco")
 texture_normal = ExtResource("1_4f1av")
 texture_pressed = ExtResource("2_glhc7")
 stretch_mode = 0

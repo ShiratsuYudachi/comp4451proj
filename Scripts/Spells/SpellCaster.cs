@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class SpellCaster : Node2D
 {
-	public SpellEvaluationTreeNode testEvaluationTree1, testEvaluationTree2, testEvaluationTree3, blinkUp;
+	
 
 	public float ManaMax = 20000;
 	public float Mana = 20000;
@@ -13,35 +13,38 @@ public partial class SpellCaster : Node2D
 
 	List<Trigger> spellTriggers = new List<Trigger>();
 
+	List<SpellEvaluationTreeNode> spells = new List<SpellEvaluationTreeNode>();
+
 
 	public override void _Ready()
 	{
 		GD.Print("SpellExecutor ready");
 		//Blink
-		testEvaluationTree1 = new SpellEvaluationTreeNode(new Blink());
+
+		SpellEvaluationTreeNode testEvaluationTree1 = new SpellEvaluationTreeNode(new Blink());
 		testEvaluationTree1.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree1.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMinus());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
 		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		spells.Add(testEvaluationTree1);
 		//GD.Print(testEvaluationTree1.ToJSON());
 
 		
-		
-		
 		//MassAddMotion
-		testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
+		SpellEvaluationTreeNode testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
 		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
 		testEvaluationTree2.PrintTree();
 		GD.Print(testEvaluationTree2.ToJSON());
+		spells.Add(testEvaluationTree2);
 		//Heal
-		testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
+		SpellEvaluationTreeNode testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
 		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
 		testEvaluationTree3.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new IntConstantSpellPiece(114));
 
 		//BlinkUp
-		blinkUp = new SpellEvaluationTreeNode(new MassAddMotion());
+		SpellEvaluationTreeNode blinkUp = new SpellEvaluationTreeNode(new MassAddMotion());
 		blinkUp.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
 		blinkUp.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMultiplication());
 		blinkUp.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new GetEntityVelocity());
@@ -76,11 +79,6 @@ public partial class SpellCaster : Node2D
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("Cast"))
-		{
-			Cast();
-		}
-
 		Mana += ManaRegenSpeed * (float)delta;
 
 		if (Mana > ManaMax)
@@ -96,10 +94,13 @@ public partial class SpellCaster : Node2D
 
 	
 
-	public void Cast()
+	public void Cast(int index = 0)
 	{
-		GD.Print("Executing spell");
-		testEvaluationTree1.Evaluate(this);
+		if (index >= spells.Count){
+			GD.Print("No spell at index " + index);
+			return;
+		}
+		spells[index].Evaluate(this);
 		// testEvaluationTree2.Evaluate(this);
 		// testEvaluationTree3.Evaluate(this);
 	}

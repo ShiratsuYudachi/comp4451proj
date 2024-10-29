@@ -23,6 +23,11 @@ public struct SpellVariable
 
 	public SpellVariable(SpellVariableType type, object value)
 	{
+		if (value == null && type != SpellVariableType.NONE){
+			throw new ArgumentException("Spell Variable Casting Error: casting null to " + type);
+		}
+		
+		
 		switch (type)
 		{
 			case SpellVariableType.NONE:
@@ -52,7 +57,7 @@ public struct SpellVariable
 			case SpellVariableType.LIVINGENTITY:
 				if (!(value is LivingEntity))
 				{
-					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to LivingEntityD");
+					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to LivingEntity");
 				}
 				break;
 			case SpellVariableType.MASSENTITY:
@@ -348,9 +353,6 @@ public class FloatConstantSpellPiece : SelectorSpellPiece
 
 public class Vector2ConstantSpellPiece : SelectorSpellPiece
 {
-	public Vector2 Value;
-	public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
-	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.VECTOR2 }; } }
 	public override string Name
 	{
 		get
@@ -358,6 +360,10 @@ public class Vector2ConstantSpellPiece : SelectorSpellPiece
 			return "Vector2: " + Value.ToString();
 		}
 	}
+	public Vector2 Value;
+	public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
+	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.VECTOR2 }; } }
+	
 
 	public override void applyConfig(object[] configs)
 	{
@@ -402,6 +408,9 @@ public class SpellEvaluationTreeNode
 		for (int i = 0; i < castingParams.Length; i++)
 		{
 			castingParams[i] = childrenSpellPieces[i].Evaluate(spellCaster);
+			if (castingParams[i].Type == SpellVariableType.NONE){ // when error occurs, return NULL type, and recursively cancel casting
+				return new SpellVariable(SpellVariableType.NONE, null);
+			}
 		}
 
 		if (rootSpellPiece is OperatorSpellPiece)

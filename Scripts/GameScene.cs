@@ -81,5 +81,9 @@ public partial class GameScene : Node2D
         instance.AddChild(entity);
         entity.GlobalPosition = position;
     }
+
+    public static void inGameLog(string message){
+        ShowTip(message); 
+    }
 }
 

@@ -151,11 +151,11 @@ size = Vector2(12, 3)
 script = ExtResource("1_43fjl")
 bulletScene = ExtResource("2_agq82")
 
-[node name="HitArea" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
 position = Vector2(3, 2)
 scale = Vector2(0.173828, 0.173828)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-11.5056, -11.5056)
 shape = SubResource("RectangleShape2D_31n4v")
 

@@ -97,7 +97,7 @@ libraries = {
 "": SubResource("AnimationLibrary_yaasb")
 }
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
 position = Vector2(-0.25, -0.25)
 scale = Vector2(0.71875, 0.71875)
 metadata/_edit_lock_ = true

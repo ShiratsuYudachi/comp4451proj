@@ -62,7 +62,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     public virtual void OnHit(int damage)
     {
         health -= damage;
-        GD.Print(GetType().Name + " hit for " + damage + " pts. Remaining health: " + health);
+        // GD.Print(GetType().Name + " hit for " + damage + " pts. Remaining health: " + health);
         GameScene.ShowDamage(damage, GlobalPosition);
         if (health <= 0) Die();
     }

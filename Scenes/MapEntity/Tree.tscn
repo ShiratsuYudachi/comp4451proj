@@ -76,7 +76,7 @@ libraries = {
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_nuw8t")
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -7)

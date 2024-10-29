@@ -14,9 +14,9 @@ metadata/_edit_lock_ = true
 texture = ExtResource("1_1q0xl")
 metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_fljmw")
 metadata/_edit_lock_ = true

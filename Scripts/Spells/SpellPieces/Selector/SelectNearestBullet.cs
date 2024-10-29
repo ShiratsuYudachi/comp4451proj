@@ -11,18 +11,56 @@ public class SelectNearestBullet : SelectorSpellPiece
             return "Select Nearest Bullet"; 
         }
     }
-    public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.MASSENTITY; } }
+    
+    public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.BOOL }; } }
+	
+    public bool avoidDuplicate = false; // If true, the selector will avoid selecting the same entity consecutively
+
+    private CircularBuffer<IMassEntity> lastSelectedEntities = new CircularBuffer<IMassEntity>(20);
+	public override void applyConfig(object[] configs)
+	{
+		avoidDuplicate = (bool)configs[0];
+	}
+
+	public override object[] getConfigValues()
+	{
+		return new object[] { avoidDuplicate };
+	}
 
 
     public override SpellVariable Select(SpellCaster spellCaster)
     {
-        MonsterDetector monsterDetector = GameScene.player.GetNode<MonsterDetector>("MonsterDetector");
+        EntityDetector entityDetector = GameScene.player.GetNode<EntityDetector>("EntityDetector");
+        if (entityDetector == null){
+            GD.PrintErr("SelectNearestBullet failed: No EntityDetector found");
+            return new SpellVariable(SpellVariableType.NONE, null);
+        }
+
         Bullet nearestBullet = null;
-        foreach (Bullet bullet in monsterDetector.bulletList){
-            if (nearestBullet == null || (bullet.GlobalPosition - spellCaster.GlobalPosition).Length() < (nearestBullet.GlobalPosition - spellCaster.GlobalPosition).Length()){
-                nearestBullet = bullet;
+        
+        foreach (IMassEntity massEntity in entityDetector.entityList){
+            
+            if (massEntity is Bullet){
+                if (massEntity != null && 
+                    (nearestBullet == null || 
+                    (massEntity.massPosition - spellCaster.GlobalPosition).Length() < (nearestBullet.massPosition - spellCaster.GlobalPosition).Length())){
+                    nearestBullet = (Bullet)massEntity;
+                }
             }
         }
+
+        if (avoidDuplicate && lastSelectedEntities.Contains(nearestBullet)){
+            nearestBullet = null;
+        }
+        
+        if (nearestBullet is null){
+            GameScene.inGameLog("SelectNearestBullet failed: No bullet found");
+            return new SpellVariable(SpellVariableType.NONE, null);
+        }
+        //entityDetector.entityList.Remove(nearestBullet);
+        lastSelectedEntities.Add(nearestBullet);
         return new SpellVariable(SpellVariableType.MASSENTITY, nearestBullet);
+        
     }	
 }

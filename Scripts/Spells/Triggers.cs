@@ -10,6 +10,7 @@ abstract class Trigger{
     public abstract bool Check();
     public void update(){
         if(Check()){
+            // GD.Print("Trigger " + this.GetType().Name + " triggered");
             bindedSpell.Evaluate(caster);
         }
     }
@@ -19,14 +20,32 @@ class OnBulletIsNear : Trigger{
     public OnBulletIsNear(SpellEvaluationTreeNode bindedSpell, SpellCaster caster) : base(bindedSpell, caster){
 
     }
+
+    private CircularBuffer<IMassEntity> lastCheckResults = new CircularBuffer<IMassEntity>(20);
+
+    bool avoidDuplicate = true;
     public override bool Check(){
-        MonsterDetector monsterDetector = GameScene.player.GetNode<MonsterDetector>("MonsterDetector");
+        EntityDetector monsterDetector = GameScene.player.GetNode<EntityDetector>("EntityDetector");
+        if (monsterDetector == null){
+            GD.PrintErr("Trigger OnBulletIsNear of entity " + caster.GetParent().GetName() + " failed: No EntityDetector found");
+            return false;
+        }
         
-        foreach (Bullet bullet in monsterDetector.bulletList){
-            if (bullet.caster != GameScene.player && bullet.GlobalPosition.DistanceTo(caster.GlobalPosition) < 25){
-                return true;
+        foreach (IMassEntity massEntity in monsterDetector.entityList){
+            if (massEntity is Bullet){
+                if (((Bullet)massEntity).caster != GameScene.player && massEntity.massPosition.DistanceTo(caster.GlobalPosition) < 25){
+                    if (avoidDuplicate){
+                        if (lastCheckResults.Contains(massEntity)){
+                        continue;
+                        }
+
+                        lastCheckResults.Add(massEntity);
+                    }
+                    return true;
+                }
             }
         }
+        
         return false;
     }
 }   

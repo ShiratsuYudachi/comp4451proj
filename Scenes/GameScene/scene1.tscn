@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_4joqk"]
-[ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="2_foh33"]
+[ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_foh33"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_237uu"]
 [ext_resource type="PackedScene" uid="uid://csbqiboviquls" path="res://Scenes/UI/UI.tscn" id="4_23oav"]
 [ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/LivingEntities/Skeleton.tscn" id="5_x8g85"]

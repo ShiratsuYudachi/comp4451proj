@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://u8th4p5cnm4r"]
 
 [ext_resource type="Script" path="res://Scripts/DanmakuIndicator.cs" id="1_ipjdj"]
-[ext_resource type="Texture2D" uid="uid://b3m4gfeimlomo" path="res://Images/bullet.png" id="2_e4wn7"]
+[ext_resource type="Texture2D" uid="uid://b3m4gfeimlomo" path="res://assets/Items/bullet.png" id="2_e4wn7"]
 
 [sub_resource type="Animation" id="Animation_hffwa"]
 length = 0.001

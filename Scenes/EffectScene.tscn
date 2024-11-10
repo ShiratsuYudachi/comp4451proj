@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmamop10n3hqw"]
 
 [ext_resource type="Script" path="res://Scripts/EffectScene.cs" id="1_21whk"]
-[ext_resource type="Texture2D" uid="uid://bhki454ungt7w" path="res://Images/button.png" id="1_sci3u"]
+[ext_resource type="Texture2D" uid="uid://bhki454ungt7w" path="res://assets/Misc/button.png" id="1_sci3u"]
 
 [sub_resource type="Curve" id="Curve_np7gu"]
 _data = [Vector2(0.0393258, 1), 0.0, 0.0, 0, 0, Vector2(0.820225, 0.395604), 0.0, 0.0, 0, 0]

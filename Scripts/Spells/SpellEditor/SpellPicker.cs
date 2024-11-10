@@ -10,7 +10,6 @@ public partial class SpellPicker : ItemList
 	public override void _Ready()
 	{
 		spellListInitialPosition = this.Position;
-		Texture2D texture = GD.Load<Texture2D>("res://2dres/shot.png");
 		string[] spellPiecesList = new string[] {
 			"Blink",
 			"GetEntityPos",
@@ -25,7 +24,7 @@ public partial class SpellPicker : ItemList
 
 		foreach (string spellPiece in spellPiecesList)
 		{
-			AddItem(spellPiece, texture);
+			AddItem(spellPiece);
 		}
 		// 设置所有项目为不可选择
 		for (int i = 0; i < GetItemCount(); i++)

@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_36y21"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSelector.cs" id="2_f08xr"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/DPad.cs" id="3_mec6f"]
-[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://Images/UI/SpellEditor/SpellParamDirectionButton.png" id="4_vdnyh"]
-[ext_resource type="Texture2D" uid="uid://dey1h5v0au135" path="res://Images/UI/SpellEditor/SpellParamDirectionButton_Pressed.png" id="5_uqmw4"]
-[ext_resource type="Texture2D" uid="uid://xcr5vful6c52" path="res://Images/UI/SpellEditor/SpellButtonDirectionButton_None.png" id="6_xqi68"]
-[ext_resource type="Texture2D" uid="uid://cwf2y4afip50e" path="res://Images/UI/SpellEditor/SpellButtonDirectionButton_None_Pressed.png" id="7_8cu3y"]
+[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://assets/UI/SpellEditor/SpellParamDirectionButton.png" id="4_vdnyh"]
+[ext_resource type="Texture2D" uid="uid://dey1h5v0au135" path="res://assets/UI/SpellEditor/SpellParamDirectionButton_Pressed.png" id="5_uqmw4"]
+[ext_resource type="Texture2D" uid="uid://xcr5vful6c52" path="res://assets/UI/SpellEditor/SpellButtonDirectionButton_None.png" id="6_xqi68"]
+[ext_resource type="Texture2D" uid="uid://cwf2y4afip50e" path="res://assets/UI/SpellEditor/SpellButtonDirectionButton_None_Pressed.png" id="7_8cu3y"]
 
 [node name="ParamSelector" type="TextureRect" node_paths=PackedStringArray("ParamNameLabel", "dPad")]
 texture = ExtResource("1_36y21")

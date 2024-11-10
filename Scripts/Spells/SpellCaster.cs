@@ -35,7 +35,7 @@ public partial class SpellCaster : Node2D
 		//MassAddMotion
 		SpellEvaluationTreeNode testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
 		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(3, 4)));
+		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2ConstantSpellPiece(new Vector2(100, 0)));
 		testEvaluationTree2.PrintTree();
 		GD.Print(testEvaluationTree2.ToJSON());
 		GameScene.playerSpellStorage.AddSpell("TestAddMotion", testEvaluationTree2);

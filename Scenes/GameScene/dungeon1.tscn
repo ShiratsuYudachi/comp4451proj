@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://k3lplxpyrcwd"]
 
-[ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://Images/Tiles.png" id="2_f5lg3"]
+[ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_f5lg3"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_50gml"]
 [ext_resource type="Script" path="res://Scripts/Map/DungeonScene.cs" id="3_nrsnc"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="4_mc012"]

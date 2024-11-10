@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://xxswesylvb6y"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Monster/Zombie.cs" id="1_b8fvo"]
-[ext_resource type="Texture2D" uid="uid://b0675b8vhs804" path="res://Images/Enemy.png" id="2_2rwu3"]
+[ext_resource type="Texture2D" uid="uid://b0675b8vhs804" path="res://assets/LivingEntities/Enemy.png" id="2_2rwu3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31n4v"]
 size = Vector2(80.5394, 103.551)

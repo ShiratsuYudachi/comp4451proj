@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellWorkspace.cs" id="1_8f750"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditor.cs" id="2_m1cjp"]
 [ext_resource type="PackedScene" uid="uid://m72s3878neh2" path="res://Scenes/UI/SpellEditor/spell_piece_config_panel.tscn" id="3_6jkc1"]
-[ext_resource type="Texture2D" uid="uid://ccinqaaf1itjh" path="res://Images/UI/SpellEditor/SpellBox.png" id="4_2l35r"]
+[ext_resource type="Texture2D" uid="uid://ccinqaaf1itjh" path="res://assets/UI/SpellEditor/SpellBox.png" id="4_2l35r"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditorBox.cs" id="5_l6smh"]
 [ext_resource type="PackedScene" uid="uid://cfkoj1rwb5wjj" path="res://Scenes/UI/spell_piece_icon.tscn" id="6_aod03"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSourceDisplay.cs" id="7_hrpvv"]
-[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://Images/UI/SpellEditor/SpellParamDirectionButton.png" id="8_hk5x7"]
+[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://assets/UI/SpellEditor/SpellParamDirectionButton.png" id="8_hk5x7"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPicker.cs" id="9_c255r"]
 [ext_resource type="Script" path="res://Scripts/UI/KeyBindPanel.cs" id="10_013ec"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/StoredSpellsList.cs" id="10_wdj3n"]
@@ -902,7 +902,7 @@ texture = ExtResource("8_hk5x7")
 layout_mode = 0
 offset_left = -272.0
 offset_top = 3.0
-offset_right = -117.0
+offset_right = -33.0
 offset_bottom = 359.0
 max_columns = 3
 icon_scale = 0.5

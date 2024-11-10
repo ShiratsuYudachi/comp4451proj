@@ -16,6 +16,3 @@ text = "This is a tip label"
 label_settings = SubResource("LabelSettings_30mcg")
 horizontal_alignment = 1
 script = ExtResource("1_ioatb")
-lifeTime = null
-speedMultiplier = null
-speedExponent = null

@@ -15,8 +15,14 @@ public partial class SpellPieceIcon : TextureRect
 
 
 	public void setIconForSpellPiece(string name){
-		Texture2D texture = GD.Load<Texture2D>("res://Images/Spells/"+name+".png");
-		this.Texture = texture;
+		this.Texture = ResourceManager.GetTexture(ResourceType.SpellPieceIcon, name);
+		if (this.Texture != null) {
+			// Check if texture size is not 32x32
+			if (this.Texture.GetWidth() != 32 || this.Texture.GetHeight() != 32) {
+				// Scale to fit 32x32
+				this.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+			}
+		}
 	}
 
 	public void clear(){

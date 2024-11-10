@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://rlp30h463lym"]
+
+[ext_resource type="Texture2D" uid="uid://ccinqaaf1itjh" path="res://assets/UI/SpellEditor/SpellBox.png" id="1_60pmx"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditorBox.cs" id="2_vhlv2"]
+[ext_resource type="PackedScene" uid="uid://cfkoj1rwb5wjj" path="res://Scenes/UI/spell_piece_icon.tscn" id="3_2ir3q"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSourceDisplay.cs" id="4_sfik6"]
+[ext_resource type="Texture2D" uid="uid://lja8hpflcwuo" path="res://assets/UI/SpellEditor/SpellParamDirectionButton.png" id="5_xlg35"]
+
+[node name="SpellEditorBox" type="Button"]
+button_mask = 7
+icon = ExtResource("1_60pmx")
+script = ExtResource("2_vhlv2")
+
+[node name="SpellPieceIcon" parent="." instance=ExtResource("3_2ir3q")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = null
+
+[node name="ParamSourceDisplay" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("4_sfik6")
+
+[node name="SourceUp" type="TextureRect" parent="ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 26.1111
+offset_top = 8.44444
+offset_right = 66.1111
+offset_bottom = 48.4444
+rotation = 3.14159
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_xlg35")
+
+[node name="SourceDown" type="TextureRect" parent="ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 13.8889
+offset_top = 31.7778
+offset_right = 53.8889
+offset_bottom = 71.7778
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_xlg35")
+
+[node name="SourceLeft" type="TextureRect" parent="ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 8.33333
+offset_top = 13.4444
+offset_right = 48.3333
+offset_bottom = 53.4444
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_xlg35")
+
+[node name="SourceRight" type="TextureRect" parent="ParamSourceDisplay"]
+layout_mode = 0
+offset_left = 31.6667
+offset_top = 25.1111
+offset_right = 71.6667
+offset_bottom = 65.1111
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_xlg35")

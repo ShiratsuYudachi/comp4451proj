@@ -23,6 +23,7 @@ public partial class SpellPieceIcon : TextureRect
 				this.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
 			}
 		}
+		// this.Modulate = new Color(1, 1, 1, 0.8f);
 	}
 
 	public void clear(){

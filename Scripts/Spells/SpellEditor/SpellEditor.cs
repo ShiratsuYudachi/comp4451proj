@@ -18,6 +18,12 @@ public partial class SpellEditor : GridContainer
 	[Export]
 	public Button clearButton;
 
+	[Export]
+	public PackedScene spellEditorBoxScene;
+
+
+	int EditorSize = 4; // nxn
+
 	
 
 	public SpellPieceConfigPanel spellPieceConfigPanel;
@@ -38,6 +44,10 @@ public partial class SpellEditor : GridContainer
 	{
 		compileButton.Connect("pressed", new Callable(this, nameof(CompileSpell)));
 		clearButton.Connect("pressed", new Callable(this, nameof(ClearEditor)));
+		for (int i = 0; i < EditorSize*EditorSize; i++){
+			SpellEditorBox spellEditorBox = spellEditorBoxScene.Instantiate<SpellEditorBox>();
+			this.AddChild(spellEditorBox);
+		}
 	}
 
 	

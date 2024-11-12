@@ -76,7 +76,7 @@ public partial class PlayerControl : LivingEntity
 		if (Input.IsActionJustPressed("Key1"))
 		{
 			spellCaster?.Cast(2);
-		}	
+		}
 		if (Input.IsActionJustPressed("Key2"))
 		{
 			spellCaster?.Cast(3);
@@ -89,11 +89,6 @@ public partial class PlayerControl : LivingEntity
 		{
 			spellCaster?.Cast(5);
 		}
-
-
-		
-		
-
 	}
 	public override void Attack()
 	{

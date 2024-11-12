@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_foh33"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_237uu"]
 [ext_resource type="PackedScene" uid="uid://csbqiboviquls" path="res://Scenes/UI/UI.tscn" id="4_23oav"]
-[ext_resource type="PackedScene" uid="uid://bs3m5vl301ttt" path="res://Scenes/LivingEntities/Skeleton.tscn" id="5_x8g85"]
 [ext_resource type="PackedScene" uid="uid://bgup23lkaco7i" path="res://Scenes/MapEntity/Stone.tscn" id="6_nfa0v"]
 [ext_resource type="PackedScene" uid="uid://cyqi5rpvmncxj" path="res://Scenes/MapEntity/Tree.tscn" id="7_xpblk"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="8_qryks"]
 [ext_resource type="PackedScene" uid="uid://brk3afsqxqo3f" path="res://Scenes/SpellCastingCircle.tscn" id="9_1y3p0"]
+[ext_resource type="PackedScene" uid="uid://bwlbfs1khsvr0" path="res://Scenes/LivingEntities/Necromancer.tscn" id="10_lqdww"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("2_foh33")
@@ -237,9 +237,6 @@ metadata/_edit_lock_ = true
 
 [node name="Ui" parent="CanvasLayer" instance=ExtResource("4_23oav")]
 
-[node name="Zombie" parent="." instance=ExtResource("5_x8g85")]
-position = Vector2(99, -1)
-
 [node name="Stone" parent="." instance=ExtResource("6_nfa0v")]
 position = Vector2(32, 21)
 
@@ -256,3 +253,6 @@ targetSceneName = "dungeon1"
 
 [node name="SpellCastingCircle" parent="." instance=ExtResource("9_1y3p0")]
 position = Vector2(46, 2)
+
+[node name="Necromancer" parent="." instance=ExtResource("10_lqdww")]
+position = Vector2(0, 31)

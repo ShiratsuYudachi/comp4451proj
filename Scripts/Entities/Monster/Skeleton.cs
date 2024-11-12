@@ -4,33 +4,21 @@ using System;
 public partial class Skeleton : LivingEntity
 {
 	[Export]
-	private PackedScene bulletScene;	
-
-	public float ATTACK_INTERVAL = 1; //s
-
-	private float attackTimer = 0f;
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-
-	String lastAnimationPlayed = "";
-
+	private PackedScene bulletScene;
+	private float ATTACK_INTERVAL = 1; //s
+	private float attackTimer = 0.0f;
+	private String lastPlayedAnimationName = "";
 	private bool attackAnimationFinished = false;
-
-
-	
-
 	public override void _Ready()
 	{
 		base._Ready();
-		this.animatedSprite2D.Modulate = Colors.White;
+		animatedSprite2D.Modulate = Colors.White;
 		group = Group.Enemy;
-
 		animatedSprite2D.AnimationFinished += () =>
 		{
-			attackAnimationFinished = true;	
+			attackAnimationFinished = true;
 		};
 	}
-	
-
 	public override void _Process(double delta)
 	{
 
@@ -70,7 +58,6 @@ public partial class Skeleton : LivingEntity
 				{
 					Velocity = Vector2.Zero;
 					state = State.Idle;
-					timer = 3;
 					randomDirection = new Vector2(
 						(float)GD.RandRange(-1, 1),
 						(float)GD.RandRange(-1, 1)
@@ -79,9 +66,10 @@ public partial class Skeleton : LivingEntity
 				}
 				break;
 			case State.Attack:
-				if (attackAnimationFinished){
+				if (attackAnimationFinished)
+				{
 					Bullet bullet = bulletScene.Instantiate<Bullet>();
-					Node2D player = GameScene.player as Node2D;
+					Node2D player = GameScene.player;
 					Vector2 direction = (player.GlobalPosition - GlobalPosition).Normalized();
 					bullet.GlobalPosition = GlobalPosition;
 					bullet.velocity = direction * 100;
@@ -89,14 +77,13 @@ public partial class Skeleton : LivingEntity
 					GameScene.instance.AddChild(bullet);
 					state = State.Moving;
 					randomDirection = new Vector2(
-						(float)GD.RandRange(-1, 1),
-						(float)GD.RandRange(-1, 1)
+						GD.RandRange(-1, 1),
+						GD.RandRange(-1, 1)
 					).Normalized();
 					timer = 1;
 				}
 				break;
 		}
-		
 		attackTimer -= (float)delta;
 		if (attackTimer <= 0)
 		{
@@ -121,11 +108,11 @@ public partial class Skeleton : LivingEntity
 	}
 	public override void ApplyDamage(long amout = 0L, Vector2? direction = null, Entity source = null)
 	{
+		throw new NotImplementedException();
 	}
-
-
-	private void playAnimation(String animationName){
-		lastAnimationPlayed = animationName;
+	private void playAnimation(String animationName)
+	{
+		lastPlayedAnimationName = animationName;
 		animatedSprite2D.Play(animationName);
 	}
 }

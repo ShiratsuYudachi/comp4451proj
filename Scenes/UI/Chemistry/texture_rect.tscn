@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpsoqsvgjd32k"]
+
+[ext_resource type="Texture2D" uid="uid://co4pybpm0h15p" path="res://assets/UI/Elements/Anemo.png" id="1_u6k81"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_u6k81")
+expand_mode = 2

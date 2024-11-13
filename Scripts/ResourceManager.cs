@@ -3,6 +3,7 @@ using Godot;
 public enum ResourceType{
         Bullet,
         SpellPieceIcon,
+        ElementIcon,
     }
 public class ResourceManager
 {
@@ -12,9 +13,12 @@ public class ResourceManager
         switch (type){
             case ResourceType.Bullet:
                 return GD.Load<Texture2D>("res://Art/Bullets/bullet.png");
+            
             case ResourceType.SpellPieceIcon:
-                Texture2D texture = GD.Load<Texture2D>("res://assets/Spells/SpellPieceIcons/"+name+".png");
-                return texture;
+                return GD.Load<Texture2D>("res://assets/Spells/SpellPieceIcons/"+name+".png");
+            
+            case ResourceType.ElementIcon:
+                return GD.Load<Texture2D>("res://assets/UI/Elements/"+name+".png");
             default:
                 return null;
         }

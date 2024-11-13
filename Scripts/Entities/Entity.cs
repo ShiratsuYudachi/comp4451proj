@@ -77,6 +77,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
                 effect.OnRemove();
             }
         }
+        reactor.Update(delta);
     }
     public virtual void OnHit(float damage)
     {

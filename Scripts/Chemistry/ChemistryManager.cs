@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 
 namespace Chemistry{
@@ -132,6 +133,20 @@ public class Reactor{
         return this.elementAmounts[(int)elementType] > 0;
     }
 
+    public Element[] GetActiveElements(){
+        List<Element> activeElements = new List<Element>();
+        foreach (Element element in Enum.GetValues(typeof(Element))){
+            if (_haveElement(element)){
+                activeElements.Add(element);
+            }
+        }
+        return activeElements.ToArray();
+    }
+
+    public float GetElementAmount(Element elementType){
+        return this.elementAmounts[(int)elementType];
+    }
+
     // private void _assimilate(Element elementToIncrease, Element elementToDecrease){ 
     //     this.elementAmounts[(int)elementToIncrease] += this.elementAmounts[(int)elementToDecrease];
     //     this.elementAmounts[(int)elementToDecrease] = 0;
@@ -224,6 +239,23 @@ public class Reactor{
         // if (_haveElement(Element.Hydro) && _haveElement(Element.Geo)){
         //     material.onCrystallize(Element.Hydro, _consumeMin(Element.Hydro, Element.Geo));
         // }
+
+
+        // Decay all elements by 1 per second
+        foreach (Element element in Enum.GetValues(typeof(Element))){
+            if (this.elementAmounts[(int)element] > 0){
+                this.elementAmounts[(int)element] -= (float)delta;
+            }
+        }
+        
+        
+        
+    }
+
+    public void PrintElementAmounts(){
+        foreach (Element element in Enum.GetValues(typeof(Element))){
+            GD.Print(element.ToString() + ": " + this.elementAmounts[(int)element]);
+        }
     }
 
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://clcasb8w42ovt"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ElementDisplay.cs" id="1_jgfpm"]
+[ext_resource type="PackedScene" uid="uid://dpsoqsvgjd32k" path="res://Scenes/UI/Chemistry/texture_rect.tscn" id="2_28bht"]
+
+[node name="ElementDisplay" type="Node2D"]
+script = ExtResource("1_jgfpm")
+textureRectScene = ExtResource("2_28bht")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = -45.0
+offset_top = -19.0
+offset_right = 46.0
+offset_bottom = -11.0
+alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b7tiwogjubipc"]
+[gd_scene load_steps=61 format=3 uid="uid://b7tiwogjubipc"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/PlayerControl.cs" id="1_kiabn"]
 [ext_resource type="Texture2D" uid="uid://c0njk1ovxpn6l" path="res://assets/MoeAssets/cheshire.png" id="2_ufb5r"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet/Bullet.tscn" id="8_0e0xm"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellCaster.cs" id="9_7s0we"]
 [ext_resource type="Script" path="res://Scripts/Entities/EntityDetector.cs" id="10_4au02"]
+[ext_resource type="PackedScene" uid="uid://clcasb8w42ovt" path="res://Scenes/UI/Chemistry/element_display.tscn" id="11_s47d8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ae7h"]
 atlas = ExtResource("2_ufb5r")
@@ -478,3 +479,5 @@ script = ExtResource("10_4au02")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntityDetector"]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_7vv3j")
+
+[node name="ElementDisplay" parent="." instance=ExtResource("11_s47d8")]

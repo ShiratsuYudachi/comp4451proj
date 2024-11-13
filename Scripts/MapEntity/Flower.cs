@@ -33,7 +33,7 @@ public partial class Flower : MapEntity
 	{
 		this.animatedSprite2D.Play("default");
 	}
-	public override void OnHit(int damage)
+	public override void OnHit(float damage)
 	{
 		base.OnHit(damage);
 	}

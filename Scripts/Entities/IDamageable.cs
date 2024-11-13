@@ -2,7 +2,7 @@
 using Godot;
 public interface IDamageable
 {
-    int Health { get; set; }
-    int MaxHealth { get; }
+    float Health { get; set; }
+    float MaxHealth { get; }
     void ApplyDamage(long amount, Vector2? direction, Entity? source);
 }

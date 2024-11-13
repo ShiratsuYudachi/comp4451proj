@@ -61,7 +61,7 @@ public partial class Zombie : LivingEntity
 	public override void Attack()
 	{
 	}
-	public override void OnHit(int damage)
+	public override void OnHit(float damage)
 	{
 
 		base.OnHit(damage);

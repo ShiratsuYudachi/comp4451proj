@@ -44,7 +44,7 @@ public partial class GameScene : Node2D
     {
         //Control damageLabelParent = damageLabelScene.Instantiate<Control>();
         Label damageLabel = damageLabelScene.Instantiate<Label>();
-        damageLabel.Text = damage.ToString();
+        damageLabel.Text = ((int)damage).ToString();
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         instance.AddChild(damageLabel);
     }

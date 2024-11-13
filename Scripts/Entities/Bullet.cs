@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Bullet : Node2D, IMassEntity
+public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 {
 	// Configurable
 	public Vector2 velocity { get; set; }
@@ -54,4 +54,32 @@ public partial class Bullet : Node2D, IMassEntity
 			QueueFree();
 		}
 	}
+
+	public void onOverloaded(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onElectroCharged(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onSuperconduct(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onBurning(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onVaporize(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onMelt(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onFreeze(float elementAmount){
+        // Empty implementation
+    }
 }

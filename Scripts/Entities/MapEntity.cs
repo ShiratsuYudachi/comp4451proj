@@ -19,7 +19,7 @@ public abstract partial class MapEntity : Entity
         }
         
     }
-    public override void OnHit(int damage)
+    public override void OnHit(float damage)
     {
         animationPlayer?.Play("onHit");
         if (damage < hardness)

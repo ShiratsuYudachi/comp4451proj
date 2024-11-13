@@ -111,7 +111,7 @@ public partial class Skeleton : LivingEntity
 		attackAnimationFinished = false;
 		state = State.Attack;
 	}
-	public override void OnHit(int damage)
+	public override void OnHit(float damage)
 	{
 		base.OnHit(damage);
 	}

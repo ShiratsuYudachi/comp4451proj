@@ -415,8 +415,7 @@ y_sort_enabled = true
 position = Vector2(41, -3)
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_syl01")
-animation = &"move"
-frame_progress = 0.937366
+animation = &"idle"
 offset = Vector2(-825, -125)
 metadata/_edit_lock_ = true
 

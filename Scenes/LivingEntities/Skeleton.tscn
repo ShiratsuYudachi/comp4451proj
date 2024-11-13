@@ -162,10 +162,8 @@ shape = SubResource("RectangleShape2D_31n4v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_gosn2")
-animation = &"attack"
+animation = &"moving"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

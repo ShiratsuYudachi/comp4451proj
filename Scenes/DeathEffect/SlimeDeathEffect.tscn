@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://e2onb1clfc7v"]
+
+[ext_resource type="Script" path="res://Scripts/DeathEffect/SlimeDeathEffect.cs" id="1_dr0a8"]
+[ext_resource type="Texture2D" uid="uid://c8tddq0l6xrt2" path="res://assets/LivingEntities/Slime.png" id="1_vlrc5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc8uf"]
+atlas = ExtResource("1_vlrc5")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpyrp"]
+atlas = ExtResource("1_vlrc5")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_picrd"]
+atlas = ExtResource("1_vlrc5")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58its"]
+atlas = ExtResource("1_vlrc5")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46bj0"]
+atlas = ExtResource("1_vlrc5")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tu8rd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc8uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpyrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_picrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58its")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46bj0")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dr0a8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_tu8rd")
+animation = &"die"
+frame = 1
+frame_progress = 0.557538
+metadata/_edit_lock_ = true

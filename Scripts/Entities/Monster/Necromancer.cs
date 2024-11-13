@@ -20,7 +20,6 @@ public partial class Necromancer : LivingEntity
     }
     public override void _Process(double delta)
     {
-        GD.Print(state);
         switch (state)
         {
             case State.Idle:

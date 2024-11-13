@@ -9,15 +9,17 @@ public partial class Bullet : Node2D, IMassEntity
 	public float timer = 5;
 
 	// Internal
-	public Vector2 massPosition { 
+	public Vector2 massPosition
+	{
 		get => GlobalPosition;
 		set => GlobalPosition = value;
 	}
-	public Vector2 massVelocity { 
+	public Vector2 massVelocity
+	{
 		get => velocity;
 		set => velocity = value;
 	}
-	
+
 	public Entity caster;
 	// Called when the node enters the scene tree for the first time.
 
@@ -42,15 +44,15 @@ public partial class Bullet : Node2D, IMassEntity
 		Node nodeOnHit = area.GetParent();
 
 		if (nodeOnHit is Entity entityOnHit && entityOnHit.group == caster.group) return;
-		
-		if (nodeOnHit is LivingEntity livingEntity && livingEntity != caster)
+
+		if (nodeOnHit is LivingEntity livingEntityOnHit && livingEntityOnHit != caster)
 		{
-			livingEntity.OnHit(10);
+			livingEntityOnHit.OnHit(10);
 			QueueFree();
 		}
-		else if (nodeOnHit is MapEntity mapEntity)
+		else if (nodeOnHit is MapEntity mapEntityOnHit)
 		{
-			mapEntity.OnHit(10);
+			mapEntityOnHit.OnHit(10);
 			QueueFree();
 		}
 	}

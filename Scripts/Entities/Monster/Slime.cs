@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 public partial class Slime : LivingEntity
 {
     enum Type { Mother, Baby };
@@ -83,11 +84,11 @@ public partial class Slime : LivingEntity
             PackedScene slimeScene = (PackedScene)ResourceLoader.Load("res://Scenes/LivingEntities/Slime.tscn");
             Node2D slimeInstance = slimeScene.Instantiate<Node2D>();
             ((Slime)slimeInstance).type = Type.Baby;
-            slimeInstance.GlobalPosition = GlobalPosition + new Vector2(GD.RandRange(-10, 10), GD.RandRange(-10, 10));
+            slimeInstance.GlobalPosition = GlobalPosition + new Godot.Vector2(GD.RandRange(-10, 10), GD.RandRange(-10, 10));
             GetParent().AddChild(slimeInstance);
         }
     }
-    public override void ApplyDamage(long amout = 0, Vector2? direction = null, Entity source = null)
+    public override void ApplyDamage(long amout = 0, Godot.Vector2? direction = null, Entity source = null)
     {
         throw new NotImplementedException();
     }
@@ -123,5 +124,9 @@ public partial class Slime : LivingEntity
                 mapEntityOnHit.OnHit(5);
             }
         }
+        //Velocity = Godot.Vector2.Zero;
+        if (state == State.Moving) GlobalPosition -= randomDirection * 5;
+        state = State.Idle;
+        timer = 1;
     }
 }

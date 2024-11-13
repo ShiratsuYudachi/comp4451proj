@@ -17,6 +17,7 @@ public partial class Slime : LivingEntity
         }
         else
         {
+            Scale = new Godot.Vector2(0.5f, 0.5f);
             MAX_HEALTH = 20;
             health = MAX_HEALTH;
         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=16 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_4joqk"]
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_foh33"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="8_qryks"]
 [ext_resource type="PackedScene" uid="uid://brk3afsqxqo3f" path="res://Scenes/SpellCastingCircle.tscn" id="9_1y3p0"]
 [ext_resource type="PackedScene" uid="uid://c31fhvygm00ld" path="res://Scenes/LivingEntities/Slime.tscn" id="9_5pume"]
+[ext_resource type="PackedScene" uid="uid://coogh0g4w5m16" path="res://Scenes/MapEntity/WizardTower.tscn" id="10_0hh6i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("2_foh33")
@@ -255,3 +256,6 @@ targetSceneName = "dungeon1"
 position = Vector2(46, 2)
 
 [node name="Slime" parent="." instance=ExtResource("9_5pume")]
+
+[node name="WizardTower" parent="." instance=ExtResource("10_0hh6i")]
+position = Vector2(0, 80)

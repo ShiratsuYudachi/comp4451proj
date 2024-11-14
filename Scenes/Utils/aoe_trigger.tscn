@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3w8v1va0py0x"]
+
+[ext_resource type="Script" path="res://Scripts/Utils/AOE_Trigger_Entity.cs" id="1_rmis6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5u4lo"]
+radius = 30.0
+
+[node name="AOE_Trigger" type="Area2D"]
+script = ExtResource("1_rmis6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5u4lo")
+metadata/_edit_lock_ = true

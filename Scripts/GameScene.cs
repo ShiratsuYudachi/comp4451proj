@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Chemistry;
+using System.Collections.Generic;
 
 
 public partial class GameScene : Node2D
@@ -15,6 +16,9 @@ public partial class GameScene : Node2D
 
     bool gameInitialized = false;
 
+    private static Queue<(Vector2 position, int radius, Action<Entity> onTrigger)> pendingAOEs = 
+        new Queue<(Vector2, int, Action<Entity>)>();
+
     public override void _EnterTree()
     {
         if (!gameInitialized){
@@ -27,25 +31,24 @@ public partial class GameScene : Node2D
     {
         if (player == null)
         {
-            player = GD.Load<PackedScene>("res://Scenes/LivingEntities/Player.tscn").Instantiate<PlayerControl>();
+            var playerScene = ResourceManager.GetScene(SceneResourceType.Player);
+            player = playerScene.Instantiate<PlayerControl>();
             this.AddChild(player);
-            GD.Print("[INFO] GameScene: Player created!"+player.Name);
+            GD.Print("[INFO] GameScene: Player created!" + player.Name);
         }
         if (UI == null)
         {
             UI = GetNode<CanvasLayer>("CanvasLayer");
         }
 
-        if (player != null){
+        if (player != null)
+        {
             mainCamera = player.GetNode<Camera2D>("Camera2D");
         }
 
-        
-        
-        damageLabelScene = GD.Load<PackedScene>("res://Scenes/UI/damageTipLabel.tscn");
+        damageLabelScene = ResourceManager.GetScene(SceneResourceType.DamageLabel);
         instance = this;
         GD.Print("GameScene instance created: " + instance.Name);
-
     }
 
 
@@ -80,19 +83,32 @@ public partial class GameScene : Node2D
             case Reaction.Vaporize:
                 reactionString = "蒸发";
                 break;
+            case Reaction.Superconduct:
+                reactionString = "超导";
+                break;
+            case Reaction.Freeze:
+                reactionString = "冻结";
+                break;
+            case Reaction.Overloaded:
+                reactionString = "超载";
+                break;
         }
         Label damageLabel = damageLabelScene.Instantiate<Label>();
         damageLabel.Text = reactionString;
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         instance.AddChild(damageLabel);
         PackedScene particleScene = ResourceManager.GetReactionParticle(reaction);
+        if (particleScene == null){
+            return;
+        }
         OneTimeEffect particle = particleScene.Instantiate<OneTimeEffect>();
         instance.AddChild(particle);
         particle.GlobalPosition = worldPosition;
     }
 
-    public static void ShowSpellAnimation(Vector2 worldPosition){
-        PackedScene spellAnimationScene = GD.Load<PackedScene>("res://Scenes/SpellCastingCircle.tscn");
+    public static void ShowSpellAnimation(Vector2 worldPosition)
+    {
+        PackedScene spellAnimationScene = ResourceManager.GetScene(SceneResourceType.SpellCastingCircle);
         Node2D spellAnimation = spellAnimationScene.Instantiate<Node2D>();
         instance.AddChild(spellAnimation);
         spellAnimation.GlobalPosition = worldPosition;
@@ -113,8 +129,9 @@ public partial class GameScene : Node2D
         return screenPosition;
     }
 
-    public static void SpawnEntity(String entityName, Vector2 position){
-        PackedScene entityScene = GD.Load<PackedScene>("res://Scenes/LivingEntities/" + entityName + ".tscn");
+    public static void SpawnEntity(String entityName, Vector2 position)
+    {
+        PackedScene entityScene = ResourceManager.GetScene(SceneResourceType.LivingEntity, entityName);
         if (entityScene == null)
         {
             GD.PrintErr("Entity scene not found: " + entityName);
@@ -129,21 +146,53 @@ public partial class GameScene : Node2D
         ShowTip(message); 
     }
 
-    public static Bullet CreateBullet(Vector2 position){
-        PackedScene bulletScene = GD.Load<PackedScene>("res://Scenes/Bullet/Bullet.tscn");
+    public static Bullet CreateBullet(Vector2 position)
+    {
+        PackedScene bulletScene = ResourceManager.GetScene(SceneResourceType.Bullet);
         Bullet bullet = bulletScene.Instantiate<Bullet>();
         instance.AddChild(bullet);
         bullet.GlobalPosition = position;
         return bullet;
     }
 
-    public static ElementalOrb CreateElementalOrb(Vector2 position, Element element){
-        PackedScene elementalOrbScene = GD.Load<PackedScene>("res://Scenes/Bullet/ElementalOrb.tscn");
+    public static ElementalOrb CreateElementalOrb(Vector2 position, Element element)
+    {
+        PackedScene elementalOrbScene = ResourceManager.GetScene(SceneResourceType.ElementalOrb);
         ElementalOrb elementalOrb = elementalOrbScene.Instantiate<ElementalOrb>();
         instance.AddChild(elementalOrb);
         elementalOrb.GlobalPosition = position;
         elementalOrb.SetElement(element);
         return elementalOrb;
+    }
+
+    public static void CreateAOE_Trigger(Vector2 position, int radius, Action<Entity> onTrigger)
+    {
+        // 将AOE创建请求加入队列
+        pendingAOEs.Enqueue((position, radius, onTrigger));
+        // 延迟处理队列
+        instance.CallDeferred("_ProcessPendingAOEs");
+    }
+
+    // 新增处理队列的方法
+    private void _ProcessPendingAOEs()
+    {
+        while (pendingAOEs.Count > 0)
+        {
+            var (position, radius, onTrigger) = pendingAOEs.Dequeue();
+            PackedScene aoeTriggerScene = ResourceManager.GetScene(SceneResourceType.AOE_Trigger);
+            AOE_Trigger_Entity aoeTrigger = aoeTriggerScene.Instantiate<AOE_Trigger_Entity>();
+            aoeTrigger.GlobalPosition = position;
+            aoeTrigger.SetRadius(radius);
+            aoeTrigger.OnTrigger = onTrigger;
+            AddChild(aoeTrigger);
+        }
+    }
+
+    public static void CreateExplosion(Vector2 position, float level)
+    {
+        CreateAOE_Trigger(position, (int)(level * 5), (Entity entity) => {
+            entity.OnHit(level * 20);
+        });
     }
 }
 

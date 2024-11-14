@@ -18,6 +18,8 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
 
     public Reactor reactor = new Reactor();
     public List<Effect> effects = new List<Effect>();
+    
+    private float nextDamageMultiplier = 1;
 
     // Internal
 
@@ -89,7 +91,10 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     }
     public virtual void OnHit(float damage)
     {
-        health -= damage;
+        health -= damage * nextDamageMultiplier;
+        if (nextDamageMultiplier != 1){
+            nextDamageMultiplier = 1;
+        }
         // GD.Print(GetType().Name + " hit for " + damage + " pts. Remaining health: " + health);
         GameScene.ShowDamage(damage, GlobalPosition);
         if (health <= 0) Die();
@@ -109,16 +114,19 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     }
 
     public void onOverloaded(float elementAmount){
-        // Empty implementation
-        
+        // Explosion
+        GameScene.ShowReaction(Reaction.Overloaded, this.GlobalPosition);
+        GameScene.CreateExplosion(this.GlobalPosition, 10);
     }
 
     public void onElectroCharged(float elementAmount){
-        // Empty implementation
+        // Static damage, small range AOE, give electro
+        GameScene.ShowReaction(Reaction.ElectroCharged, this.GlobalPosition);
     }
 
     public void onSuperconduct(float elementAmount){
-        // Empty implementation
+        // placeholder: damage multiply ?
+
     }
 
     public void onBurning(float elementAmount){
@@ -129,13 +137,17 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
 
     public void onVaporize(float elementAmount){
         // Empty implementation
+        GameScene.ShowReaction(Reaction.Vaporize, this.GlobalPosition);
+        nextDamageMultiplier = 2f;
     }
 
     public void onMelt(float elementAmount){
-        // Empty implementation
+        // static damage, give hydro?
+        GameScene.ShowReaction(Reaction.Melt, this.GlobalPosition);
     }
 
     public void onFreeze(float elementAmount){
-        // Empty implementation
+        // freeze
+        GameScene.ShowReaction(Reaction.Freeze, this.GlobalPosition);
     }
 }

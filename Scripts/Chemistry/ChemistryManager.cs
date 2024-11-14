@@ -42,7 +42,11 @@ public interface IMaterial{
 public enum Reaction{
     Burning,
     Vaporize,
+    Melt,
     Overloaded,
+    Superconduct,
+    Freeze,
+    ElectroCharged,
 }
 
 
@@ -132,6 +136,7 @@ public class Reactor{
 
     public void AddElement(Element elementType, float amount){
         this.elementAmounts[(int)elementType] += amount;
+        this.Update(0);
     }
 
 

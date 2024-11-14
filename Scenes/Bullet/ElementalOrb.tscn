@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b62g8y6vakvh7"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/ElementalOrb.cs" id="1_ugxgy"]
+[ext_resource type="Texture2D" uid="uid://b3m4gfeimlomo" path="res://assets/Items/bullet.png" id="2_4biju"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fljmw"]
+radius = 3.16228
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_ugxgy")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4biju")
+metadata/_edit_lock_ = true
+
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_fljmw")
+metadata/_edit_lock_ = true

@@ -1,12 +1,14 @@
 using Godot;
 using System;
 
-public partial class Bullet : Node2D, IMassEntity
+public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 {
 	// Configurable
 	public Vector2 velocity { get; set; }
 	public int mass { get; set; } = 1;
 	public float timer = 5;
+
+	protected Sprite2D sprite;
 
 	// Internal
 	public Vector2 massPosition
@@ -25,6 +27,7 @@ public partial class Bullet : Node2D, IMassEntity
 
 	public override void _Ready()
 	{
+		sprite = GetNode<Sprite2D>("Sprite2D");
 		GetNode<Area2D>("HitBox").Connect("area_entered", new Callable(this, nameof(OnHit)));
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,6 +41,10 @@ public partial class Bullet : Node2D, IMassEntity
 		}
 	}
 
+	protected virtual void onHitEntity(Entity entity){
+		entity.OnHit(10);
+	}
+	
 	public void OnHit(Area2D area)
 	{
 		if (!area.IsInGroup("HitBox")) return;
@@ -47,13 +54,41 @@ public partial class Bullet : Node2D, IMassEntity
 
 		if (nodeOnHit is LivingEntity livingEntityOnHit && livingEntityOnHit != caster)
 		{
-			livingEntityOnHit.OnHit(10);
+			onHitEntity(livingEntity);
 			QueueFree();
 		}
 		else if (nodeOnHit is MapEntity mapEntityOnHit)
 		{
-			mapEntityOnHit.OnHit(10);
+			onHitEntity(mapEntity);
 			QueueFree();
 		}
 	}
+
+	public void onOverloaded(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onElectroCharged(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onSuperconduct(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onBurning(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onVaporize(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onMelt(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onFreeze(float elementAmount){
+        // Empty implementation
+    }
 }

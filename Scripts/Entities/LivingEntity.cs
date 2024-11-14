@@ -36,12 +36,12 @@ public abstract partial class LivingEntity : Entity
             }
         }
 
-        base._Process(delta);
-    }
-    public abstract void Attack();
-    public override void OnHit(int damage)
-    {
-        if (animatedSprite2D == null)
+		base._Process(delta);
+	}
+	public abstract void Attack();
+	public override void OnHit(float damage)
+	{
+		if (animatedSprite2D == null)
         {
             GD.Print("Play OnHit animation failed! No AnimatedSprite2D found!");
             GetTree().Quit();

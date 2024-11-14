@@ -16,6 +16,7 @@ public partial class PlayerControl : LivingEntity
 		spellCaster = GetNode<SpellCaster>("SpellCaster");
 		health = 114514;
 		group = Group.Player;
+		effects.Add(new BurningEffect(this, 5));
 	}
 
 	public override void _PhysicsProcess(double delta)

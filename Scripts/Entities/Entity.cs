@@ -1,15 +1,23 @@
 #nullable enable
 using Godot;
 using System;
-public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
+using System.Collections.Generic;
+using Chemistry;
+public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity, IMaterial
 {
-
+    
     // Configurable
     public int mass { get; set; } = 1;
     public float friction = 0.98f;
-    protected int health = 100;
-    protected int MAX_HEALTH = 100;
+    protected float health = 100;
+    protected float MAX_HEALTH = 100;
+
+
+    // Public
     public Group group = Group.None;
+
+    public Reactor reactor = new Reactor();
+    public List<Effect> effects = new List<Effect>();
 
     // Internal
 
@@ -43,9 +51,9 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
         Map,
         None
     }
-
-    public int MaxHealth { get { return MAX_HEALTH; } }
-
+    
+    public float MaxHealth { get { return MAX_HEALTH; } }
+    
     public abstract void ApplyDamage(long amout = 0L, Vector2? direction = null, Entity? source = null);
     public override void _Ready()
     {
@@ -54,14 +62,25 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
         {
             GD.Print("WARN: Entity " + GetType().Name + " has no AnimatedSprite2D!");
         }
+        reactor.SetMaterial(this);
     }
     public override void _Process(double delta)
     {
         Vector2 offset = new Vector2((float)(velocity.X * delta), (float)(velocity.Y * delta));
-        Position += offset;
-        velocity *= friction;
+		Position += offset;
+		velocity *= friction;
+        foreach (Effect effect in effects.ToArray())
+        {
+            effect.Update(delta);
+            if (effect.duration <= 0)
+            {
+                effects.Remove(effect);
+                effect.OnRemove();
+            }
+        }
+        reactor.Update(delta);
     }
-    public virtual void OnHit(int damage)
+    public virtual void OnHit(float damage)
     {
         health -= damage;
         // GD.Print(GetType().Name + " hit for " + damage + " pts. Remaining health: " + health);
@@ -80,5 +99,36 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
             deathEffect.GlobalPosition = GlobalPosition;
         }
         QueueFree();
+    }
+
+    public void onOverloaded(float elementAmount){
+        // Empty implementation
+        
+    }
+
+    public void onElectroCharged(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onSuperconduct(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onBurning(float elementAmount){
+        // Empty implementation
+        effects.Add(new BurningEffect(this, elementAmount * 10));
+        GameScene.ShowReaction(Reaction.Burning, this.GlobalPosition);
+    }
+
+    public void onVaporize(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onMelt(float elementAmount){
+        // Empty implementation
+    }
+
+    public void onFreeze(float elementAmount){
+        // Empty implementation
     }
 }

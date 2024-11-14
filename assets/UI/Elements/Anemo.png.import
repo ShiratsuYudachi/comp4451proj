@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t7now0deyfk"
-path="res://.godot/imported/VectorConstant.png-1d7eafd98c4746516366d83f5e9f722a.ctex"
+uid="uid://co4pybpm0h15p"
+path="res://.godot/imported/Anemo.png-a2d4d8894dcf413630fdf1d748d16297.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spells/SpellPieceIcons/VectorConstant.png"
-dest_files=["res://.godot/imported/VectorConstant.png-1d7eafd98c4746516366d83f5e9f722a.ctex"]
+source_file="res://assets/UI/Elements/Anemo.png"
+dest_files=["res://.godot/imported/Anemo.png-a2d4d8894dcf413630fdf1d748d16297.ctex"]
 
 [params]
 

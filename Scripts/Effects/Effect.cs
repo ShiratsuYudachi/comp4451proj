@@ -46,7 +46,7 @@ public class BurningEffect : Effect{
     public override void Update(double delta){
         timer -= (float)delta;
         if (timer <= 0){
-            target.reactor.AddMaterial(Chemistry.Element.Pyro, 1);
+            target.reactor.AddElement(Chemistry.Element.Pyro, 1);
             target.OnHit(50);
             timer = timerMax;
         }

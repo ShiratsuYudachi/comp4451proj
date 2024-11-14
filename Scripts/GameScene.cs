@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Chemistry;
 
 
 public partial class GameScene : Node2D
@@ -11,6 +12,16 @@ public partial class GameScene : Node2D
     public static SpellStorage playerSpellStorage = new SpellStorage();
 
     public static CanvasLayer UI;
+
+    bool gameInitialized = false;
+
+    public override void _EnterTree()
+    {
+        if (!gameInitialized){
+            Initialize();
+            gameInitialized = true;
+        }
+    }
 
     public override void _Ready()
     {
@@ -28,11 +39,19 @@ public partial class GameScene : Node2D
         if (player != null){
             mainCamera = player.GetNode<Camera2D>("Camera2D");
         }
+
+        
         
         damageLabelScene = GD.Load<PackedScene>("res://Scenes/UI/damageTipLabel.tscn");
         instance = this;
         GD.Print("GameScene instance created: " + instance.Name);
 
+    }
+
+
+    // called only once when the game starts
+    public static void Initialize(){
+        SpellRegistry.Initialize();
     }
 
     public static void ShowTip(string tip){
@@ -45,6 +64,25 @@ public partial class GameScene : Node2D
         //Control damageLabelParent = damageLabelScene.Instantiate<Control>();
         Label damageLabel = damageLabelScene.Instantiate<Label>();
         damageLabel.Text = ((int)damage).ToString();
+        damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
+        instance.AddChild(damageLabel);
+    }
+
+    public static void ShowReaction(Reaction reaction, Vector2 worldPosition)
+    {
+        //Control damageLabelParent = damageLabelScene.Instantiate<Control>();\
+        string reactionString = reaction.ToString();
+
+        switch (reaction){
+            case Reaction.Burning:
+                reactionString = "燃烧";
+                break;
+            case Reaction.Vaporize:
+                reactionString = "蒸发";
+                break;
+        }
+        Label damageLabel = damageLabelScene.Instantiate<Label>();
+        damageLabel.Text = reactionString;
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         instance.AddChild(damageLabel);
     }
@@ -93,6 +131,15 @@ public partial class GameScene : Node2D
         instance.AddChild(bullet);
         bullet.GlobalPosition = position;
         return bullet;
+    }
+
+    public static ElementalOrb CreateElementalOrb(Vector2 position, Element element){
+        PackedScene elementalOrbScene = GD.Load<PackedScene>("res://Scenes/Bullet/ElementalOrb.tscn");
+        ElementalOrb elementalOrb = elementalOrbScene.Instantiate<ElementalOrb>();
+        instance.AddChild(elementalOrb);
+        elementalOrb.GlobalPosition = position;
+        elementalOrb.SetElement(element);
+        return elementalOrb;
     }
 }
 

@@ -39,6 +39,12 @@ public interface IMaterial{
     // public void onLowTemperature();
 }
 
+public enum Reaction{
+    Burning,
+    Vaporize,
+    Overloaded,
+}
+
 
 
 public enum Element{
@@ -124,7 +130,7 @@ public class Reactor{
     }
 
 
-    public void AddMaterial(Element elementType, float amount){
+    public void AddElement(Element elementType, float amount){
         this.elementAmounts[(int)elementType] += amount;
     }
 

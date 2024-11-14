@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://t7now0deyfk"
-path="res://.godot/imported/VectorConstant.png-1d7eafd98c4746516366d83f5e9f722a.ctex"
+path="res://.godot/imported/Vector2Constant.png-6bdd8575bf51b76fc442b7d8e62a5fb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spells/SpellPieceIcons/VectorConstant.png"
-dest_files=["res://.godot/imported/VectorConstant.png-1d7eafd98c4746516366d83f5e9f722a.ctex"]
+source_file="res://assets/Spells/SpellPieceIcons/Vector2Constant.png"
+dest_files=["res://.godot/imported/Vector2Constant.png-6bdd8575bf51b76fc442b7d8e62a5fb5.ctex"]
 
 [params]
 

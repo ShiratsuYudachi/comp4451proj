@@ -2,7 +2,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity, Chemistry.IMaterial
+using Chemistry;
+public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity, IMaterial
 {
     
     // Configurable
@@ -15,7 +16,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     // Public
     public Group group = Group.None;
 
-    public Chemistry.Reactor reactor = new Chemistry.Reactor();
+    public Reactor reactor = new Reactor();
     public List<Effect> effects = new List<Effect>();
 
     // Internal
@@ -116,6 +117,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     public void onBurning(float elementAmount){
         // Empty implementation
         effects.Add(new BurningEffect(this, elementAmount * 10));
+        GameScene.ShowReaction(Reaction.Burning, this.GlobalPosition);
     }
 
     public void onVaporize(float elementAmount){

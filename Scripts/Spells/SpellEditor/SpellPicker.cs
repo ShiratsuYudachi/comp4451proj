@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+using System.Collections.ObjectModel;
 public partial class SpellPicker : ItemList
 {
 	// Called when the node enters the scene tree for the first time.
@@ -10,21 +10,14 @@ public partial class SpellPicker : ItemList
 	public override void _Ready()
 	{
 		spellListInitialPosition = this.Position;
-		string[] spellPiecesList = new string[] {
-			"Blink",
-			"GetEntityPos",
-			"VectorMinus",
-			"SelectCaster",
-			"VectorConstant",
-			"IntConstant",
-			"SelectMousePos",
-			"GenerateBullet",
-			"MassAddMotion"
-		};
 
-		foreach (string spellPiece in spellPiecesList)
+		
+		ReadOnlyCollection<SpellPieceInfo> spellPieces = SpellRegistry.GetAllSpellPieces();
+
+		foreach (SpellPieceInfo spellPieceInfo in spellPieces)
 		{
-			AddItem(spellPiece);
+			GD.Print("Adding spell piece: " + spellPieceInfo.name);
+			AddItem(spellPieceInfo.name);
 		}
 		// 设置所有项目为不可选择
 		for (int i = 0; i < GetItemCount(); i++)
@@ -51,28 +44,7 @@ public partial class SpellPicker : ItemList
 
 	public SpellPiece getSpellPiece(int index)
 	{
-		switch (index)
-		{
-			case 0:
-				return new Blink();
-			case 1:
-				return new GetEntityPos();
-			case 2:
-				return new VectorMinus();
-			case 3:
-				return new SelectCaster();
-			case 4:
-				return new Vector2ConstantSpellPiece();
-			case 5:
-				return new IntConstantSpellPiece();
-			case 6:
-				return new SelectMousePos();
-			case 7:
-				return new GenerateBullet();
-			case 8:
-				return new MassAddMotion();
-			default:
-				return null;
-		}
+		SpellPieceInfo spellPieceInfo = SpellRegistry.GetSpellPieceInfo(index);
+		return (SpellPiece)spellPieceInfo.spellClassType.GetConstructor(Type.EmptyTypes).Invoke(null);
 	}
 }

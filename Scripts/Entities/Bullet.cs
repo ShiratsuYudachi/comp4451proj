@@ -8,6 +8,8 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 	public int mass { get; set; } = 1;
 	public float timer = 5;
 
+	protected Sprite2D sprite;
+
 	// Internal
 	public Vector2 massPosition { 
 		get => GlobalPosition;
@@ -23,6 +25,7 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 
 	public override void _Ready()
 	{
+		sprite = GetNode<Sprite2D>("Sprite2D");
 		GetNode<Area2D>("HitBox").Connect("area_entered", new Callable(this, nameof(OnHit)));
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,6 +39,10 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 		}
 	}
 
+	protected virtual void onHitEntity(Entity entity){
+		entity.OnHit(10);
+	}
+	
 	public void OnHit(Area2D area)
 	{
 		if (!area.IsInGroup("HitBox")) return;
@@ -45,12 +52,12 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 		
 		if (nodeOnHit is LivingEntity livingEntity && livingEntity != caster)
 		{
-			livingEntity.OnHit(10);
+			onHitEntity(livingEntity);
 			QueueFree();
 		}
 		else if (nodeOnHit is MapEntity mapEntity)
 		{
-			mapEntity.OnHit(10);
+			onHitEntity(mapEntity);
 			QueueFree();
 		}
 	}

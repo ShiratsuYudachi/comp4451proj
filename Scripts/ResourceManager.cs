@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Chemistry;
 public enum TextureResourceType{
         Bullet,
         SpellPieceIcon,
@@ -9,6 +10,7 @@ public enum TextureResourceType{
 public enum SceneResourceType{
     ElementDisplay,
 }
+
 public class ResourceManager
 {
     
@@ -32,6 +34,15 @@ public class ResourceManager
         switch (type){
             case SceneResourceType.ElementDisplay:
                 return GD.Load<PackedScene>("res://Scenes/UI/Chemistry/element_display.tscn");
+            default:
+                return null;
+        }
+    }
+
+    public static PackedScene GetReactionParticle(Reaction reaction){
+        switch (reaction){
+            case Reaction.Burning:
+                return GD.Load<PackedScene>("res://Scenes/Particle/Reaction/BurningReaction.tscn");
             default:
                 return null;
         }

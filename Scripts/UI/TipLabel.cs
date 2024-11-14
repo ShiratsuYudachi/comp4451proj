@@ -6,7 +6,7 @@ public partial class TipLabel : Label
 {
 	
 	[Export]
-	public double lifeTime = 2;
+	public double lifeTime = 10;
 
 	[Export]
 	public double speedMultiplier = 256;

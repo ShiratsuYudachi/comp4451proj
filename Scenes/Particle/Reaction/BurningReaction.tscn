@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1xsp8gicxdc3"]
+
+[ext_resource type="Script" path="res://Scripts/OneTimeEffect.cs" id="1_ne582"]
+[ext_resource type="Texture2D" uid="uid://bhki454ungt7w" path="res://assets/Misc/button.png" id="2_hkvwv"]
+
+[sub_resource type="Curve" id="Curve_np7gu"]
+_data = [Vector2(0.0393258, 1), 0.0, 0.0, 0, 0, Vector2(0.820225, 0.395604), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7fqsk"]
+colors = PackedColorArray(0.871855, 0.173393, 0.171405, 1, 0.845186, 0.722007, 0.211761, 1)
+
+[node name="BurningReactionParticle" type="Node2D"]
+script = ExtResource("1_ne582")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(0.99779, 1)
+emitting = false
+amount = 30
+lifetime = 0.5
+one_shot = true
+texture = ExtResource("2_hkvwv")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -40)
+initial_velocity_min = 16.58
+initial_velocity_max = 29.87
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_np7gu")
+color_ramp = SubResource("Gradient_7fqsk")

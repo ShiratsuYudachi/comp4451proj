@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://c31fhvygm00ld"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Monster/Slime.cs" id="1_wm60e"]
-[ext_resource type="PackedScene" uid="uid://e2onb1clfc7v" path="res://Scenes/DeathEffect/SlimeDeathEffect.tscn" id="2_773xb"]
+[ext_resource type="PackedScene" uid="uid://e2onb1clfc7v" path="res://Scenes/Particle/DeathEffect/SlimeDeathEffect.tscn" id="2_773xb"]
 [ext_resource type="Texture2D" uid="uid://c8tddq0l6xrt2" path="res://assets/LivingEntities/Slime.png" id="2_yptls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31n4v"]

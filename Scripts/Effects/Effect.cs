@@ -34,20 +34,20 @@ public abstract class Effect{
 
 
 public class BurningEffect : Effect{
-    protected override string effectScenePath => "res://Scenes/Effects/BurningEffect.tscn";
+    protected override string effectScenePath => "res://Scenes/Particle/Effects/BurningEffect.tscn";
 
     private float timer = 0;
-    private float timerMax = 0.99f;
+    private const float timerMax = 0.99f;
 
     public BurningEffect(Entity target, double duration) : base(target, duration){
-        timer = timerMax;
+        timer = 0;
     }
 
     public override void Update(double delta){
         timer -= (float)delta;
         if (timer <= 0){
             target.reactor.AddElement(Chemistry.Element.Pyro, 1);
-            target.OnHit(50);
+            target.OnHit(15);
             timer = timerMax;
         }
         base.Update(delta);

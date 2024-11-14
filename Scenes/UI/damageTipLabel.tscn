@@ -8,6 +8,7 @@ outline_size = 11
 outline_color = Color(0.687409, 0.68546, 0.90399, 1)
 
 [node name="TipLabel" type="Label"]
+z_index = 100
 offset_top = -7.0
 offset_right = 120.0
 offset_bottom = 62.0

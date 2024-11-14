@@ -85,6 +85,10 @@ public partial class GameScene : Node2D
         damageLabel.Text = reactionString;
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         instance.AddChild(damageLabel);
+        PackedScene particleScene = ResourceManager.GetReactionParticle(reaction);
+        OneTimeEffect particle = particleScene.Instantiate<OneTimeEffect>();
+        instance.AddChild(particle);
+        particle.GlobalPosition = worldPosition;
     }
 
     public static void ShowSpellAnimation(Vector2 worldPosition){

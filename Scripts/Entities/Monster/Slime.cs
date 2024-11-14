@@ -12,13 +12,13 @@ public partial class Slime : LivingEntity
         group = Group.Enemy;
         if (type == Type.Mother)
         {
-            MAX_HEALTH = 50;
+            MAX_HEALTH = 300;
             health = MAX_HEALTH;
         }
         else
         {
             Scale = new Godot.Vector2(0.5f, 0.5f);
-            MAX_HEALTH = 20;
+            MAX_HEALTH = 100;
             health = MAX_HEALTH;
         }
         GetNode<Area2D>("HitBox").Connect("area_entered", new Callable(this, nameof(OnHitting)));

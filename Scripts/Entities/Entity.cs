@@ -25,7 +25,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     [Export]
     protected PackedScene? deathEffectScene;
 
-    public int Health
+    public float Health
     {
         get { return health; }
         set { health = value; }

@@ -36,7 +36,7 @@ public partial class WizardTower : MapEntity
         }
         base._Process(delta);
     }
-    public override void OnHit(int damage)
+    public override void OnHit(float damage)
     {
         base.OnHit(damage);
     }

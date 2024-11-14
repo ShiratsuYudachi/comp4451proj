@@ -66,7 +66,7 @@ public partial class Slime : LivingEntity
     {
         throw new NotImplementedException("Slime shouldn't call Attack method!");
     }
-    public override void OnHit(int damage)
+    public override void OnHit(float damage)
     {
         base.OnHit(damage);
     }

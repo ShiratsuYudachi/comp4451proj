@@ -54,12 +54,12 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 
 		if (nodeOnHit is LivingEntity livingEntityOnHit && livingEntityOnHit != caster)
 		{
-			onHitEntity(livingEntity);
+			onHitEntity(livingEntityOnHit);
 			QueueFree();
 		}
 		else if (nodeOnHit is MapEntity mapEntityOnHit)
 		{
-			onHitEntity(mapEntity);
+			onHitEntity(mapEntityOnHit);
 			QueueFree();
 		}
 	}

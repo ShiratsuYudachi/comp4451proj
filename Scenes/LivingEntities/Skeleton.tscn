@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bs3m5vl301ttt"]
+[gd_scene load_steps=24 format=3 uid="uid://bs3m5vl301ttt"]
 
 [ext_resource type="Script" path="res://Scripts/Entities/Monster/Skeleton.cs" id="1_43fjl"]
 [ext_resource type="PackedScene" uid="uid://c1k6k8opqeks8" path="res://Scenes/Bullet/Bullet.tscn" id="2_agq82"]
 [ext_resource type="Texture2D" uid="uid://chte4f3tkw1yo" path="res://assets/LivingEntities/skeleton.png" id="3_fckjw"]
-[ext_resource type="PackedScene" uid="uid://clcasb8w42ovt" path="res://Scenes/UI/Chemistry/element_display.tscn" id="4_5dca1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31n4v"]
 size = Vector2(80.5394, 103.551)
@@ -170,5 +169,3 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_wd4e3")
-
-[node name="ElementDisplay" parent="." instance=ExtResource("4_5dca1")]

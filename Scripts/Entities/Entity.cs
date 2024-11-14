@@ -63,6 +63,13 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
             GD.Print("WARN: Entity " + GetType().Name + " has no AnimatedSprite2D!");
         }
         reactor.SetMaterial(this);
+
+        PackedScene? scene = ResourceManager.GetScene(SceneResourceType.ElementDisplay);
+        if (scene != null)
+        {
+            ElementDisplay display = scene.Instantiate<ElementDisplay>();
+            this.AddChild(display);
+        }
     }
     public override void _Process(double delta)
     {

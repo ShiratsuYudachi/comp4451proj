@@ -57,7 +57,7 @@ public partial class ElementDisplay : Node2D
 				// Instance the scene instead of creating new TextureRect
 				var textureRect = textureRectScene.Instantiate<TextureRect>();
 				textureRect.Name = element.ToString();
-				textureRect.Texture = ResourceManager.GetTexture(ResourceType.ElementIcon, element.ToString());
+				textureRect.Texture = ResourceManager.GetTexture(TextureResourceType.ElementIcon, element.ToString());
 				hBoxContainer.AddChild(textureRect);
 			}
 		}

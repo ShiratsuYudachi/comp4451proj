@@ -1,24 +1,37 @@
 using System;
 using Godot;
-public enum ResourceType{
+public enum TextureResourceType{
         Bullet,
         SpellPieceIcon,
         ElementIcon,
     }
+
+public enum SceneResourceType{
+    ElementDisplay,
+}
 public class ResourceManager
 {
     
 
-    public static Texture2D GetTexture(ResourceType type, string name){
+    public static Texture2D GetTexture(TextureResourceType type, string name){
         switch (type){
-            case ResourceType.Bullet:
+            case TextureResourceType.Bullet:
                 return GD.Load<Texture2D>("res://Art/Bullets/bullet.png");
             
-            case ResourceType.SpellPieceIcon:
+            case TextureResourceType.SpellPieceIcon:
                 return GD.Load<Texture2D>("res://assets/Spells/SpellPieceIcons/"+name+".png");
             
-            case ResourceType.ElementIcon:
+            case TextureResourceType.ElementIcon:
                 return GD.Load<Texture2D>("res://assets/UI/Elements/"+name+".png");
+            default:
+                return null;
+        }
+    }
+
+    public static PackedScene GetScene(SceneResourceType type){
+        switch (type){
+            case SceneResourceType.ElementDisplay:
+                return GD.Load<PackedScene>("res://Scenes/UI/Chemistry/element_display.tscn");
             default:
                 return null;
         }

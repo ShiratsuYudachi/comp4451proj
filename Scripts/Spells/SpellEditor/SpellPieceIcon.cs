@@ -15,7 +15,7 @@ public partial class SpellPieceIcon : TextureRect
 
 
 	public void setIconForSpellPiece(string name){
-		this.Texture = ResourceManager.GetTexture(ResourceType.SpellPieceIcon, name);
+		this.Texture = ResourceManager.GetTexture(TextureResourceType.SpellPieceIcon, name);
 		if (this.Texture != null) {
 			// Check if texture size is not 32x32
 			if (this.Texture.GetWidth() != 32 || this.Texture.GetHeight() != 32) {

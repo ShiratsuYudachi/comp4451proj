@@ -173,6 +173,14 @@ public partial class GameScene : Node2D
         instance.CallDeferred("_ProcessPendingAOEs");
     }
 
+    public static void CreateExplosionEffect(Vector2 position, float level)
+    {
+        PackedScene explosionEffectScene = ResourceManager.GetScene(SceneResourceType.ExplosionEffect);
+        OneTimeEffect explosionEffect = explosionEffectScene.Instantiate<OneTimeEffect>();
+        instance.AddChild(explosionEffect);
+        explosionEffect.GlobalPosition = position;
+    }
+
     // 新增处理队列的方法
     private void _ProcessPendingAOEs()
     {

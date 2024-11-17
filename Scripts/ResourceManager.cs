@@ -18,6 +18,7 @@ public enum SceneResourceType{
     ElementalOrb,
     LivingEntity,
     AOE_Trigger,
+    ExplosionEffect
 }
 
 public class ResourceManager
@@ -63,6 +64,8 @@ public class ResourceManager
                 return GD.Load<PackedScene>(LIVING_ENTITIES_PATH + name + ".tscn");
             case SceneResourceType.AOE_Trigger:
                 return GD.Load<PackedScene>("res://Scenes/Utils/aoe_trigger.tscn");
+            case SceneResourceType.ExplosionEffect:
+                return GD.Load<PackedScene>("res://Scenes/Particle/Effects/Explosion.tscn");
             default:
                 return null;
         }
@@ -78,8 +81,8 @@ public class ResourceManager
                 return GD.Load<PackedScene>("res://Scenes/Particle/Reaction/FreezeReaction.tscn");
             case Reaction.Melt:
                 return GD.Load<PackedScene>("res://Scenes/Particle/Reaction/MeltReaction.tscn");
-            // case Reaction.Overloaded:
-            //     return GD.Load<PackedScene>("res://Scenes/Particle/Reaction/OverloadedReaction.tscn");
+            case Reaction.Overloaded:
+                return GetScene(SceneResourceType.ExplosionEffect);
             // case Reaction.Superconduct:
             //     return GD.Load<PackedScene>("res://Scenes/Particle/Reaction/SuperconductReaction.tscn");
             case Reaction.ElectroCharged:

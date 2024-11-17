@@ -101,8 +101,6 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     }
     public virtual void Die()
     {
-        if (this is LivingEntity) GameScene.ShowTip(GetType().Name + " defeated!");
-        else GD.Print(GetType().Name + " broken!");
         // 这里可以添加死亡动画、掉落物品等逻辑		
         if (deathEffectScene != null)
         {

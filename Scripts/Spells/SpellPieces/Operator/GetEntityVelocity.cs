@@ -4,13 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class GetEntityVelocity : OperatorSpellPiece
 {
-    public override string Name
-    {
-        get
-        {
-            return "Get Entity Velocity";
-        }
-    }
+
 
     public override SpellVariableType[] ParamList
     {

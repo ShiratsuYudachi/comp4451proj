@@ -19,6 +19,6 @@ public partial class ConfigIntConstant : ConfigItem
     }
 
 	public override void setConfigName(string name){
-		GetNode<Label>("ParamName").Text = name;
+		GetNode<Label>("ParamNameLabel").Text = name;
 	}
 }

@@ -4,13 +4,6 @@ using System.Runtime.CompilerServices;
 
 public class GenerateBullet : ExecutorSpellPiece
 {
-    public override string Name
-    {
-        get
-        {
-            return "GenerateBullet";
-        }
-    }
 
 
     public override SpellVariableType[] ParamList

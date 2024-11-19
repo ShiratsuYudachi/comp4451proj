@@ -4,15 +4,6 @@ using System.Runtime.CompilerServices;
 
 public class Blink : ExecutorSpellPiece
 {
-    public override string Name
-    {
-        get
-        {
-            return "Blink";
-        }
-    }
-
-
     public override SpellVariableType[] ParamList
     {
         get

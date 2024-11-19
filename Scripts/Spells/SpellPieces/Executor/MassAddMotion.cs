@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 
 public class MassAddMotion : ExecutorSpellPiece
 {
-    public override string Name { get { return "MassAddMotion"; } }
     public override SpellVariableType[] ParamList
     {
         get

@@ -157,7 +157,6 @@ public struct SpellVariable
 
 public abstract class SpellPiece
 {
-	public virtual string Name { get; }
 
 	public virtual SpellVariableType[] ParamList { get; }
 
@@ -361,7 +360,7 @@ public class SpellEvaluationTreeNode
 
 	public void PrintTree(string indent = "")
 	{
-		GD.Print(indent + rootSpellPiece.Name);
+		GD.Print(indent + rootSpellPiece.GetType().Name);
 		foreach (var child in childrenSpellPieces)
 		{
 			if (child != null)

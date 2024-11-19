@@ -14,29 +14,27 @@ font_size = 22
 
 [node name="configVectorConstant" type="TextureRect"]
 offset_right = 262.0
-offset_bottom = 50.0
+offset_bottom = 64.0
 texture = ExtResource("1_ull7j")
-expand_mode = 1
 script = ExtResource("2_xcmhw")
 
 [node name="ParamType" type="Label" parent="."]
 layout_mode = 0
-offset_left = 38.0
+offset_left = 1.0
 offset_top = 25.0
-offset_right = 86.0
+offset_right = 84.0
 offset_bottom = 48.0
 text = "(Vector2)"
 label_settings = SubResource("LabelSettings_fmg3g")
 
 [node name="ParamName" type="Label" parent="."]
 layout_mode = 0
-offset_left = -3.0
+offset_left = 2.0
 offset_top = 8.0
-offset_right = 126.0
+offset_right = 131.0
 offset_bottom = 31.0
 text = "Displacement"
 label_settings = SubResource("LabelSettings_nqqpg")
-horizontal_alignment = 1
 text_overrun_behavior = 1
 
 [node name="Input" type="Control" parent="."]

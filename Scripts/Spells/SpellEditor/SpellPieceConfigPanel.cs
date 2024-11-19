@@ -44,7 +44,7 @@ public partial class SpellPieceConfigPanel : Control
 		for (int i = 0; i < spellEditorBox.spellPiece.ConfigList.Length; i++)
 		{
 			SpellVariableType type = spellEditorBox.spellPiece.ConfigList[i];
-			GD.Print("Setting up param " + type.ToString());
+			
 			ConfigItem newConfigItem = null;
 			switch (type)
 			{
@@ -55,7 +55,9 @@ public partial class SpellPieceConfigPanel : Control
 					newConfigItem = configIntPanel.Instantiate<ConfigIntConstant>();
 					break;
 			}
-			string configName = SpellRegistry.GetSpellPieceInfo(spellEditorBox.spellPiece.Name).getConfigName(i);
+			string configName = SpellRegistry.GetSpellPieceInfo(spellEditorBox.spellPiece.GetType().Name).getConfigName(i);
+			
+
 			if (configName != "")
 				newConfigItem.setConfigName(configName);
 			
@@ -71,7 +73,7 @@ public partial class SpellPieceConfigPanel : Control
 			SpellVariableType type = spellEditorBox.spellPiece.ParamList[i];
 			ParamSelector newParamSelector = paramSelector.Instantiate<ParamSelector>();
 
-			newParamSelector.setParamName(SpellRegistry.GetSpellPieceInfo(spellEditorBox.spellPiece.Name).getParamName(i, type.ToString()));
+			newParamSelector.setParamName(SpellRegistry.GetSpellPieceInfo(spellEditorBox.spellPiece.GetType().Name).getParamName(i, type.ToString()));
 			newParamSelector.setParamType(type);
 			this.GetNode<Control>("VAlign").AddChild(newParamSelector);
 			paramSelectors[i] = newParamSelector;

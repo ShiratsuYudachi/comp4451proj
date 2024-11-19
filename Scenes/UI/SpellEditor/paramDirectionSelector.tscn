@@ -12,6 +12,8 @@
 font_size = 11
 
 [node name="ParamSelector" type="TextureRect" node_paths=PackedStringArray("ParamNameLabel", "ParamTypeLabel", "dPad")]
+offset_right = 225.0
+offset_bottom = 64.0
 texture = ExtResource("1_71vtg")
 script = ExtResource("2_3i4l7")
 ParamNameLabel = NodePath("ParamNameLabel")
@@ -25,7 +27,6 @@ offset_top = 14.0
 offset_right = 156.0
 offset_bottom = 37.0
 text = "ParamName"
-horizontal_alignment = 1
 
 [node name="ParamTypeLabel" type="Label" parent="."]
 layout_mode = 0
@@ -35,7 +36,6 @@ offset_right = 156.0
 offset_bottom = 56.0
 text = "(ParamType)"
 label_settings = SubResource("LabelSettings_opn3w")
-horizontal_alignment = 1
 
 [node name="DPad" type="Control" parent="."]
 anchors_preset = 0

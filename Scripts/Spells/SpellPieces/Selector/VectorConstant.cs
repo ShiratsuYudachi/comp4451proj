@@ -1,13 +1,6 @@
 using Godot;
 public class Vector2Constant : SelectorSpellPiece
 {
-	public override string Name
-	{
-		get
-		{
-			return "Vector2: " + Value.ToString();
-		}
-	}
 	public Vector2 Value;
 	public override SpellVariableType ReturnType { get { return SpellVariableType.Vector2; } }
 	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.Vector2 }; } }

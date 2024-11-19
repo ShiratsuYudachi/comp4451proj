@@ -4,13 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class GetEntityPos : OperatorSpellPiece
 {
-    public override string Name
-    {
-        get
-        {
-            return "Get Entity Position";
-        }
-    }
+
 
     public override SpellVariableType[] ParamList
     {

@@ -4,13 +4,7 @@ public class IntConstant : SelectorSpellPiece
 	public int Value;
 	public override SpellVariableType ReturnType { get { return SpellVariableType.INT; } }
 	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.INT }; } }
-	public override string Name
-	{
-		get
-		{
-			return "Int: " + Value.ToString();
-		}
-	}
+
 	public override void applyConfig(object[] configs)
 	{
 		Value = (int)configs[0];

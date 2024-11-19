@@ -10,25 +10,25 @@ font_size = 11
 
 [node name="configIntConstant" type="TextureRect"]
 offset_right = 235.0
-offset_bottom = 42.0
+offset_bottom = 46.0
 texture = ExtResource("1_qmq7h")
-expand_mode = 1
 script = ExtResource("2_k3wub")
 
 [node name="ParamNameLabel" type="Label" parent="."]
 layout_mode = 0
-offset_right = 167.0
-offset_bottom = 23.0
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 171.0
+offset_bottom = 35.0
 text = "Int"
 label_settings = SubResource("LabelSettings_6osrx")
-horizontal_alignment = 1
 
 [node name="Input" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 43.0
+offset_left = 6.0
+offset_top = 15.0
+offset_right = 46.0
+offset_bottom = 55.0
 
 [node name="TextEdit" type="TextEdit" parent="Input"]
 layout_mode = 0
@@ -40,10 +40,9 @@ placeholder_text = "value"
 
 [node name="ParamType" type="Label" parent="."]
 layout_mode = 0
-offset_left = 63.0
-offset_top = 16.0
-offset_right = 103.0
-offset_bottom = 39.0
+offset_left = 5.0
+offset_top = 30.0
+offset_right = 106.0
+offset_bottom = 53.0
 text = "(int)"
 label_settings = SubResource("LabelSettings_58we8")
-horizontal_alignment = 1

@@ -4,13 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class SelectMousePos : SelectorSpellPiece
 {
-	public override string Name
-    {
-        get 
-        { 
-            return "Select Mouse Position"; 
-        }
-    }
+
     public override SpellVariableType ReturnType { get { return SpellVariableType.Vector2; } }
 
 

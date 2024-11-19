@@ -4,13 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class SelectCaster : SelectorSpellPiece
 {
-    public override string Name
-    {
-        get
-        {
-            return "Select Caster";
-        }
-    }
+
     public override SpellVariableType ReturnType { get { return SpellVariableType.LivingEntity; } }
 
 

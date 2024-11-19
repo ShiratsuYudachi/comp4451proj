@@ -4,13 +4,6 @@ using System.Runtime.CompilerServices;
 
 public class GenerateElementalOrb : ExecutorSpellPiece
 {
-    public override string Name
-    {
-        get
-        {
-            return "GenerateBullet";
-        }
-    }
 
 
     public override SpellVariableType[] ParamList

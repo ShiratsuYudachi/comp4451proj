@@ -4,13 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class VectorMultiplication : OperatorSpellPiece
 {
-	public override string Name
-    {
-        get 
-        { 
-            return "Vector Multiplication"; 
-        }
-    }
+
 
     public override SpellVariableType[] ParamList { get
     {

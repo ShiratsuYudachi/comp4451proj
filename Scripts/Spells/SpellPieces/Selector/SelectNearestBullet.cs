@@ -4,13 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class SelectNearestBullet : SelectorSpellPiece
 {
-	public override string Name
-    {
-        get 
-        { 
-            return "Select Nearest Bullet"; 
-        }
-    }
+
     public override SpellVariableType ReturnType { get { return SpellVariableType.MassEntity; } }
     
     public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.BOOL }; } }

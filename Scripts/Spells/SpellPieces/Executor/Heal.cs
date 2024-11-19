@@ -3,7 +3,6 @@ using System;
 
 public class Heal : ExecutorSpellPiece
 {
-    public override string Name { get { return "Heal"; } }
     public override SpellVariableType[] ParamList { 
         get {
             return new SpellVariableType[] {

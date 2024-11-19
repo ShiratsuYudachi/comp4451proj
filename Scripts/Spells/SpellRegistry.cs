@@ -49,10 +49,11 @@ public static class SpellRegistry{
         // Executor
         RegisterSpellPiece(
             "GenerateElementalOrb",
-            "Generates a elemental orb",
+            "Generates a elemental orb. Element Index Pyro(0), Electro(1), Hydro(2), Dendro(3), Cryo(4)",
             typeof(GenerateElementalOrb),
-            paramNames: new List<string>{"Position", "Velocity"},
-            configNames: new List<string>{"ElementIndex"}
+            configNames: new List<string>{"ElementIndex"},
+            paramNames: new List<string>{"Position", "Velocity"}
+            
         );
         RegisterSpellPiece(
             "Blink",
@@ -132,7 +133,6 @@ public static class SpellRegistry{
     }
 
     public static ReadOnlyCollection<SpellPieceInfo> GetAllSpellPieces(){
-        GD.Print("SpellRegistry: GetAllSpellPieces: " + spellPieces.Count);
         return spellPieces.AsReadOnly();
     }
 

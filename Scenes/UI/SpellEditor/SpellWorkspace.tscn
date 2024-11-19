@@ -16,25 +16,26 @@ outline_size = 5
 outline_color = Color(1, 0, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3cwjy"]
-font_size = 56
-outline_size = 8
+font_size = 26
+outline_size = 4
 outline_color = Color(0.687797, 0.414208, 0.999999, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1x8vo"]
+font_size = 14
 
 [sub_resource type="LabelSettings" id="LabelSettings_wgoxa"]
 font_size = 15
 font_color = Color(0.945098, 0.776471, 0.0235294, 1)
 outline_color = Color(1, 1, 0.0392157, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_px3k1"]
+line_spacing = 0.0
+font_size = 10
+
 [sub_resource type="LabelSettings" id="LabelSettings_uoccg"]
 font_size = 13
 font_color = Color(0.945098, 0.776471, 0.0235294, 1)
 outline_color = Color(0.941176, 0.772549, 0.0235294, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_px3k1"]
-font_size = 13
-
-[sub_resource type="LabelSettings" id="LabelSettings_1x8vo"]
-font_size = 14
 
 [node name="SpellWorkspace" type="Control" node_paths=PackedStringArray("spellPieceInfoPanel")]
 layout_mode = 3
@@ -334,64 +335,56 @@ layout_mode = 0
 offset_left = 226.0
 offset_top = -380.0
 offset_right = 530.0
-offset_bottom = -191.0
+offset_bottom = -182.0
+scale = Vector2(1.3, 1.3)
 script = ExtResource("9_wq3tf")
-spellPieceNameLabel = NodePath("SpellPieceNameContent")
-descriptionLabel = NodePath("DescriptionContent")
-inputContentsLabel = NodePath("InputContent")
-outputContentsLabel = NodePath("OutputContent")
+spellPieceNameLabel = NodePath("VBoxContainer/SpellPieceNameContent")
+descriptionLabel = NodePath("VBoxContainer/DescriptionContent")
+inputContentsLabel = NodePath("VBoxContainer/Input/InputContent")
+outputContentsLabel = NodePath("VBoxContainer/Output/OutputContent")
 
-[node name="SpellPieceNameContent" type="Label" parent="SpellPieceInfoPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SpellPieceInfoPanel"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 12.0
-offset_right = 453.0
-offset_bottom = 89.0
-scale = Vector2(0.4, 0.4)
+offset_left = 13.0
+offset_top = 2.0
+offset_right = 289.0
+offset_bottom = 139.0
+
+[node name="SpellPieceNameContent" type="Label" parent="SpellPieceInfoPanel/VBoxContainer"]
+layout_mode = 2
 text = "SpellPieceName"
 label_settings = SubResource("LabelSettings_3cwjy")
 
-[node name="Input" type="Label" parent="SpellPieceInfoPanel"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 108.0
-offset_right = 62.0
-offset_bottom = 131.0
+[node name="DescriptionContent" type="Label" parent="SpellPieceInfoPanel/VBoxContainer"]
+layout_mode = 2
+text = "This is a spell  d as d a das a das das ddescriptionssssssssssssssssssssssssssssssssssssssssssssssssssssssssdasdas das das das das d"
+label_settings = SubResource("LabelSettings_1x8vo")
+autowrap_mode = 3
+
+[node name="Input" type="Label" parent="SpellPieceInfoPanel/VBoxContainer"]
+layout_mode = 2
 text = "Input:"
 label_settings = SubResource("LabelSettings_wgoxa")
 
-[node name="Output" type="Label" parent="SpellPieceInfoPanel"]
-offset_left = 13.0
-offset_top = 151.0
-offset_right = 70.0
-offset_bottom = 174.0
-text = "Output:"
-label_settings = SubResource("LabelSettings_uoccg")
-
-[node name="InputContent" type="Label" parent="SpellPieceInfoPanel"]
-offset_left = 65.0
-offset_top = 110.0
-offset_right = 294.0
-offset_bottom = 149.0
+[node name="InputContent" type="Label" parent="SpellPieceInfoPanel/VBoxContainer/Input"]
+offset_left = 54.0
+offset_top = 4.0
+offset_right = 276.0
+offset_bottom = 33.0
 text = " Param1(Type1), Param2(type2)"
 label_settings = SubResource("LabelSettings_px3k1")
 autowrap_mode = 3
 
-[node name="OutputContent" type="Label" parent="SpellPieceInfoPanel"]
-offset_left = 68.0
-offset_top = 151.0
-offset_right = 292.0
-offset_bottom = 190.0
+[node name="Output" type="Label" parent="SpellPieceInfoPanel/VBoxContainer"]
+layout_mode = 2
+text = "Output:"
+label_settings = SubResource("LabelSettings_uoccg")
+
+[node name="OutputContent" type="Label" parent="SpellPieceInfoPanel/VBoxContainer/Output"]
+offset_left = 59.0
+offset_top = 4.0
+offset_right = 283.0
+offset_bottom = 43.0
 text = "OutputType"
 label_settings = SubResource("LabelSettings_px3k1")
-autowrap_mode = 3
-
-[node name="DescriptionContent" type="Label" parent="SpellPieceInfoPanel"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 54.0
-offset_right = 290.0
-offset_bottom = 111.0
-text = "This is a spell description"
-label_settings = SubResource("LabelSettings_1x8vo")
 autowrap_mode = 3

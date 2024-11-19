@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwfi70ik5tk2n"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ReactionTipLabel.cs" id="1_gm67o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_30mcg"]
+font_size = 50
+outline_size = 11
+outline_color = Color(0.687409, 0.68546, 0.90399, 1)
+
+[node name="TipLabel" type="Label"]
+z_index = 101
+offset_top = -7.0
+offset_right = 120.0
+offset_bottom = 62.0
+scale = Vector2(0.1, 0.1)
+text = "Overloaded"
+label_settings = SubResource("LabelSettings_30mcg")
+script = ExtResource("1_gm67o")
+lifeTime = 1.5
+speedMultiplier = 32.0
+speedExponent = 2.4

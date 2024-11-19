@@ -93,10 +93,11 @@ public partial class GameScene : Node2D
                 reactionString = "超载";
                 break;
         }
-        Label damageLabel = damageLabelScene.Instantiate<Label>();
-        damageLabel.Text = reactionString;
-        damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
-        instance.AddChild(damageLabel);
+        PackedScene reactionTipLabelScene = ResourceManager.GetScene(SceneResourceType.ReactionTipLabel);
+        ReactionTipLabel reactionTipLabel = reactionTipLabelScene.Instantiate<ReactionTipLabel>();
+        reactionTipLabel.reaction = reaction;
+        reactionTipLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
+        instance.AddChild(reactionTipLabel);
         PackedScene particleScene = ResourceManager.GetReactionParticle(reaction);
         if (particleScene == null){
             return;

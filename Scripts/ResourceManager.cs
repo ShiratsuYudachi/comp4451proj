@@ -18,7 +18,8 @@ public enum SceneResourceType{
     ElementalOrb,
     LivingEntity,
     AOE_Trigger,
-    ExplosionEffect
+    ExplosionEffect,
+    ReactionTipLabel,
 }
 
 public class ResourceManager
@@ -66,6 +67,8 @@ public class ResourceManager
                 return GD.Load<PackedScene>("res://Scenes/Utils/aoe_trigger.tscn");
             case SceneResourceType.ExplosionEffect:
                 return GD.Load<PackedScene>("res://Scenes/Particle/Effects/Explosion.tscn");
+            case SceneResourceType.ReactionTipLabel:
+                return GD.Load<PackedScene>("res://Scenes/UI/reactionTipLabel.tscn");
             default:
                 return null;
         }

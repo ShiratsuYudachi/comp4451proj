@@ -94,6 +94,11 @@ public static class SpellRegistry{
             "Multiplies a vector by a scalar",
             typeof(VectorMultiplication)
         );
+        RegisterSpellPiece(
+            "VectorNormalize",
+            "Normalizes a vector",
+            typeof(VectorNormalize)
+        );
 
         // Selector
         RegisterSpellPiece(

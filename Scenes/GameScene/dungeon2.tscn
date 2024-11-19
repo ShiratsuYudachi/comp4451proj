@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://f2c0b3nvttyg"]
+[gd_scene load_steps=18 format=3 uid="uid://f2c0b3nvttyg"]
 
-[ext_resource type="Script" path="res://Scripts/Map/DungeonScene.cs" id="1_4f3wi"]
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_p32mm"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_uesxp"]
 [ext_resource type="Texture2D" uid="uid://bdqeqht6gbqcy" path="res://assets/Cute_Fantasy_Free/Tiles/Grass_Middle.png" id="3_yjgqr"]
 [ext_resource type="Texture2D" uid="uid://dcf3wckjvoyqy" path="res://assets/Cute_Fantasy_Free/Tiles/Path_Tile.png" id="4_a7f11"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="4_docki"]
 [ext_resource type="Texture2D" uid="uid://ct38b3wjsf62j" path="res://assets/Cute_Fantasy_Free/Tiles/Water_Tile.png" id="5_ck4uf"]
+[ext_resource type="Script" path="res://Scripts/Map/Dungeon2.cs" id="8_v2uwf"]
+[ext_resource type="PackedScene" uid="uid://coogh0g4w5m16" path="res://Scenes/MapEntity/WizardTower.tscn" id="9_h356i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ujiec"]
 texture = ExtResource("2_p32mm")
@@ -336,7 +337,7 @@ size = Vector2(29, 505)
 size = Vector2(608, 20)
 
 [node name="GameScene" type="Node2D"]
-script = ExtResource("1_4f3wi")
+script = ExtResource("8_v2uwf")
 metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -401,7 +402,13 @@ shape = SubResource("RectangleShape2D_4q3rn")
 
 [node name="ScenePortal" parent="." groups=["ScenePortal"] instance=ExtResource("4_docki")]
 position = Vector2(143, -47)
-targetSceneName = "Scene1"
+script = ExtResource("8_v2uwf")
 
 [node name="SceneEntrance" type="Node2D" parent="."]
 position = Vector2(-6, 219)
+
+[node name="WizardTower" parent="." instance=ExtResource("9_h356i")]
+position = Vector2(263, 111)
+
+[node name="WizardTower2" parent="." instance=ExtResource("9_h356i")]
+position = Vector2(-123, 85)

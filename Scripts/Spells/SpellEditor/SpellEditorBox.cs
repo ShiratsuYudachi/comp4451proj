@@ -75,6 +75,7 @@ public partial class SpellEditorBox : Button
 	public void clear(){
 		spellPiece = null;
 		SpellPieceParamDirection = new DPad.Direction[4];
+		selectedSpellPieceName = "";
 		paramSourceDisplay.updateParamSourceDisplay(SpellPieceParamDirection);
 		spellPieceIcon.clear();
 	}

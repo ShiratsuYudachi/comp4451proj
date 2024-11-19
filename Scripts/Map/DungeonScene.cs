@@ -30,7 +30,7 @@ public partial class DungeonScene : GameScene
 	}
 
 
-	public void StartWave(int _waveNumber){
+	public virtual void StartWave(int _waveNumber){
 		switch (_waveNumber){
 			case 1:
 				GameScene.SpawnEntity("Skeleton", new Vector2(-50, 0));

@@ -107,9 +107,12 @@ public struct SpellVariable
 
 	public float AsFloat()
 	{
-		if (Type != SpellVariableType.FLOAT)
+		if (Type != SpellVariableType.FLOAT && Type != SpellVariableType.INT)
 		{
 			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to float");
+		}
+		if (Type == SpellVariableType.INT){
+			return (float)((int)_value);
 		}
 		return (float)_value;
 	}

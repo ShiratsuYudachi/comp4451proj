@@ -36,7 +36,11 @@ public class ResourceManager
                 return GD.Load<Texture2D>("res://Art/Bullets/bullet.png");
             
             case TextureResourceType.SpellPieceIcon:
-                return GD.Load<Texture2D>("res://assets/Spells/SpellPieceIcons/"+name+".png");
+                string path = "res://assets/Spells/SpellPieceIcons/"+name+".png";
+                if (!ResourceLoader.Exists(path)) {
+                    return GD.Load<Texture2D>("res://assets/Spells/SpellPieceIcons/default.png");
+                }
+                return GD.Load<Texture2D>(path);
             
             case TextureResourceType.ElementIcon:
                 return GD.Load<Texture2D>("res://assets/UI/Elements/"+name+".png");

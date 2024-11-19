@@ -19,39 +19,40 @@ public partial class SpellCaster : Node2D
 	public override void _Ready()
 	{
 		GD.Print("SpellExecutor ready");
-		//Blink
+		
 		GameScene.playerSpellStorage.LoadAllSpells();
 
-		SpellEvaluationTreeNode testEvaluationTree1 = new SpellEvaluationTreeNode(new Blink());
-		testEvaluationTree1.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-		testEvaluationTree1.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMinus());
-		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
-		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
-		testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-		GameScene.playerSpellStorage.AddSpell("BlinkToMousePos", testEvaluationTree1);
-		//GD.Print(testEvaluationTree1.ToJSON());
+		// Blink
+		// SpellEvaluationTreeNode testEvaluationTree1 = new SpellEvaluationTreeNode(new Blink());
+		// testEvaluationTree1.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		// testEvaluationTree1.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMinus());
+		// testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectMousePos());
+		// testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new GetEntityPos());
+		// testEvaluationTree1.childrenSpellPieces[1].childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		// GameScene.playerSpellStorage.AddSpell("BlinkToMousePos", testEvaluationTree1);
+		// //GD.Print(testEvaluationTree1.ToJSON());
 
 		
-		//MassAddMotion
-		SpellEvaluationTreeNode testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
-		testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-		testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2Constant(new Vector2(100, 0)));
-		testEvaluationTree2.PrintTree();
-		GD.Print(testEvaluationTree2.ToJSON());
-		GameScene.playerSpellStorage.AddSpell("TestAddMotion", testEvaluationTree2);
-		//Heal
-		SpellEvaluationTreeNode testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
-		testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
-		testEvaluationTree3.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new IntConstant(114));
+		// //MassAddMotion
+		// SpellEvaluationTreeNode testEvaluationTree2 = new SpellEvaluationTreeNode(new MassAddMotion());
+		// testEvaluationTree2.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		// testEvaluationTree2.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new Vector2Constant(new Vector2(100, 0)));
+		// testEvaluationTree2.PrintTree();
+		// GD.Print(testEvaluationTree2.ToJSON());
+		// GameScene.playerSpellStorage.AddSpell("TestAddMotion", testEvaluationTree2);
+		// //Heal
+		// SpellEvaluationTreeNode testEvaluationTree3 = new SpellEvaluationTreeNode(new Heal());
+		// testEvaluationTree3.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectCaster());
+		// testEvaluationTree3.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new IntConstant(114));
 
-		//BounceBullet
-		SpellEvaluationTreeNode bounceBullet = new SpellEvaluationTreeNode(new MassAddMotion());
-		bounceBullet.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
-		bounceBullet.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMultiplication());
-		bounceBullet.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new GetEntityVelocity());
-		bounceBullet.childrenSpellPieces[1].childrenSpellPieces[0].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
-		bounceBullet.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new FloatConstant(-2f));
-		GameScene.playerSpellStorage.AddSpell("bounceBullet", bounceBullet);
+		// //BounceBullet
+		// SpellEvaluationTreeNode bounceBullet = new SpellEvaluationTreeNode(new MassAddMotion());
+		// bounceBullet.childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
+		// bounceBullet.childrenSpellPieces[1] = new SpellEvaluationTreeNode(new VectorMultiplication());
+		// bounceBullet.childrenSpellPieces[1].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new GetEntityVelocity());
+		// bounceBullet.childrenSpellPieces[1].childrenSpellPieces[0].childrenSpellPieces[0] = new SpellEvaluationTreeNode(new SelectNearestBullet());
+		// bounceBullet.childrenSpellPieces[1].childrenSpellPieces[1] = new SpellEvaluationTreeNode(new FloatConstant(-2f));
+		// GameScene.playerSpellStorage.AddSpell("bounceBullet", bounceBullet);
 
 	}
 

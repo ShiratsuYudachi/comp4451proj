@@ -16,7 +16,7 @@ public partial class GameScene : Node2D
 
     public static CanvasLayer UI;
 
-    bool gameInitialized = false;
+    static bool gameInitialized = false;
 
     public override void _EnterTree()
     {

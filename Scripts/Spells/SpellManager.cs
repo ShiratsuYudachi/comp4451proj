@@ -260,6 +260,40 @@ public abstract class SpellPiece
 	// 		}
 	// 	}
 	// }
+
+	// Add new methods for serialization
+	public virtual Godot.Collections.Dictionary ToJSON()
+	{
+		var jsonObj = new Godot.Collections.Dictionary();
+		jsonObj["Type"] = this.GetType().Name;
+		jsonObj["config"] = configToString(getConfigValues());
+		return jsonObj;
+	}
+
+	public static SpellPiece FromJSON(Godot.Collections.Dictionary jsonObj)
+	{
+		string typeName = (string)jsonObj["Type"];
+		Type spellPieceType = Type.GetType(typeName);
+		if (spellPieceType == null)
+		{
+			throw new ArgumentException($"Unknown spell piece type: {typeName}");
+		}
+		
+		SpellPiece spellPiece = (SpellPiece)Activator.CreateInstance(spellPieceType);
+		
+		var configArray = (Godot.Collections.Array)jsonObj["config"];
+		if (configArray.Count > 0)
+		{
+			var configStrings = new string[configArray.Count];
+			for (int i = 0; i < configArray.Count; i++)
+			{
+				configStrings[i] = (string)configArray[i];
+			}
+			spellPiece.applyConfig(spellPiece.stringToConfig(configStrings));
+		}
+		
+		return spellPiece;
+	}
 }
 
 public abstract class ExecutorSpellPiece : SpellPiece
@@ -339,19 +373,9 @@ public class SpellEvaluationTreeNode
 	
 	public Godot.Collections.Dictionary ToJSON()
     {
-        // 创建主对象
-        var jsonObj = new Godot.Collections.Dictionary();
+        var jsonObj = rootSpellPiece.ToJSON();
         
-        // 添加拼写片段类型和名称
-        jsonObj["Type"] = rootSpellPiece.GetType().Name;
-        
-        // 添加配置值（如果有）
-        var configValues = rootSpellPiece.getConfigValues();
-
-		jsonObj["config"] = rootSpellPiece.configToString(configValues);
-		
-        
-        // 递归处理子节点
+        // Add children
         if (childrenSpellPieces.Length > 0)
         {
             var childrenArray = new Godot.Collections.Array();
@@ -361,42 +385,20 @@ public class SpellEvaluationTreeNode
             }
             jsonObj["children"] = childrenArray;
         }
-		else{
-			jsonObj["children"] = new Godot.Collections.Array();
-		}
+        else
+        {
+            jsonObj["children"] = new Godot.Collections.Array();
+        }
         
         return jsonObj;
     }
 
 	public static SpellEvaluationTreeNode loadJSON(Godot.Collections.Dictionary jsonObj)
 	{
-		
-		string typeName = (string)jsonObj["Type"];
-		
-		Type spellPieceType = Type.GetType(typeName);
-		if (spellPieceType == null)
-		{
-			throw new ArgumentException($"Unknown spell piece type: {typeName}");
-		}
-		
-		SpellPiece spellPiece = (SpellPiece)Activator.CreateInstance(spellPieceType);
-		
-		// 处理配置值
-		var configArray = (Godot.Collections.Array)jsonObj["config"];
-		if (configArray.Count > 0)
-		{
-			var configStrings = new string[configArray.Count];
-			for (int i = 0; i < configArray.Count; i++)
-			{
-				configStrings[i] = (string)configArray[i];
-			}
-			spellPiece.applyConfig(spellPiece.stringToConfig(configStrings));
-		}
-		
-		// 创建树节点
+		SpellPiece spellPiece = SpellPiece.FromJSON(jsonObj);
 		var node = new SpellEvaluationTreeNode(spellPiece);
 		
-		// 递归处理子节点
+		// Process children
 		var childrenArray = (Godot.Collections.Array)jsonObj["children"];
 		for (int i = 0; i < childrenArray.Count; i++)
 		{
@@ -420,7 +422,6 @@ public class SpellStorage{
 
 	public void AddSpell(string spellName, SpellEvaluationTreeNode spell){
 		spells[spellName] = spell;
-		SaveAllSpells();
 	}	
 
 	public string[] getSpellNames(){
@@ -437,24 +438,12 @@ public class SpellStorage{
 		return null;
 	}
 
-	public void SaveAllSpells() {
-		// Create directory if not exists
-		string dirPath = System.IO.Path.Combine(
-			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
-			"SpellCompiler"
-		);
-		System.IO.Directory.CreateDirectory(dirPath);
+	// Mark as obsolete
+	[Obsolete("Use SpellEditor.SaveWorkspace instead")]
+	public void SaveAllSpells() { }
 
-		// Save each spell
-		foreach (var spellPair in spells) {
-			string jsonPath = System.IO.Path.Combine(dirPath, $"{spellPair.Key}.json");
-			var jsonDict = spellPair.Value.ToJSON();
-			string jsonString = Json.Stringify(jsonDict);
-			System.IO.File.WriteAllText(jsonPath, jsonString);
-		}
-	}
-
-	public void LoadAllSpells() {
+	public void LoadAllSpells()
+	{
 		string dirPath = System.IO.Path.Combine(
 			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
 			"SpellCompiler"
@@ -463,11 +452,19 @@ public class SpellStorage{
 		if (!System.IO.Directory.Exists(dirPath)) return;
 
 		spells.Clear();
-		foreach (string file in System.IO.Directory.GetFiles(dirPath, "*.json")) {
+		foreach (string file in System.IO.Directory.GetFiles(dirPath, "*.json"))
+		{
 			string spellName = System.IO.Path.GetFileNameWithoutExtension(file);
 			string jsonString = System.IO.File.ReadAllText(file);
-			var loadedDict = Json.ParseString(jsonString).AsGodotDictionary();
-			spells[spellName] = SpellEvaluationTreeNode.loadJSON(loadedDict);
+			var jsonDict = Json.ParseString(jsonString).AsGodotDictionary();
+			
+			// Only load the spell tree part
+			if (jsonDict.ContainsKey("spell"))
+			{
+				spells[spellName] = SpellEvaluationTreeNode.loadJSON(
+					(Godot.Collections.Dictionary)jsonDict["spell"]
+				);
+			}
 		}
 	}
 

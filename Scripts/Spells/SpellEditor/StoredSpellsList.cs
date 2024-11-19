@@ -3,9 +3,15 @@ using System;
 
 public partial class StoredSpellsList : ItemList
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export]
+	public SpellEditor spellEditor;
+
 	public override void _Ready()
 	{
+		this.ItemSelected += (index) => {
+			string spellName = this.GetItemText((int)index);
+			spellEditor.LoadWorkspace(spellName);
+		};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

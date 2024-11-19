@@ -82,6 +82,7 @@ public partial class SpellEditor : GridContainer
 		foreach (SpellEditorBox spellEditorBox in this.GetChildren()){
 			spellEditorBox.clear();
 		}
+		spellNameInput.Text = "";
 	}
 
 	public void setSpellPieceConfigPanelAt(SpellEditorBox spellEditorBox){
@@ -144,6 +145,7 @@ public partial class SpellEditor : GridContainer
 			result.PrintTree();
 			SpellWorkspace.showMessage("Spell compiled!");
 			GameScene.playerSpellStorage.AddSpell(spellNameInput.Text, result);
+			SaveWorkspace(spellNameInput.Text);
 			SpellWorkspace.Refresh();
 		}
 	}
@@ -188,4 +190,124 @@ public partial class SpellEditor : GridContainer
 	// 	icon.Texture = GD.Load<Texture2D>("res://images/spells/"+name+".png");
 	// 	return icon;
 	// }
+
+	public Godot.Collections.Dictionary ToJSON()
+	{
+		var jsonObj = new Godot.Collections.Dictionary();
+		var gridArray = new Godot.Collections.Array();
+		
+		// Save spell name
+		jsonObj["spellName"] = spellNameInput.Text;
+		
+		// Save each box in the grid
+		foreach (SpellEditorBox box in this.GetChildren())
+		{
+			var boxData = new Godot.Collections.Dictionary();
+			
+			// Save SpellPiece if exists
+			if (box.spellPiece != null)
+			{
+				boxData["spellPiece"] = box.spellPiece.ToJSON();
+				
+				// Save parameter directions
+				var directionsArray = new Godot.Collections.Array();
+				foreach (var direction in box.SpellPieceParamDirection)
+				{
+					directionsArray.Add((int)direction);
+				}
+				boxData["paramDirections"] = directionsArray;
+			}
+			else
+			{
+				boxData["spellPiece"] = new Godot.Collections.Dictionary();
+			}
+			
+			gridArray.Add(boxData);
+		}
+		
+		jsonObj["grid"] = gridArray;
+		return jsonObj;
+	}
+
+	public void LoadFromJSON(Godot.Collections.Dictionary jsonObj)
+	{
+		// Clear current state
+		ClearEditor();
+		
+		// Load spell name
+		spellNameInput.Text = (string)jsonObj["spellName"];
+		
+		// Load grid data
+		var gridArray = (Godot.Collections.Array)jsonObj["grid"];
+		var boxes = this.GetChildren();
+		
+		for (int i = 0; i < gridArray.Count; i++)
+		{
+			var boxData = (Godot.Collections.Dictionary)gridArray[i];
+			var box = (SpellEditorBox)boxes[i];
+			
+			if (boxData.ContainsKey("paramDirections"))
+			{
+				// Load SpellPiece
+				var spellPieceData = (Godot.Collections.Dictionary)boxData["spellPiece"];
+				box.spellPiece = SpellPiece.FromJSON(spellPieceData);
+				box.selectedSpellPieceName = box.spellPiece.GetType().Name;
+				box.spellPieceIcon.setIconForSpellPiece(box.selectedSpellPieceName);
+				
+				// Load parameter directions
+				var directionsArray = (Godot.Collections.Array)boxData["paramDirections"];
+				for (int j = 0; j < directionsArray.Count; j++)
+				{
+					box.SpellPieceParamDirection[j] = (DPad.Direction)(int)directionsArray[j];
+				}
+				box.paramSourceDisplay.updateParamSourceDisplay(box.SpellPieceParamDirection);
+			}
+		}
+	}
+
+	public void SaveWorkspace(string spellName)
+	{
+		string dirPath = System.IO.Path.Combine(
+			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+			"SpellCompiler"
+		);
+		System.IO.Directory.CreateDirectory(dirPath);
+
+		var jsonDict = new Godot.Collections.Dictionary();
+		jsonDict["workspace"] = ToJSON();
+		
+		
+		if (GameScene.playerSpellStorage.spells.ContainsKey(spellName))
+		{
+			jsonDict["spell"] = GameScene.playerSpellStorage.spells[spellName].ToJSON();
+		}
+
+		string jsonPath = System.IO.Path.Combine(dirPath, $"{spellName}.json");
+		string jsonString = Json.Stringify(jsonDict);
+		System.IO.File.WriteAllText(jsonPath, jsonString);
+	}
+
+	public void LoadWorkspace(string spellName)
+	{
+		string dirPath = System.IO.Path.Combine(
+			System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+			"SpellCompiler"
+		);
+		string jsonPath = System.IO.Path.Combine(dirPath, $"{spellName}.json");
+
+		if (!System.IO.File.Exists(jsonPath)) return;
+
+		string jsonString = System.IO.File.ReadAllText(jsonPath);
+		var jsonDict = Json.ParseString(jsonString).AsGodotDictionary();
+
+		// Load workspace state
+		LoadFromJSON((Godot.Collections.Dictionary)jsonDict["workspace"]);
+		
+		// Load spell tree
+		if (jsonDict.ContainsKey("spell"))
+		{
+			var spellTree = SpellEvaluationTreeNode.loadJSON((Godot.Collections.Dictionary)jsonDict["spell"]);
+			GameScene.playerSpellStorage.spells[spellName] = spellTree;
+		}
+	}
 }

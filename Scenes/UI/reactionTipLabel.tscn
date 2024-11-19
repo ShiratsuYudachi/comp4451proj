@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwfi70ik5tk2n"]
+[gd_scene load_steps=3 format=3 uid="uid://bepu88f58rxdf"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ReactionTipLabel.cs" id="1_gm67o"]
 

@@ -81,13 +81,14 @@ offset_right = 158.0
 offset_bottom = -5.0
 text = "Operator"
 
-[node name="StoredSpellsList" type="ItemList" parent="."]
+[node name="StoredSpellsList" type="ItemList" parent="." node_paths=PackedStringArray("spellEditor")]
 layout_mode = 0
 offset_left = 579.0
 offset_top = 116.0
 offset_right = 763.0
 offset_bottom = 460.0
 script = ExtResource("10_wdj3n")
+spellEditor = NodePath("../SpellEditor")
 
 [node name="SpellNameInput" type="LineEdit" parent="."]
 layout_mode = 0
@@ -99,18 +100,18 @@ placeholder_text = "Enter Spell Name Here"
 
 [node name="CompileButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 488.0
-offset_top = 498.0
-offset_right = 569.0
-offset_bottom = 544.0
+offset_left = 482.0
+offset_top = 46.0
+offset_right = 563.0
+offset_bottom = 92.0
 text = "Compile!"
 
 [node name="ClearButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 489.0
-offset_top = 434.0
-offset_right = 570.0
-offset_bottom = 480.0
+offset_left = 483.0
+offset_top = 110.0
+offset_right = 564.0
+offset_bottom = 156.0
 text = "Clear"
 
 [node name="KeyBindPanel" type="Panel" parent="."]

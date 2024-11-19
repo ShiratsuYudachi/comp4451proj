@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo7sbyhmcny5o"]
+[gd_scene load_steps=6 format=3 uid="uid://bo7sbyhmcny5o"]
 
 [ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_ull7j"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ConfigVectorConstant.cs" id="2_xcmhw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmg3g"]
+font_size = 11
+
+[sub_resource type="LabelSettings" id="LabelSettings_nqqpg"]
+font_size = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_7gi40"]
 font_size = 22
@@ -12,21 +18,33 @@ offset_bottom = 64.0
 texture = ExtResource("1_ull7j")
 script = ExtResource("2_xcmhw")
 
-[node name="ParamNameLabel" type="Label" parent="."]
+[node name="ParamType" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 20.0
-offset_right = 99.0
-offset_bottom = 43.0
-text = "Vector2"
+offset_left = 46.0
+offset_top = 27.0
+offset_right = 94.0
+offset_bottom = 50.0
+text = "(Vector2)"
+label_settings = SubResource("LabelSettings_fmg3g")
+
+[node name="ParamName" type="Label" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 8.0
+offset_right = 146.0
+offset_bottom = 31.0
+text = "Displacement"
+label_settings = SubResource("LabelSettings_nqqpg")
+horizontal_alignment = 1
+text_overrun_behavior = 1
 
 [node name="Input" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 6.0
-offset_right = 45.0
-offset_bottom = 46.0
+offset_left = 59.0
+offset_right = 99.0
+offset_bottom = 40.0
 scale = Vector2(0.9, 0.9)
+metadata/_edit_lock_ = true
 
 [node name="X" type="Label" parent="Input"]
 layout_mode = 0

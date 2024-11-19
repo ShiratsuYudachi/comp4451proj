@@ -91,4 +91,8 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
     public void onFreeze(float elementAmount){
         // Empty implementation
     }
+
+	public void ApplyMotion(Vector2 motion){
+		velocity += motion;
+	}
 }

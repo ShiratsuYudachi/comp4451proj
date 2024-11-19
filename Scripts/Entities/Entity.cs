@@ -7,7 +7,7 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
 {
     
     // Configurable
-    public int mass { get; set; } = 1; // multiplier for handling ApplyImpulse
+    public int mass { get; set; } = 1; // multiplier for handling ApplyMotion
     public float frictionMultiplier = 1f;
     protected float health = 100;
     protected float MAX_HEALTH = 100;
@@ -155,8 +155,8 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
         if (health <= 0) Die();
     }
 
-    public void ApplyImpulse(Vector2 impulse){
-        velocity += impulse / mass;
+    public void ApplyMotion(Vector2 motion){
+        velocity += motion / mass;
     }
 
     public void OnHit(float damage, Vector2? knockback = null, Entity? source = null, Chemistry.Element? element = null, float? elementAmount = null)

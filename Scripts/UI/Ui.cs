@@ -23,7 +23,7 @@ public partial class Ui : Control
 	}
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("ShowSpellEditor") || Input.IsActionJustPressed("Cancel")){
+		if (Input.IsActionJustPressed("ShowSpellEditor")){
 			if (spellEditor.Visible){
 				hideMenu();
 				this.GetTree().Paused = false;

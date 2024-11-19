@@ -17,4 +17,8 @@ public partial class ConfigIntConstant : ConfigItem
     {
         textEdit.Text = ((int)value).ToString();
     }
+
+	public override void setConfigName(string name){
+		GetNode<Label>("ParamName").Text = name;
+	}
 }

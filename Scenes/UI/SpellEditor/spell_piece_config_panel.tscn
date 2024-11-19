@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://m72s3878neh2"]
 
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceConfigPanel.cs" id="1_a0j20"]
-[ext_resource type="PackedScene" uid="uid://cx2cgjamumnkw" path="res://Scenes/UI/SpellEditor/param_selector.tscn" id="2_hcpdj"]
+[ext_resource type="PackedScene" uid="uid://g48n6x01c7hx" path="res://Scenes/UI/SpellEditor/paramDirectionSelector.tscn" id="2_2dllm"]
 [ext_resource type="PackedScene" uid="uid://bo7sbyhmcny5o" path="res://Scenes/UI/SpellEditor/config_vectorConstant.tscn" id="3_2sbve"]
 [ext_resource type="PackedScene" uid="uid://dax0l7huiq8xy" path="res://Scenes/UI/SpellEditor/config_intConstant.tscn" id="4_dfsxr"]
 
@@ -11,7 +11,7 @@ offset_top = 312.0
 offset_right = -44.0
 offset_bottom = 633.0
 script = ExtResource("1_a0j20")
-paramSelector = ExtResource("2_hcpdj")
+paramSelector = ExtResource("2_2dllm")
 configVector2Panel = ExtResource("3_2sbve")
 configIntPanel = ExtResource("4_dfsxr")
 

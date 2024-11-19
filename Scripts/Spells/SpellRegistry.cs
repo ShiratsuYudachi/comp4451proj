@@ -8,21 +8,40 @@ public struct SpellPieceInfo{
     public string description;
     public Type spellClassType;
 
-    public SpellPieceInfo(string name, string description, Type spellClassType)
+    public List<string> configNames;
+    public List<string> paramNames;
+
+    public SpellPieceInfo(string name, string description, Type spellClassType, List<string> configNames, List<string> paramNames)
     {
         this.name = name;
         this.description = description;
         this.spellClassType = spellClassType;
+        this.configNames = configNames;
+        this.paramNames = paramNames;
+    }
+
+    public string getConfigName(int index){
+        if (configNames == null || configNames.Count <= index)
+            return "";
+        return configNames[index];
+    }
+
+    public string getParamName(int index, string defaultName){
+        if (paramNames == null || paramNames.Count <= index)
+            return defaultName;
+        return paramNames[index];
     }
 }
 
 public static class SpellRegistry{
     private static List<SpellPieceInfo> spellPieces = new List<SpellPieceInfo>();
 
-    public static void RegisterSpellPiece(string name, string description, Type spellClassType)
+    public static void RegisterSpellPiece(string name, string description, Type spellClassType, List<string> configNames = null, List<string> paramNames = null )
     {
-        spellPieces.Add(new SpellPieceInfo(name, description, spellClassType));
+        spellPieces.Add(new SpellPieceInfo(name, description, spellClassType, configNames, paramNames));
     }
+
+    
 
     public static void Initialize()
     {
@@ -31,25 +50,28 @@ public static class SpellRegistry{
         RegisterSpellPiece(
             "GenerateElementalOrb",
             "Generates a elemental orb",
-            typeof(GenerateElementalOrb)
+            typeof(GenerateElementalOrb),
+            paramNames: new List<string>{"Position", "Velocity"},
+            configNames: new List<string>{"ElementIndex"}
         );
         RegisterSpellPiece(
             "Blink",
             "Teleports the caster to the mouse position",
-            typeof(Blink)
+            typeof(Blink),
+            paramNames: new List<string>{"EntityToBlink", "Displacement"}
         );
         RegisterSpellPiece(
             "Heal",
             "Heals the target entity",
-            typeof(Heal)
+            typeof(Heal),
+            paramNames: new List<string>{"Target", "HealAmount"}
         );
         RegisterSpellPiece(
             "MassAddMotion", 
             "Adds motion to a mass entity",
-            typeof(MassAddMotion)
+            typeof(MassAddMotion),
+            paramNames: new List<string>{"Target", "Motion"}
         );
-        
-
         // Operator
         RegisterSpellPiece(
             "GetEntityPos",
@@ -86,7 +108,8 @@ public static class SpellRegistry{
         RegisterSpellPiece(
             "SelectNearestBullet",
             "Selects the nearest bullet to the caster",
-            typeof(SelectNearestBullet)
+            typeof(SelectNearestBullet),
+            configNames: new List<string>{"AvoidDuplicate"}
         );
         // Constants
         RegisterSpellPiece(
@@ -104,6 +127,8 @@ public static class SpellRegistry{
             "A constant float value",
             typeof(FloatConstant)
         );
+
+
     }
 
     public static ReadOnlyCollection<SpellPieceInfo> GetAllSpellPieces(){

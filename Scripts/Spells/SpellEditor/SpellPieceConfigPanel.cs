@@ -55,6 +55,10 @@ public partial class SpellPieceConfigPanel : Control
 					newConfigItem = configIntPanel.Instantiate<ConfigIntConstant>();
 					break;
 			}
+			string configName = SpellRegistry.GetSpellPieceInfo(spellEditorBox.spellPiece.Name).getConfigName(i);
+			if (configName != "")
+				newConfigItem.setConfigName(configName);
+			
 			this.GetNode<Control>("VAlign").AddChild(newConfigItem);
 			configItems[i] = newConfigItem;
 		}
@@ -67,7 +71,8 @@ public partial class SpellPieceConfigPanel : Control
 			SpellVariableType type = spellEditorBox.spellPiece.ParamList[i];
 			ParamSelector newParamSelector = paramSelector.Instantiate<ParamSelector>();
 
-			newParamSelector.setParamName(type.ToString());
+			newParamSelector.setParamName(SpellRegistry.GetSpellPieceInfo(spellEditorBox.spellPiece.Name).getParamName(i, type.ToString()));
+			newParamSelector.setParamType(type);
 			this.GetNode<Control>("VAlign").AddChild(newParamSelector);
 			paramSelectors[i] = newParamSelector;
 		}

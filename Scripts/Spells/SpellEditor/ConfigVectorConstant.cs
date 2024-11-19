@@ -5,6 +5,7 @@ public abstract partial class ConfigItem : Control
 {
 	public abstract object getConfigValue(); // for getting the value from the GUI
 	public abstract void parseConfigValue(object value); // for parsing the value from the spell piece, and setting the GUI
+	public abstract void setConfigName(string name);
 };
 
 
@@ -26,5 +27,9 @@ public partial class ConfigVectorConstant : ConfigItem
 		Vector2 vec = (Vector2)value;
 		xTextEdit.Text = vec.X.ToString();
 		yTextEdit.Text = vec.Y.ToString();
+	}
+
+	public override void setConfigName(string name){
+		GetNode<Label>("ParamName").Text = name;
 	}
 }

@@ -80,8 +80,6 @@ public partial class SpellCaster : Node2D
 		spellTriggers.Add(new OnBulletIsNear(GameScene.playerSpellStorage.getSpell(triggerNames[0]), this));
 	}
 
-	
-
 	public void Cast(int index = 0)
 	{
 		if (index >= spells.Count){

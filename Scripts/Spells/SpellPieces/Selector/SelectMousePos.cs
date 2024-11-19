@@ -11,12 +11,12 @@ public class SelectMousePos : SelectorSpellPiece
             return "Select Mouse Position"; 
         }
     }
-    public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.Vector2; } }
 
 
     public override SpellVariable Select(SpellCaster spellCaster)
     {
         Vector2 mousePos = spellCaster.GetGlobalMousePosition();
-        return new SpellVariable(SpellVariableType.VECTOR2, mousePos);
+        return new SpellVariable(SpellVariableType.Vector2, mousePos);
     }	
 }

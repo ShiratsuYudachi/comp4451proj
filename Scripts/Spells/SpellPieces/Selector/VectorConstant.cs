@@ -9,8 +9,8 @@ public class Vector2Constant : SelectorSpellPiece
 		}
 	}
 	public Vector2 Value;
-	public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
-	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.VECTOR2 }; } }
+	public override SpellVariableType ReturnType { get { return SpellVariableType.Vector2; } }
+	public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.Vector2 }; } }
 	
 
 	public override void applyConfig(object[] configs)
@@ -34,6 +34,6 @@ public class Vector2Constant : SelectorSpellPiece
 
 	public override SpellVariable Select(SpellCaster spellCaster)
 	{
-		return new SpellVariable(SpellVariableType.VECTOR2, Value);
+		return new SpellVariable(SpellVariableType.Vector2, Value);
 	}
 }

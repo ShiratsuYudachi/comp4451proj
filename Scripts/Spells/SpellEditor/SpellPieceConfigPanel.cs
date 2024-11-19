@@ -48,7 +48,7 @@ public partial class SpellPieceConfigPanel : Control
 			ConfigItem newConfigItem = null;
 			switch (type)
 			{
-				case SpellVariableType.VECTOR2:
+				case SpellVariableType.Vector2:
 					newConfigItem = configVector2Panel.Instantiate<ConfigVectorConstant>();
 					break;
 				case SpellVariableType.INT:

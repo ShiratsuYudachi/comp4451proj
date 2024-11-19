@@ -11,7 +11,7 @@ public class SelectNearestBullet : SelectorSpellPiece
             return "Select Nearest Bullet"; 
         }
     }
-    public override SpellVariableType ReturnType { get { return SpellVariableType.MASSENTITY; } }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.MassEntity; } }
     
     public override SpellVariableType[] ConfigList { get { return new SpellVariableType[] { SpellVariableType.BOOL }; } }
 	
@@ -60,7 +60,7 @@ public class SelectNearestBullet : SelectorSpellPiece
         }
         //entityDetector.entityList.Remove(nearestBullet);
         lastSelectedEntities.Add(nearestBullet);
-        return new SpellVariable(SpellVariableType.MASSENTITY, nearestBullet);
+        return new SpellVariable(SpellVariableType.MassEntity, nearestBullet);
         
     }	
 }

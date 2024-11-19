@@ -18,8 +18,8 @@ public class Blink : ExecutorSpellPiece
         get
         {
             return new SpellVariableType[] {
-            SpellVariableType.MASSENTITY, // Entity to blink
-            SpellVariableType.VECTOR2 // Blink target relative to entity
+            SpellVariableType.MassEntity, // Entity to blink
+            SpellVariableType.Vector2 // Blink target relative to entity
         };
         }
     }

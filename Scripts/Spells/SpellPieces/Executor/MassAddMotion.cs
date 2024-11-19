@@ -10,8 +10,8 @@ public class MassAddMotion : ExecutorSpellPiece
         get
         {
             return new SpellVariableType[] {
-            SpellVariableType.MASSENTITY,
-            SpellVariableType.VECTOR2
+            SpellVariableType.MassEntity,
+            SpellVariableType.Vector2
         };
         }
     }

@@ -18,13 +18,13 @@ public class GenerateBullet : ExecutorSpellPiece
         get
         {
             return new SpellVariableType[] {
-            SpellVariableType.VECTOR2, // Bullet position
-            SpellVariableType.VECTOR2 // Bullet velocity
+            SpellVariableType.Vector2, // Bullet position
+            SpellVariableType.Vector2 // Bullet velocity
         };
         }
     }
 
-    public override SpellVariableType ReturnType { get { return SpellVariableType.MASSENTITY; } }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.MassEntity; } }
 
     public override void Execute(SpellCaster spellCaster, params SpellVariable[] args)
     {

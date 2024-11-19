@@ -3,6 +3,10 @@ using System;
 
 public partial class SpellWorkspace : Control
 {
+
+	[Export]
+	public SpellPieceInfoPanel spellPieceInfoPanel;
+
 	public static SpellWorkspace instance;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -48,4 +52,13 @@ public partial class SpellWorkspace : Control
 		label.GetTree().CreateTimer(7.0).Timeout += () => label.Text = "";
 	}
 
+	public static void showSpellPieceInfoPanel(string spellPieceName){
+		instance.spellPieceInfoPanel.Show();
+		instance.spellPieceInfoPanel.GlobalPosition = instance.GetGlobalMousePosition();
+		instance.spellPieceInfoPanel.setInfo(spellPieceName);
+	}
+
+	public static void hideSpellPieceInfoPanel(){
+		instance.spellPieceInfoPanel.Hide();
+	}
 }

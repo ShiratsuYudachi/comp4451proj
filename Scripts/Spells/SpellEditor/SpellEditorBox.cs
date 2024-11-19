@@ -4,6 +4,7 @@ using System;
 public partial class SpellEditorBox : Button
 {
 	// Called when the node enters the scene tree for the first time.
+	
 
 	public SpellPicker spellPicker;
 	public GridContainer editorGrid;
@@ -28,6 +29,18 @@ public partial class SpellEditorBox : Button
 		spellPicker = spellEditor.getSpellPicker();
 		spellPicker.Connect("item_clicked", new Callable(this, "onSelectionDone"));
 		paramSourceDisplay = GetNode<ParamSourceDisplay>("ParamSourceDisplay");
+		this.Connect("mouse_entered", new Callable(this, "on_mouse_entered"));
+		this.Connect("mouse_exited", new Callable(this, "on_mouse_exited"));
+	}
+	
+	private void on_mouse_entered(){
+		if (selectedSpellPieceName != ""){
+			SpellWorkspace.showSpellPieceInfoPanel(selectedSpellPieceName);
+		}
+	}
+
+	private void on_mouse_exited(){
+		SpellWorkspace.hideSpellPieceInfoPanel();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

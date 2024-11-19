@@ -7,7 +7,7 @@ public class Heal : ExecutorSpellPiece
     public override SpellVariableType[] ParamList { 
         get {
             return new SpellVariableType[] {
-            SpellVariableType.LIVINGENTITY, // Target to heal
+            SpellVariableType.LivingEntity, // Target to heal
             SpellVariableType.INT // Amount of mana to consume
         };
         }

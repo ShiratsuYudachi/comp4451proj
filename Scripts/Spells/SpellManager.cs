@@ -10,10 +10,10 @@ public enum SpellVariableType
 	INT,
 	BOOL,
 	FLOAT,
-	LIVINGENTITY,
-	MASSENTITY,
+	LivingEntity,
+	MassEntity,
 	//NODE2D,
-	VECTOR2
+	Vector2
 	
 }
 
@@ -55,19 +55,19 @@ public struct SpellVariable
 					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to float");
 				}
 				break;
-			case SpellVariableType.LIVINGENTITY:
+			case SpellVariableType.LivingEntity:
 				if (!(value is LivingEntity))
 				{
 					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to LivingEntity");
 				}
 				break;
-			case SpellVariableType.MASSENTITY:
+			case SpellVariableType.MassEntity:
 				if (!(value is IMassEntity))
 				{
 					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to IMassEntity");
 				}
 				break;
-			case SpellVariableType.VECTOR2:
+			case SpellVariableType.Vector2:
 				if (!(value is Vector2))
 				{
 					throw new ArgumentException("Spell Variable Casting Error: casting " + value.GetType() + " to Vector2");
@@ -116,7 +116,7 @@ public struct SpellVariable
 
 	public LivingEntity AsEntity()
 	{
-		if (Type != SpellVariableType.LIVINGENTITY)
+		if (Type != SpellVariableType.LivingEntity)
 		{
 			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to LivingEntity");
 		}
@@ -125,7 +125,7 @@ public struct SpellVariable
 
 	public Vector2 AsVector2()
 	{
-		if (Type != SpellVariableType.VECTOR2)
+		if (Type != SpellVariableType.Vector2)
 		{
 			throw new InvalidOperationException("Spell Variable Casting Error: casting " + Type + " to Vector2");
 		}
@@ -143,7 +143,7 @@ public struct SpellVariable
 
 	public IMassEntity AsMassEntity()
 	{
-		if (Type == SpellVariableType.MASSENTITY || Type == SpellVariableType.LIVINGENTITY )
+		if (Type == SpellVariableType.MassEntity || Type == SpellVariableType.LivingEntity )
 		{
 			return (IMassEntity)_value;
 		}
@@ -192,7 +192,7 @@ public abstract class SpellPiece
 				case SpellVariableType.BOOL:
 					result[i] = ((bool)configValues[i]).ToString();
 					break;
-				case SpellVariableType.VECTOR2:
+				case SpellVariableType.Vector2:
 					var vec = (Vector2)configValues[i];
 					result[i] = $"{vec.X:F6},{vec.Y:F6}";
 					break;
@@ -228,7 +228,7 @@ public abstract class SpellPiece
 				case SpellVariableType.BOOL:
 					result[i] = bool.Parse(configStrings[i]);
 					break;
-				case SpellVariableType.VECTOR2:
+				case SpellVariableType.Vector2:
 					var vecParts = configStrings[i].Split(',');
 					if (vecParts.Length != 2)
 						throw new ArgumentException("Invalid Vector2 format");

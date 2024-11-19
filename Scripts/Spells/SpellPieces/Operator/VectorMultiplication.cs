@@ -15,12 +15,12 @@ public class VectorMultiplication : OperatorSpellPiece
     public override SpellVariableType[] ParamList { get
     {
         return new SpellVariableType[] {
-            SpellVariableType.VECTOR2, // Vector to multiply
+            SpellVariableType.Vector2, // Vector to multiply
             SpellVariableType.FLOAT // Scalar to multiply
         };
     }
     }
-    public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.Vector2; } }
 
     public override SpellVariable Operate(SpellCaster spellCaster, params SpellVariable[] args)
     {
@@ -29,6 +29,6 @@ public class VectorMultiplication : OperatorSpellPiece
         Vector2 vec1 = args[0].AsVector2();
         float scalar = args[1].AsFloat();
 
-        return new SpellVariable(SpellVariableType.VECTOR2, vec1 * scalar);
+        return new SpellVariable(SpellVariableType.Vector2, vec1 * scalar);
     }	
 }

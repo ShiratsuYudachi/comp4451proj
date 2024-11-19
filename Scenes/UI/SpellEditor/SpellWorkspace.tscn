@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq8tu8gnk3q6i"]
+[gd_scene load_steps=16 format=3 uid="uid://dq8tu8gnk3q6i"]
 
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellWorkspace.cs" id="1_8f750"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditor.cs" id="2_m1cjp"]
 [ext_resource type="PackedScene" uid="uid://m72s3878neh2" path="res://Scenes/UI/SpellEditor/spell_piece_config_panel.tscn" id="3_6jkc1"]
 [ext_resource type="PackedScene" uid="uid://rlp30h463lym" path="res://Scenes/UI/SpellEditor/spell_editor_box.tscn" id="4_aarxf"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPicker.cs" id="9_c255r"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellPieceInfoPanel.cs" id="9_wq3tf"]
 [ext_resource type="Script" path="res://Scripts/UI/KeyBindPanel.cs" id="10_013ec"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/StoredSpellsList.cs" id="10_wdj3n"]
 [ext_resource type="Script" path="res://Scripts/UI/TriggerBindPanel.cs" id="12_b7iuk"]
@@ -14,7 +15,28 @@ font_size = 31
 outline_size = 5
 outline_color = Color(1, 0, 1, 1)
 
-[node name="SpellWorkspace" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_3cwjy"]
+font_size = 56
+outline_size = 8
+outline_color = Color(0.687797, 0.414208, 0.999999, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wgoxa"]
+font_size = 15
+font_color = Color(0.945098, 0.776471, 0.0235294, 1)
+outline_color = Color(1, 1, 0.0392157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uoccg"]
+font_size = 13
+font_color = Color(0.945098, 0.776471, 0.0235294, 1)
+outline_color = Color(0.941176, 0.772549, 0.0235294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_px3k1"]
+font_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_1x8vo"]
+font_size = 14
+
+[node name="SpellWorkspace" type="Control" node_paths=PackedStringArray("spellPieceInfoPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +46,7 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8f750")
+spellPieceInfoPanel = NodePath("SpellPieceInfoPanel")
 metadata/_edit_lock_ = true
 
 [node name="SpellEditor" type="GridContainer" parent="." node_paths=PackedStringArray("spellPicker", "spellNameInput", "compileButton", "clearButton")]
@@ -305,3 +328,70 @@ offset_left = 156.0
 offset_top = 11.0
 offset_right = 275.0
 offset_bottom = 42.0
+
+[node name="SpellPieceInfoPanel" type="Panel" parent="." node_paths=PackedStringArray("spellPieceNameLabel", "descriptionLabel", "inputContentsLabel", "outputContentsLabel")]
+layout_mode = 0
+offset_left = 226.0
+offset_top = -380.0
+offset_right = 530.0
+offset_bottom = -191.0
+script = ExtResource("9_wq3tf")
+spellPieceNameLabel = NodePath("SpellPieceNameContent")
+descriptionLabel = NodePath("DescriptionContent")
+inputContentsLabel = NodePath("InputContent")
+outputContentsLabel = NodePath("OutputContent")
+
+[node name="SpellPieceNameContent" type="Label" parent="SpellPieceInfoPanel"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 453.0
+offset_bottom = 89.0
+scale = Vector2(0.4, 0.4)
+text = "SpellPieceName"
+label_settings = SubResource("LabelSettings_3cwjy")
+
+[node name="Input" type="Label" parent="SpellPieceInfoPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 108.0
+offset_right = 62.0
+offset_bottom = 131.0
+text = "Input:"
+label_settings = SubResource("LabelSettings_wgoxa")
+
+[node name="Output" type="Label" parent="SpellPieceInfoPanel"]
+offset_left = 13.0
+offset_top = 151.0
+offset_right = 70.0
+offset_bottom = 174.0
+text = "Output:"
+label_settings = SubResource("LabelSettings_uoccg")
+
+[node name="InputContent" type="Label" parent="SpellPieceInfoPanel"]
+offset_left = 65.0
+offset_top = 110.0
+offset_right = 294.0
+offset_bottom = 149.0
+text = " Param1(Type1), Param2(type2)"
+label_settings = SubResource("LabelSettings_px3k1")
+autowrap_mode = 3
+
+[node name="OutputContent" type="Label" parent="SpellPieceInfoPanel"]
+offset_left = 68.0
+offset_top = 151.0
+offset_right = 292.0
+offset_bottom = 190.0
+text = "OutputType"
+label_settings = SubResource("LabelSettings_px3k1")
+autowrap_mode = 3
+
+[node name="DescriptionContent" type="Label" parent="SpellPieceInfoPanel"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 54.0
+offset_right = 290.0
+offset_bottom = 111.0
+text = "This is a spell description"
+label_settings = SubResource("LabelSettings_1x8vo")
+autowrap_mode = 3

@@ -17,15 +17,15 @@ public class GetEntityPos : OperatorSpellPiece
         get
         {
             return new SpellVariableType[] {
-            SpellVariableType.MASSENTITY // Entity to get position of
+            SpellVariableType.MassEntity // Entity to get position of
         };
         }
     }
-    public override SpellVariableType ReturnType { get { return SpellVariableType.VECTOR2; } }
+    public override SpellVariableType ReturnType { get { return SpellVariableType.Vector2; } }
 
     public override SpellVariable Operate(SpellCaster spellCaster, params SpellVariable[] args)
     {
         IMassEntity entity = args[0].AsMassEntity();
-        return new SpellVariable(SpellVariableType.VECTOR2, entity.massPosition);
+        return new SpellVariable(SpellVariableType.Vector2, entity.massPosition);
     }
 }

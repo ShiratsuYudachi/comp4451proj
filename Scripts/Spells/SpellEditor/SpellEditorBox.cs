@@ -47,6 +47,8 @@ public partial class SpellEditorBox : Button
 	}
 
 	public void onSelectionDone(int index, Vector2 atPosition, int mouseButtonIndex){
+		if (mouseButtonIndex != 1)
+			return;
 		if (editingBox == this){
 			spellPicker.resetPosition();
 			editingBox = null;
@@ -60,6 +62,7 @@ public partial class SpellEditorBox : Button
 	public void clear(){
 		spellPiece = null;
 		SpellPieceParamDirection = new DPad.Direction[4];
+		paramSourceDisplay.updateParamSourceDisplay(SpellPieceParamDirection);
 		spellPieceIcon.clear();
 	}
 

@@ -42,8 +42,9 @@ compileButton = NodePath("../CompileButton")
 clearButton = NodePath("../ClearButton")
 spellEditorBoxScene = ExtResource("4_aarxf")
 
-[node name="SpellsList" type="ItemList" parent="."]
-z_index = 1
+[node name="SpellsList" type="ItemList" parent="." node_paths=PackedStringArray("executorButton", "operatorButton", "selectorButton")]
+z_index = 10
+clip_contents = false
 layout_mode = 0
 offset_left = -272.0
 offset_top = 3.0
@@ -52,6 +53,33 @@ offset_bottom = 359.0
 max_columns = 3
 icon_scale = 0.5
 script = ExtResource("9_c255r")
+executorButton = NodePath("ExecutorButton")
+operatorButton = NodePath("OperatorButton")
+selectorButton = NodePath("SelectorButton")
+
+[node name="ExecutorButton" type="Button" parent="SpellsList"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -36.0
+offset_right = 71.0
+offset_bottom = -5.0
+text = "Executor"
+
+[node name="SelectorButton" type="Button" parent="SpellsList"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = -36.0
+offset_right = 246.0
+offset_bottom = -5.0
+text = "Selector"
+
+[node name="OperatorButton" type="Button" parent="SpellsList"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = -36.0
+offset_right = 158.0
+offset_bottom = -5.0
+text = "Operator"
 
 [node name="StoredSpellsList" type="ItemList" parent="."]
 layout_mode = 0
@@ -63,10 +91,10 @@ script = ExtResource("10_wdj3n")
 
 [node name="SpellNameInput" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 116.0
-offset_top = 501.0
-offset_right = 421.0
-offset_bottom = 532.0
+offset_left = 130.0
+offset_top = 47.0
+offset_right = 435.0
+offset_bottom = 78.0
 placeholder_text = "Enter Spell Name Here"
 
 [node name="CompileButton" type="Button" parent="."]

@@ -7,24 +7,52 @@ public partial class SpellPicker : ItemList
 
 	public Vector2 spellListInitialPosition;
 
+	[Export]
+	public Button executorButton;
+
+	[Export]
+	public Button operatorButton;
+
+	[Export]
+	public Button selectorButton;
+
+
 	public override void _Ready()
 	{
 		spellListInitialPosition = this.Position;
 
 		
+		refreshItems(typeof(SpellPiece));
+
+		executorButton.Pressed+=()=>{
+			refreshItems(typeof(ExecutorSpellPiece));
+		};
+
+		operatorButton.Pressed+=()=>{
+			refreshItems(typeof(OperatorSpellPiece));
+		};
+
+		selectorButton.Pressed+=()=>{
+			refreshItems(typeof(SelectorSpellPiece));
+		};
+
+	}
+
+	public void refreshItems(Type SpellPieceType){
+		Clear();
 		ReadOnlyCollection<SpellPieceInfo> spellPieces = SpellRegistry.GetAllSpellPieces();
 
 		foreach (SpellPieceInfo spellPieceInfo in spellPieces)
 		{
-			GD.Print("Adding spell piece: " + spellPieceInfo.name);
-			AddItem(spellPieceInfo.name);
+			if (spellPieceInfo.spellClassType.IsSubclassOf(SpellPieceType)){
+				AddItem(spellPieceInfo.name);
+			}
 		}
-		// 设置所有项目为不可选择
+		
 		for (int i = 0; i < GetItemCount(); i++)
 		{
 			SetItemSelectable(i, false);
 		}
-
 	}
 
 	public void resetPosition()
@@ -44,7 +72,7 @@ public partial class SpellPicker : ItemList
 
 	public SpellPiece getSpellPiece(int index)
 	{
-		SpellPieceInfo spellPieceInfo = SpellRegistry.GetSpellPieceInfo(index);
+		SpellPieceInfo spellPieceInfo = SpellRegistry.GetSpellPieceInfo(getSpellPieceName(index));
 		return (SpellPiece)spellPieceInfo.spellClassType.GetConstructor(Type.EmptyTypes).Invoke(null);
 	}
 }

@@ -12,12 +12,11 @@ public partial class GameScene : Node2D
     public static PlayerControl player;
     public static SpellStorage playerSpellStorage = new SpellStorage();
 
+    public static List<Entity> activeEntities = new List<Entity>();
+
     public static CanvasLayer UI;
 
     bool gameInitialized = false;
-
-    private static Queue<(Vector2 position, int radius, Action<Entity> onTrigger)> pendingAOEs = 
-        new Queue<(Vector2, int, Action<Entity>)>();
 
     public override void _EnterTree()
     {
@@ -168,33 +167,20 @@ public partial class GameScene : Node2D
 
     public static void CreateAOE_Trigger(Vector2 position, int radius, Action<Entity> onTrigger)
     {
-        // 将AOE创建请求加入队列
-        pendingAOEs.Enqueue((position, radius, onTrigger));
-        // 延迟处理队列
-        instance.CallDeferred("_ProcessPendingAOEs");
+        foreach (Entity entity in activeEntities){
+            if (entity.GlobalPosition.DistanceTo(position) <= radius){
+                onTrigger(entity);
+            }
+        }
     }
 
     public static void CreateExplosionEffect(Vector2 position, float level)
     {
+        // explosion particle effect
         PackedScene explosionEffectScene = ResourceManager.GetScene(SceneResourceType.ExplosionEffect);
         OneTimeEffect explosionEffect = explosionEffectScene.Instantiate<OneTimeEffect>();
         instance.AddChild(explosionEffect);
         explosionEffect.GlobalPosition = position;
-    }
-
-    // 新增处理队列的方法
-    private void _ProcessPendingAOEs()
-    {
-        while (pendingAOEs.Count > 0)
-        {
-            var (position, radius, onTrigger) = pendingAOEs.Dequeue();
-            PackedScene aoeTriggerScene = ResourceManager.GetScene(SceneResourceType.AOE_Trigger);
-            AOE_Trigger_Entity aoeTrigger = aoeTriggerScene.Instantiate<AOE_Trigger_Entity>();
-            aoeTrigger.GlobalPosition = position;
-            aoeTrigger.SetRadius(radius);
-            aoeTrigger.OnTrigger = onTrigger;
-            AddChild(aoeTrigger);
-        }
     }
 
     public static void CreateExplosion(Vector2 position, float level)

@@ -72,6 +72,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
             ElementDisplay display = scene.Instantiate<ElementDisplay>();
             this.AddChild(display);
         }
+        GameScene.activeEntities.Add(this);
     }
     public override void _Process(double delta)
     {
@@ -89,6 +90,12 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
         }
         reactor.Update(delta);
     }
+
+    public override void _ExitTree()
+    {
+        GameScene.activeEntities.Remove(this);
+    }
+    
     public virtual void OnHit(float damage)
     {
         health -= damage * nextDamageMultiplier;
@@ -148,4 +155,6 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
         // freeze
         GameScene.ShowReaction(Reaction.Freeze, this.GlobalPosition);
     }
+
+    
 }

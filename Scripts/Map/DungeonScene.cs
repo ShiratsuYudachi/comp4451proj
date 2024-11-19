@@ -9,8 +9,8 @@ public partial class DungeonScene : GameScene
 
 	float timeElapsed = 0;
 	
-	bool levelCleared = false;
-	bool done = false;
+	public bool levelCleared = false;
+	
 
 	List<ScenePortal> portals = new List<ScenePortal>();
 
@@ -49,6 +49,7 @@ public partial class DungeonScene : GameScene
 			default:
 				levelCleared = true;
 				GD.Print("[INFO] DungeonScene: Level cleared");
+				showPortals();
 				break;
 		}
 	}
@@ -71,17 +72,11 @@ public partial class DungeonScene : GameScene
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
-		if (done){
+		if (levelCleared){
 			return;
 		}
 		if (checkWaveCompleted()){
 			StartWave(++waveNumber);
-		}
-
-		if (levelCleared){
-			GD.Print("[INFO] DungeonScene: Level cleared");
-			showPortals();
-			done = true;
 		}
 
 		

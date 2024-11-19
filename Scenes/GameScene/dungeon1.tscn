@@ -266,3 +266,6 @@ shape = SubResource("RectangleShape2D_4q3rn")
 [node name="ScenePortal" parent="." groups=["ScenePortal"] instance=ExtResource("4_mc012")]
 position = Vector2(143, -47)
 targetSceneName = "Scene1"
+
+[node name="SceneEntrance" type="Node2D" parent="."]
+position = Vector2(-15, 135)

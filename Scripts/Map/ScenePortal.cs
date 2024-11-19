@@ -26,6 +26,9 @@ public partial class ScenePortal : Area2D
 
 	public void onPlayerEnter(Area2D area)
 	{
+		if (GameScene.instance is DungeonScene && !((DungeonScene)GameScene.instance).levelCleared){
+			return;
+		}
 		if (area.GetParent() is PlayerControl && area.IsInGroup("PlayerHitBox"))
 		{			
 			this.CallDeferred("_deferred_switch_scene", targetSceneName);
@@ -39,6 +42,11 @@ public partial class ScenePortal : Area2D
 		Node2D sourceSceneNode = GameScene.instance;
 		Window window = sourceSceneNode.GetTree().Root;
 		GameScene newScene = GD.Load<PackedScene>("res://Scenes/GameScene/"+targetSceneName+".tscn").Instantiate<GameScene>();
+		Node2D SceneEntrance = newScene.GetNode<Node2D>("SceneEntrance");
+		GD.Print("SceneEntrance: " + SceneEntrance);
+		if (SceneEntrance != null){
+			GameScene.player.GlobalPosition = SceneEntrance.GlobalPosition;
+		}
 		window.AddChild(newScene);
 		GameScene.player.Reparent(newScene);
 		GameScene.UI.Reparent(newScene);

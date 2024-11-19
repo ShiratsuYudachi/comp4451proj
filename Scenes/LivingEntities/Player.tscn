@@ -425,11 +425,7 @@ shape = SubResource("RectangleShape2D_fq7jj")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
-limit_left = -225
-limit_top = -145
-limit_right = 225
-limit_bottom = 145
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 metadata/_edit_lock_ = true
 

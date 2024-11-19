@@ -250,3 +250,5 @@ entityScene = ExtResource("6_r0hs0")
 [node name="ScenePortal" parent="." instance=ExtResource("6_e0io3")]
 position = Vector2(92, 34)
 targetSceneName = "Scene1"
+
+[node name="SceneEntrance" type="Node2D" parent="."]

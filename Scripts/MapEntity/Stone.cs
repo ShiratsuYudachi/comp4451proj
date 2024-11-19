@@ -19,8 +19,9 @@ public partial class Stone : MapEntity
 	{
 		base._Process(delta);
 	}
-
-	public override void ApplyDamage(long amout = 0, Vector2? direction = null, Entity source = null)
+	public override void OnHit(Damage damage)
 	{
+		base.OnHit(damage);
 	}
+
 }

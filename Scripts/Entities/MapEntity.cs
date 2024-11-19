@@ -12,6 +12,7 @@ public abstract partial class MapEntity : Entity
     public override void _Ready()
     {
         base._Ready();
+        this.friction = 0;
         animationPlayer = animatedSprite2D?.GetNode<AnimationPlayer>("AnimationPlayer");
         if (animationPlayer == null)
         {
@@ -19,10 +20,10 @@ public abstract partial class MapEntity : Entity
         }
         
     }
-    public override void OnHit(float damage)
+    public override void OnHit(Damage damage)
     {
         animationPlayer?.Play("onHit");
-        if (damage < hardness)
+        if (damage.amount < hardness)
         {
             return;
         }

@@ -105,17 +105,9 @@ public partial class Necromancer : LivingEntity
         attackAnimationFinished = false;
         state = State.Attack;
     }
-    public override void OnHit(float damage)
-    {
-        base.OnHit(damage);
-    }
     public override void Die()
     {
         base.Die();
-    }
-    public override void ApplyDamage(long amount = 0L, Vector2? direction = null, Entity source = null)
-    {
-        throw new NotImplementedException();
     }
     private void playAnimation(String animationName)
     {

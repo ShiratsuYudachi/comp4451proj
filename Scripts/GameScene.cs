@@ -61,12 +61,39 @@ public partial class GameScene : Node2D
         tipManager.ShowTip(tip);
     }
 
-    public static void ShowDamage(float damage, Vector2 worldPosition)
+    public static void ShowDamage(float damage, Vector2 worldPosition, Chemistry.Element? element = null)
     {
         //Control damageLabelParent = damageLabelScene.Instantiate<Control>();
         Label damageLabel = damageLabelScene.Instantiate<Label>();
         damageLabel.Text = ((int)damage).ToString();
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
+        GD.Print("ShowDamage: " + damageLabel.GlobalPosition + " " + element);
+        if (element != null){
+            switch (element)
+            {
+                case Chemistry.Element.Pyro:
+                    damageLabel.LabelSettings.OutlineColor = Colors.Red;
+                    break;
+                case Chemistry.Element.Hydro:
+                    damageLabel.LabelSettings.OutlineColor = Colors.Blue;
+                    break;
+                case Chemistry.Element.Cryo:
+                    damageLabel.LabelSettings.OutlineColor = Colors.LightBlue;
+                    break;
+                case Chemistry.Element.Electro:
+                    damageLabel.LabelSettings.OutlineColor = Colors.Purple;
+                    break;
+                case Chemistry.Element.Geo:
+                    damageLabel.LabelSettings.OutlineColor = Colors.Yellow;
+                    break;
+                case Chemistry.Element.Dendro:
+                    damageLabel.LabelSettings.OutlineColor = Colors.Green;
+                    break;
+                case Chemistry.Element.Anemo:
+                    damageLabel.LabelSettings.OutlineColor = Colors.LightGreen;
+                    break;
+            }
+        }
         instance.AddChild(damageLabel);
     }
 

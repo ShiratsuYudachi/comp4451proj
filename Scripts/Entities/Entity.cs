@@ -3,7 +3,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Chemistry;
-public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity, IMaterial
+public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
 {
     
     // Configurable
@@ -55,8 +55,7 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     }
     
     public float MaxHealth { get { return MAX_HEALTH; } }
-    
-    public abstract void ApplyDamage(long amout = 0L, Vector2? direction = null, Entity? source = null);
+
     public override void _Ready()
     {
         animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -95,16 +94,28 @@ public abstract partial class Entity : CharacterBody2D, IDamageable, IMassEntity
     {
         GameScene.activeEntities.Remove(this);
     }
-    
-    public virtual void OnHit(float damage)
-    {
-        health -= damage * nextDamageMultiplier;
+
+    public virtual void OnHit(Damage damage){
+        health -= damage.amount * nextDamageMultiplier;
         if (nextDamageMultiplier != 1){
             nextDamageMultiplier = 1;
         }
         // GD.Print(GetType().Name + " hit for " + damage + " pts. Remaining health: " + health);
-        GameScene.ShowDamage(damage, GlobalPosition);
+        GameScene.ShowDamage(damage.amount, GlobalPosition, damage.element);
+        
+        if (damage.element != null && damage.elementAmount != null){
+            reactor.AddElement(damage.element.Value, damage.elementAmount.Value);
+        }
+        
+        if (damage.knockback != null){
+            velocity += (Vector2)damage.knockback;
+        }
         if (health <= 0) Die();
+    }
+
+    public void OnHit(float damage, Vector2? knockback = null, Entity? source = null, Chemistry.Element? element = null, float? elementAmount = null)
+    {
+        OnHit(new Damage{amount = damage, knockback = knockback, source = source, element = element, elementAmount = elementAmount});
     }
     public virtual void Die()
     {

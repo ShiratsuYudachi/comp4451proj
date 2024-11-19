@@ -66,10 +66,6 @@ public partial class Slime : LivingEntity
     {
         throw new NotImplementedException("Slime shouldn't call Attack method!");
     }
-    public override void OnHit(float damage)
-    {
-        base.OnHit(damage);
-    }
     public override void Die()
     {
         if (type == Type.Mother)
@@ -88,10 +84,6 @@ public partial class Slime : LivingEntity
             slimeInstance.GlobalPosition = GlobalPosition + new Godot.Vector2(GD.RandRange(-10, 10), GD.RandRange(-10, 10));
             GetParent().AddChild(slimeInstance);
         }
-    }
-    public override void ApplyDamage(long amout = 0, Godot.Vector2? direction = null, Entity source = null)
-    {
-        throw new NotImplementedException();
     }
     private void playAnimation(String animationName)
     {

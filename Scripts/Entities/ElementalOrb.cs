@@ -8,8 +8,7 @@ public partial class ElementalOrb : Bullet
 
 
     protected override void onHitEntity(Entity entity){
-        entity.reactor.AddElement(element, 10); 
-		base.onHitEntity(entity);
+        entity.OnHit(10, this.velocity/10, caster, element, 10);
 	}
 
     public void SetElement(Element element){

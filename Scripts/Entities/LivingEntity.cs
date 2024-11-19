@@ -39,7 +39,7 @@ public abstract partial class LivingEntity : Entity
 		base._Process(delta);
 	}
 	public abstract void Attack();
-	public override void OnHit(float damage)
+	public override void OnHit(Damage damage)
 	{
 		if (animatedSprite2D == null)
         {

@@ -7,14 +7,16 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
 {
     
     // Configurable
-    public int mass { get; set; } = 1;
-    public float friction = 0.98f;
+    public int mass { get; set; } = 1; // multiplier for handling ApplyImpulse
+    public float frictionMultiplier = 1f;
     protected float health = 100;
     protected float MAX_HEALTH = 100;
 
 
     // Public
     public Group group = Group.None;
+
+    public bool isStatic = false;
 
     public Reactor reactor = new Reactor();
     public List<Effect> effects = new List<Effect>();
@@ -73,11 +75,51 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
         }
         GameScene.activeEntities.Add(this);
     }
+
+    private void handleMovement(double delta){
+        // Convert velocity to motion
+        Vector2 motion = velocity * (float)delta;
+        
+        // Handle collision
+        KinematicCollision2D? collision = MoveAndCollide(motion);
+        if (collision != null)
+        {
+            Vector2 normal = collision.GetNormal();
+            if (Mathf.Abs(normal.X) > 0.1f)
+                velocity.X = 0;
+            if (Mathf.Abs(normal.Y) > 0.1f)
+                velocity.Y = 0;
+        }
+        
+        // Apply friction force
+        if (velocity.Length() > 0.1f)  // Only apply friction if moving
+        {
+            float frictionForce = frictionMultiplier * 1000f;  // Base friction force
+            Vector2 frictionDirection = -velocity.Normalized();
+            Vector2 frictionVector = frictionDirection * frictionForce * (float)delta;
+            
+            // Apply friction but don't reverse movement direction
+            if (frictionVector.Length() > velocity.Length())
+            {
+                velocity = Vector2.Zero;  // Stop completely
+            }
+            else
+            {
+                velocity += frictionVector;
+            }
+        }
+        else
+        {
+            velocity = Vector2.Zero;  // Stop completely if very slow
+        }
+    }
     public override void _Process(double delta)
     {
-        Vector2 offset = new Vector2((float)(velocity.X * delta), (float)(velocity.Y * delta));
-		Position += offset;
-		velocity *= friction;
+        if (!isStatic){
+            handleMovement(delta);
+        }
+        
+        // Rest of the original code
         foreach (Effect effect in effects.ToArray())
         {
             effect.Update(delta);
@@ -113,9 +155,17 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
         if (health <= 0) Die();
     }
 
+    public void ApplyImpulse(Vector2 impulse){
+        velocity += impulse / mass;
+    }
+
     public void OnHit(float damage, Vector2? knockback = null, Entity? source = null, Chemistry.Element? element = null, float? elementAmount = null)
     {
         OnHit(new Damage{amount = damage, knockback = knockback, source = source, element = element, elementAmount = elementAmount});
+    }
+
+    public void OnMeleeHit(float damage, Entity source, int knockbackImpulseValue = 0, Chemistry.Element? element = null){
+        OnHit(damage, (this.GlobalPosition - source.GlobalPosition).Normalized() * knockbackImpulseValue, source, element);
     }
     public virtual void Die()
     {

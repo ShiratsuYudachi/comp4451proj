@@ -1,6 +1,7 @@
 #nullable enable
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class PlayerControl : LivingEntity
 {
@@ -16,14 +17,14 @@ public partial class PlayerControl : LivingEntity
 		spellCaster = GetNode<SpellCaster>("SpellCaster");
 		health = 114514;
 		group = Group.Player;
-		effects.Add(new BurningEffect(this, 5));
+		this.FloorSnapLength = 0;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 inputVector = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
 		Velocity = inputVector * Speed;
-		MoveAndSlide();
+		MoveAndCollide(Velocity * (float)delta);
 
 		if (inputVector.X > 0)
 		{

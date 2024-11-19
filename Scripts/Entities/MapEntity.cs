@@ -12,7 +12,7 @@ public abstract partial class MapEntity : Entity
     public override void _Ready()
     {
         base._Ready();
-        this.friction = 0;
+        this.isStatic = true;
         animationPlayer = animatedSprite2D?.GetNode<AnimationPlayer>("AnimationPlayer");
         if (animationPlayer == null)
         {

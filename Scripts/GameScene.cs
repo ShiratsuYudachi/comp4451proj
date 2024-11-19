@@ -24,7 +24,6 @@ public partial class GameScene : Node2D
             Initialize();
             gameInitialized = true;
         }
-        GD.PrintErr("GameScene _EnterTree");
     }
 
     public override void _Ready()
@@ -72,7 +71,6 @@ public partial class GameScene : Node2D
         damageLabel.LabelSettings = newSettings;
         damageLabel.Text = ((int)damage).ToString();
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
-        GD.Print("ShowDamage: " + damageLabel.GlobalPosition + " " + element);
         switch (element)
         {
             case Chemistry.Element.Pyro:

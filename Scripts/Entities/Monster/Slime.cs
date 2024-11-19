@@ -99,11 +99,11 @@ public partial class Slime : LivingEntity
             if (livingEntityOnHit.group == group) return;
             if (type == Type.Mother)
             {
-                livingEntityOnHit.OnHit(10);
+                livingEntityOnHit.OnMeleeHit(10, this, 100);
             }
             else
             {
-                livingEntityOnHit.OnHit(5);
+                livingEntityOnHit.OnMeleeHit(5, this, 50);
             }
         }
         else if (nodeOnHit is MapEntity mapEntityOnHit)

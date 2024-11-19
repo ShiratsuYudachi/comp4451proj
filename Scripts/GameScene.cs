@@ -24,6 +24,7 @@ public partial class GameScene : Node2D
             Initialize();
             gameInitialized = true;
         }
+        GD.PrintErr("GameScene _EnterTree");
     }
 
     public override void _Ready()
@@ -63,37 +64,43 @@ public partial class GameScene : Node2D
 
     public static void ShowDamage(float damage, Vector2 worldPosition, Chemistry.Element? element = null)
     {
-        //Control damageLabelParent = damageLabelScene.Instantiate<Control>();
         Label damageLabel = damageLabelScene.Instantiate<Label>();
+        LabelSettings newSettings = new LabelSettings();
+        newSettings.FontSize = damageLabel.LabelSettings.FontSize;
+        newSettings.Font = damageLabel.LabelSettings.Font;
+        newSettings.OutlineSize = damageLabel.LabelSettings.OutlineSize;
+        damageLabel.LabelSettings = newSettings;
         damageLabel.Text = ((int)damage).ToString();
         damageLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         GD.Print("ShowDamage: " + damageLabel.GlobalPosition + " " + element);
-        if (element != null){
-            switch (element)
-            {
-                case Chemistry.Element.Pyro:
-                    damageLabel.LabelSettings.OutlineColor = Colors.Red;
-                    break;
-                case Chemistry.Element.Hydro:
-                    damageLabel.LabelSettings.OutlineColor = Colors.Blue;
-                    break;
-                case Chemistry.Element.Cryo:
-                    damageLabel.LabelSettings.OutlineColor = Colors.LightBlue;
-                    break;
-                case Chemistry.Element.Electro:
-                    damageLabel.LabelSettings.OutlineColor = Colors.Purple;
-                    break;
-                case Chemistry.Element.Geo:
-                    damageLabel.LabelSettings.OutlineColor = Colors.Yellow;
-                    break;
-                case Chemistry.Element.Dendro:
-                    damageLabel.LabelSettings.OutlineColor = Colors.Green;
-                    break;
-                case Chemistry.Element.Anemo:
-                    damageLabel.LabelSettings.OutlineColor = Colors.LightGreen;
-                    break;
-            }
+        switch (element)
+        {
+            case Chemistry.Element.Pyro:
+                damageLabel.LabelSettings.OutlineColor = Colors.Red;
+                break;
+            case Chemistry.Element.Hydro:
+                damageLabel.LabelSettings.OutlineColor = Colors.Blue;
+                break;
+            case Chemistry.Element.Cryo:
+                damageLabel.LabelSettings.OutlineColor = Colors.LightBlue;
+                break;
+            case Chemistry.Element.Electro:
+                damageLabel.LabelSettings.OutlineColor = Colors.Purple;
+                break;
+            case Chemistry.Element.Geo:
+                damageLabel.LabelSettings.OutlineColor = Colors.Yellow;
+                break;
+            case Chemistry.Element.Dendro:
+                damageLabel.LabelSettings.OutlineColor = Colors.Green;
+                break;
+            case Chemistry.Element.Anemo:
+                damageLabel.LabelSettings.OutlineColor = Colors.LightGreen;
+                break;
+            default:
+                damageLabel.LabelSettings.OutlineColor = Colors.Black;
+                break;
         }
+        
         instance.AddChild(damageLabel);
     }
 

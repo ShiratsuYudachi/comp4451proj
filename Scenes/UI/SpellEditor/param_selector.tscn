@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu2bgcl4b8eu3"]
+[gd_scene load_steps=9 format=3 uid="uid://cv6jkljfpbod8"]
 
 [ext_resource type="Texture2D" uid="uid://bn7aq8gjaqhnw" path="res://Images/64x64Empty.png" id="1_36y21"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/ParamSelector.cs" id="2_f08xr"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://xcr5vful6c52" path="res://assets/UI/SpellEditor/SpellButtonDirectionButton_None.png" id="6_xqi68"]
 [ext_resource type="Texture2D" uid="uid://cwf2y4afip50e" path="res://assets/UI/SpellEditor/SpellButtonDirectionButton_None_Pressed.png" id="7_8cu3y"]
 
-[node name="ParamSelector" type="TextureRect" node_paths=PackedStringArray("dPad")]
+[sub_resource type="LabelSettings" id="LabelSettings_i1agx"]
+font_size = 13
+
+[node name="ParamSelector" type="TextureRect" node_paths=PackedStringArray("ParamNameLabel", "ParamTypeLabel", "dPad")]
 texture = ExtResource("1_36y21")
 script = ExtResource("2_f08xr")
+ParamNameLabel = NodePath("ParamNameLabel")
+ParamTypeLabel = NodePath("ParamTypeLabel")
 dPad = NodePath("DPad")
 
 [node name="ParamNameLabel" type="Label" parent="."]
@@ -20,6 +25,14 @@ offset_top = 20.0
 offset_right = 99.0
 offset_bottom = 43.0
 text = "ParamName"
+
+[node name="ParamTypeLabel" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 34.0
+offset_right = 108.0
+offset_bottom = 57.0
+text = "ParamName"
+label_settings = SubResource("LabelSettings_i1agx")
 
 [node name="DPad" type="Control" parent="."]
 anchors_preset = 0

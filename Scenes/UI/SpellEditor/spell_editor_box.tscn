@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rlp30h463lym"]
+[gd_scene load_steps=6 format=3 uid="uid://ea311lk6livp"]
 
 [ext_resource type="Texture2D" uid="uid://ccinqaaf1itjh" path="res://assets/UI/SpellEditor/SpellBox.png" id="1_60pmx"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellEditor/SpellEditorBox.cs" id="2_vhlv2"]

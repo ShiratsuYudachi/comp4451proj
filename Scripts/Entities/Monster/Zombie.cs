@@ -7,6 +7,7 @@ public partial class Zombie : LivingEntity
 	{
 		base._Ready();
 		group = Group.Enemy;
+		GetNode<Area2D>("HitBox").Connect("area_entered", new Callable(this, nameof(OnHitting)));
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -60,10 +61,28 @@ public partial class Zombie : LivingEntity
 	}
 	public override void Attack()
 	{
+		throw new NotImplementedException("Zombie shouldn't call Attack()!");
 	}
 
 	public override void Die()
 	{
 		base.Die();
+	}
+	public void OnHitting(Area2D area)
+	{
+		if (!area.IsInGroup("HitBox")) return;
+		Node nodeOnHit = area.GetParent();
+		if (nodeOnHit is LivingEntity livingEntityOnHit)
+		{
+			if (livingEntityOnHit.group == group) return;
+			livingEntityOnHit.OnMeleeHit(20, this, 200);
+		}
+		else if (nodeOnHit is MapEntity mapEntityOnHit)
+		{
+			mapEntityOnHit.OnHit(20);
+		}
+		if (state == State.Moving) GlobalPosition -= randomDirection * 5;
+		state = State.Idle;
+		timer = 1;
 	}
 }

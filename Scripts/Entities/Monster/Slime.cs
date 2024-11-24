@@ -40,7 +40,7 @@ public partial class Slime : LivingEntity
                 break;
             case State.Moving:
                 playAnimation("moving");
-                bool collided = MoveAndSlide();
+                MoveAndSlide();
                 if (randomDirection.X > 0)
                 {
                     isRight = true;

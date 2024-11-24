@@ -3,36 +3,31 @@ using System;
 
 public partial class Zombie : LivingEntity
 {
+	private String lastPlayedAnimationName = "";
 	public override void _Ready()
 	{
 		base._Ready();
 		group = Group.Enemy;
 		GetNode<Area2D>("HitBox").Connect("area_entered", new Callable(this, nameof(OnHitting)));
 	}
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		switch (state)
 		{
 			case State.Idle:
-				animatedSprite2D.Play("idle");
+				playAnimation("idle");
 				timer -= (float)delta;
 				if (timer <= 0)
 				{
 					state = State.Moving;
-					randomDirection = new Vector2(
-						(float)GD.RandRange(-1, 1),
-						(float)GD.RandRange(-1, 1)
-					).Normalized();
 					timer = 1;
+					randomDirection = new Vector2(GD.RandRange(-1, 1), GD.RandRange(-1, 1)).Normalized();
+					Velocity = randomDirection * 25;
 				}
 				break;
 			case State.Moving:
-				animatedSprite2D.Play("moving");
-				Velocity = randomDirection * 50;
+				playAnimation("moving");
 				MoveAndSlide();
-
-				// 添加转向逻辑
 				if (randomDirection.X > 0)
 				{
 					isRight = true;
@@ -42,19 +37,14 @@ public partial class Zombie : LivingEntity
 					isRight = false;
 				}
 				animatedSprite2D.FlipH = !isRight;
-
 				timer -= (float)delta;
 				if (timer <= 0)
 				{
-					Velocity = Vector2.Zero;
 					state = State.Idle;
 					timer = 3;
-					randomDirection = new Vector2(
-						(float)GD.RandRange(-1, 1),
-						(float)GD.RandRange(-1, 1)
-					).Normalized();
-					timer = 1;
 				}
+				break;
+			default:
 				break;
 		}
 		base._Process(delta);
@@ -63,10 +53,14 @@ public partial class Zombie : LivingEntity
 	{
 		throw new NotImplementedException("Zombie shouldn't call Attack()!");
 	}
-
 	public override void Die()
 	{
 		base.Die();
+	}
+	private void playAnimation(String animationName)
+	{
+		lastPlayedAnimationName = animationName;
+		animatedSprite2D.Play(animationName);
 	}
 	public void OnHitting(Area2D area)
 	{

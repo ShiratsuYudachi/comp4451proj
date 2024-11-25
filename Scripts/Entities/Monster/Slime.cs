@@ -40,7 +40,7 @@ public partial class Slime : LivingEntity
                 break;
             case State.Moving:
                 playAnimation("moving");
-                bool collided = MoveAndSlide();
+                MoveAndSlide();
                 if (randomDirection.X > 0)
                 {
                     isRight = true;
@@ -64,7 +64,7 @@ public partial class Slime : LivingEntity
     }
     public override void Attack()
     {
-        throw new NotImplementedException("Slime shouldn't call Attack method!");
+        throw new NotImplementedException("Slime shouldn't call Attack()!");
     }
     public override void Die()
     {

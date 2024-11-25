@@ -38,11 +38,18 @@ public partial class KeyBindPanel : Panel
 	}
 
 	private List<SpellEvaluationTreeNode> getBindedSpells(){
+		// Initialize list with null values for all possible slots
 		List<SpellEvaluationTreeNode> bindedSpells = new List<SpellEvaluationTreeNode>();
-		foreach (string spellName in getBindedSpellNames()){
-			SpellEvaluationTreeNode spell = GameScene.playerSpellStorage.getSpell(spellName);
-			if (spell != null){
-				bindedSpells.Add(spell);
+		for (int i = 0; i < actionButtons.Count; i++) {
+			bindedSpells.Add(null);
+		}
+		
+		// Update specific slots based on button selections
+		for (int i = 0; i < actionButtons.Count; i++){
+			string spellName = actionButtons[i].Text;
+			if (spellName != "None"){
+				SpellEvaluationTreeNode spell = GameScene.playerSpellStorage.getSpell(spellName);
+				bindedSpells[i] = spell;
 			}
 		}
 		return bindedSpells;

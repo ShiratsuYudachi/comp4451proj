@@ -28,6 +28,7 @@ public abstract class Effect{
     }
 
     public virtual void OnRemove(){
+        
         _effect.QueueFree();
     }
 }

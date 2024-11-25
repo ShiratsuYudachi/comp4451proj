@@ -9,10 +9,11 @@ public partial class Tree : MapEntity
 		group = Group.Map;
 		base._Ready();
 		this.animatedSprite2D.Modulate = Colors.White;
-		this.hardness = 20;
-		this.MAX_HEALTH = 100;
+		this.hardness = 5;
+		this.MAX_HEALTH = 200;
 		health = MAX_HEALTH;
 		this.animatedSprite2D.Play("default");
+		this.reactor.AddElement(Chemistry.Element.Dendro, 10);
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

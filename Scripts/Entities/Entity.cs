@@ -188,6 +188,11 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
     public void onElectroCharged(float elementAmount){
         // Static damage, small range AOE, give electro
         GameScene.ShowReaction(Reaction.ElectroCharged, this.GlobalPosition);
+        GameScene.CreateAOE_Trigger(this.GlobalPosition, 60, (Entity entity) => {
+            if (entity != this){
+                entity.OnHit(5, element: Chemistry.Element.Electro, elementAmount: 10);
+            }
+        });
     }
 
     public void onSuperconduct(float elementAmount){
@@ -202,8 +207,13 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
     }
 
     public void onVaporize(float elementAmount){
-        // Empty implementation
+        // 移除所有燃烧效果
+        ClearEffect<BurningEffect>();
+        
+        // 显示蒸发反应
         GameScene.ShowReaction(Reaction.Vaporize, this.GlobalPosition);
+        
+        // 增加伤害倍率
         nextDamageMultiplier = 2f;
     }
 
@@ -217,5 +227,14 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
         GameScene.ShowReaction(Reaction.Freeze, this.GlobalPosition);
     }
 
-    
+    public void ClearEffect<T>() where T : Effect
+    {
+        effects.ForEach(effect => {
+            if (effect is T){
+                effect.OnRemove();
+            }
+        });
+        effects.RemoveAll(effect => effect is T);
+    }
+
 }

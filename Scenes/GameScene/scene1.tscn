@@ -205,6 +205,12 @@ y_sort_enabled = true
 script = ExtResource("1_4joqk")
 metadata/_edit_lock_ = true
 
+[node name="Tree3" parent="." instance=ExtResource("7_xpblk")]
+position = Vector2(-38, 2)
+
+[node name="Tree2" parent="." instance=ExtResource("7_xpblk")]
+position = Vector2(-58, 18)
+
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 texture_filter = 1
@@ -239,7 +245,7 @@ metadata/_edit_lock_ = true
 position = Vector2(32, 21)
 
 [node name="Tree" parent="." instance=ExtResource("7_xpblk")]
-position = Vector2(-38, 32)
+position = Vector2(-38, 34)
 
 [node name="ScenePortal" parent="." instance=ExtResource("8_qryks")]
 position = Vector2(159, 1)

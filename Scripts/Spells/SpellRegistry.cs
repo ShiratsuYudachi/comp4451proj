@@ -57,7 +57,7 @@ public static class SpellRegistry{
         );
         RegisterSpellPiece(
             "Blink",
-            "Teleports the caster to the mouse position",
+            "Teleports the caster by the displacement vector",
             typeof(Blink),
             paramNames: new List<string>{"EntityToBlink", "Displacement"}
         );

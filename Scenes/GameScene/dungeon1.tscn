@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://k3lplxpyrcwd"]
+[gd_scene load_steps=12 format=3 uid="uid://k3lplxpyrcwd"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_f5lg3"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_50gml"]
 [ext_resource type="Script" path="res://Scripts/Map/DungeonScene.cs" id="3_nrsnc"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="4_mc012"]
+[ext_resource type="PackedScene" uid="uid://cqn83nhp7lmgm" path="res://Scenes/WaterZoneDungeon1.tscn" id="5_k6nly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ujiec"]
 texture = ExtResource("2_f5lg3")
@@ -71,20 +72,17 @@ separation = Vector2i(1, 1)
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:3/0/terrain = 1
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0/terrains_peering_bit/right_side = 1
 0:3/0/terrains_peering_bit/bottom_side = 1
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/terrain = 1
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:3/0/terrains_peering_bit/right_side = 1
 1:3/0/terrains_peering_bit/bottom_side = 1
 1:3/0/terrains_peering_bit/left_side = 1
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/terrain = 1
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0/terrains_peering_bit/bottom_side = 1
 2:3/0/terrains_peering_bit/left_side = 1
 3:3/0 = 0
@@ -93,14 +91,12 @@ separation = Vector2i(1, 1)
 0:4/0 = 0
 0:4/0/terrain_set = 0
 0:4/0/terrain = 1
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/0/terrains_peering_bit/right_side = 1
 0:4/0/terrains_peering_bit/bottom_side = 1
 0:4/0/terrains_peering_bit/top_side = 1
 1:4/0 = 0
 1:4/0/terrain_set = 0
 1:4/0/terrain = 1
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0/terrains_peering_bit/right_side = 1
 1:4/0/terrains_peering_bit/bottom_side = 1
 1:4/0/terrains_peering_bit/left_side = 1
@@ -108,7 +104,6 @@ separation = Vector2i(1, 1)
 2:4/0 = 0
 2:4/0/terrain_set = 0
 2:4/0/terrain = 1
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:4/0/terrains_peering_bit/bottom_side = 1
 2:4/0/terrains_peering_bit/left_side = 1
 2:4/0/terrains_peering_bit/top_side = 1
@@ -118,20 +113,17 @@ separation = Vector2i(1, 1)
 0:5/0 = 0
 0:5/0/terrain_set = 0
 0:5/0/terrain = 1
-0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:5/0/terrains_peering_bit/right_side = 1
 0:5/0/terrains_peering_bit/top_side = 1
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/terrain = 1
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:5/0/terrains_peering_bit/right_side = 1
 1:5/0/terrains_peering_bit/left_side = 1
 1:5/0/terrains_peering_bit/top_side = 1
 2:5/0 = 0
 2:5/0/terrain_set = 0
 2:5/0/terrain = 1
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:5/0/terrains_peering_bit/left_side = 1
 2:5/0/terrains_peering_bit/top_side = 1
 3:5/0 = 0
@@ -269,3 +261,5 @@ targetSceneName = "Scene1"
 
 [node name="SceneEntrance" type="Node2D" parent="."]
 position = Vector2(-15, 135)
+
+[node name="WaterZone" parent="." instance=ExtResource("5_k6nly")]

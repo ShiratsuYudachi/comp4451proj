@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://im2f4h7p2va"]
+[gd_scene load_steps=15 format=3 uid="uid://im2f4h7p2va"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.cs" id="1_4joqk"]
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_foh33"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cyqi5rpvmncxj" path="res://Scenes/MapEntity/Tree.tscn" id="7_xpblk"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="8_qryks"]
 [ext_resource type="PackedScene" uid="uid://brk3afsqxqo3f" path="res://Scenes/SpellCastingCircle.tscn" id="9_1y3p0"]
+[ext_resource type="PackedScene" uid="uid://dllcah218kxrp" path="res://Scenes/WaterZoneScene1Scene2.tscn" id="9_pcjur"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jmejg"]
 texture = ExtResource("2_foh33")
@@ -75,20 +76,17 @@ separation = Vector2i(1, 1)
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:3/0/terrain = 1
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0/terrains_peering_bit/right_side = 1
 0:3/0/terrains_peering_bit/bottom_side = 1
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/terrain = 1
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:3/0/terrains_peering_bit/right_side = 1
 1:3/0/terrains_peering_bit/bottom_side = 1
 1:3/0/terrains_peering_bit/left_side = 1
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/terrain = 1
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:3/0/terrains_peering_bit/bottom_side = 1
 2:3/0/terrains_peering_bit/left_side = 1
 3:3/0 = 0
@@ -97,14 +95,12 @@ separation = Vector2i(1, 1)
 0:4/0 = 0
 0:4/0/terrain_set = 0
 0:4/0/terrain = 1
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:4/0/terrains_peering_bit/right_side = 1
 0:4/0/terrains_peering_bit/bottom_side = 1
 0:4/0/terrains_peering_bit/top_side = 1
 1:4/0 = 0
 1:4/0/terrain_set = 0
 1:4/0/terrain = 1
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0/terrains_peering_bit/right_side = 1
 1:4/0/terrains_peering_bit/bottom_side = 1
 1:4/0/terrains_peering_bit/left_side = 1
@@ -112,7 +108,6 @@ separation = Vector2i(1, 1)
 2:4/0 = 0
 2:4/0/terrain_set = 0
 2:4/0/terrain = 1
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:4/0/terrains_peering_bit/bottom_side = 1
 2:4/0/terrains_peering_bit/left_side = 1
 2:4/0/terrains_peering_bit/top_side = 1
@@ -122,20 +117,17 @@ separation = Vector2i(1, 1)
 0:5/0 = 0
 0:5/0/terrain_set = 0
 0:5/0/terrain = 1
-0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:5/0/terrains_peering_bit/right_side = 1
 0:5/0/terrains_peering_bit/top_side = 1
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/terrain = 1
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:5/0/terrains_peering_bit/right_side = 1
 1:5/0/terrains_peering_bit/left_side = 1
 1:5/0/terrains_peering_bit/top_side = 1
 2:5/0 = 0
 2:5/0/terrain_set = 0
 2:5/0/terrain = 1
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:5/0/terrains_peering_bit/left_side = 1
 2:5/0/terrains_peering_bit/top_side = 1
 3:5/0 = 0
@@ -263,3 +255,11 @@ targetSceneName = "dungeon1"
 position = Vector2(46, 2)
 
 [node name="SceneEntrance" type="Node2D" parent="."]
+
+[node name="SceneEntrance2" type="Node2D" parent="."]
+
+[node name="ScenePortal4" parent="." instance=ExtResource("8_qryks")]
+position = Vector2(15, -63)
+targetSceneName = "dungeon1"
+
+[node name="WaterZone" parent="." instance=ExtResource("9_pcjur")]

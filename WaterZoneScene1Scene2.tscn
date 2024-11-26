@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dllcah218kxrp"]
+
+[ext_resource type="Script" path="res://Scripts/Chemistry/WaterZone.cs" id="1_ajbfs"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ajbfs")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(81, 65, 96, 65, 96, 49, 112, 49, 112, 33, 159, 33, 159, 79, 144, 79, 144, 95, 128, 95, 128, 111, 96, 111, 96, 94, 80, 94)

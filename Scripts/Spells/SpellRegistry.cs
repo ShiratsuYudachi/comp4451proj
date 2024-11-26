@@ -135,6 +135,15 @@ public static class SpellRegistry{
         );
 
 
+        // FunctionOut
+        RegisterSpellPiece(
+            "FunctionOut",
+            "Create a function spell. ReturnTypeIndex: None(0), Int(1), Bool(2), Float(3), LivingEntity(4), MassEntity(5), Vector2(6)",
+            typeof(FunctionOut),
+            configNames: new List<string>{"ReturnTypeIndex"}
+        );
+
+
     }
 
     public static ReadOnlyCollection<SpellPieceInfo> GetAllSpellPieces(){

@@ -202,8 +202,15 @@ public abstract partial class Entity : CharacterBody2D, IMassEntity, IMaterial
 
     public void onBurning(float elementAmount){
         // Empty implementation
-        effects.Add(new BurningEffect(this, elementAmount * 10));
-        GameScene.ShowReaction(Reaction.Burning, this.GlobalPosition);
+        var existingBurning = effects.Find(effect => effect is BurningEffect) as BurningEffect;
+        if (existingBurning != null) {
+            existingBurning.duration += elementAmount * 10;
+        } else {
+            effects.Add(new BurningEffect(this, elementAmount * 10));
+            GameScene.ShowReaction(Reaction.Burning, this.GlobalPosition);
+        }
+        
+        
     }
 
     public void onVaporize(float elementAmount){

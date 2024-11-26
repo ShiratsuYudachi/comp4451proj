@@ -256,12 +256,12 @@ public class Reactor{
         // }
 
 
-        // // Decay all elements by 1 per second
-        // foreach (Element element in Enum.GetValues(typeof(Element))){
-        //     if (this.elementAmounts[(int)element] > 0){
-        //         this.elementAmounts[(int)element] -= (float)delta;
-        //     }
-        // }
+        // Decay all elements by 1 per second
+        foreach (Element element in Enum.GetValues(typeof(Element))){
+            if (this.elementAmounts[(int)element] > 0){
+                this.elementAmounts[(int)element] -= (float)delta;
+            }
+        }
         
         
         

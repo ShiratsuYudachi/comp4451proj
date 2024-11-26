@@ -90,6 +90,12 @@ public partial class PlayerControl : LivingEntity
 		if (Input.IsActionJustPressed("Key4"))
 		{
 			spellCaster?.Cast(5);
+			// Selector
+			SpellRegistry.RegisterSpellPiece(
+				"FunctionCall-MouseRelativePos",
+				"Calls a function",
+				typeof(FunctionCall)
+			);
 		}
 	}
 	public override void Attack()

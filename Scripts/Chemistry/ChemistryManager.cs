@@ -136,6 +136,8 @@ public class Reactor{
 
     public void AddElement(Element elementType, float amount){
         this.elementAmounts[(int)elementType] += amount;
+        // Clamp element amount to max of 10
+        this.elementAmounts[(int)elementType] = Mathf.Min(this.elementAmounts[(int)elementType], 10f);
         this.Update(0);
     }
 
@@ -179,6 +181,8 @@ public class Reactor{
 
 
     public void Update(double delta){
+
+
         // Burning (Pyro + Dendro)
         if (_haveElement(Element.Pyro) && _haveElement(Element.Dendro)){
             material.onBurning(_consumeMin(Element.Pyro, Element.Dendro));

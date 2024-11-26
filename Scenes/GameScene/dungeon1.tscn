@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://k3lplxpyrcwd"]
+[gd_scene load_steps=13 format=3 uid="uid://k3lplxpyrcwd"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_f5lg3"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_50gml"]
 [ext_resource type="Script" path="res://Scripts/Map/DungeonScene.cs" id="3_nrsnc"]
 [ext_resource type="PackedScene" uid="uid://c633bjq61ou35" path="res://Scenes/ScenePortal.tscn" id="4_mc012"]
-[ext_resource type="PackedScene" uid="uid://cqn83nhp7lmgm" path="res://Scenes/WaterZoneDungeon1.tscn" id="5_k6nly"]
+[ext_resource type="PackedScene" uid="uid://bgup23lkaco7i" path="res://Scenes/MapEntity/Stone.tscn" id="5_koabc"]
+[ext_resource type="PackedScene" uid="uid://cyqi5rpvmncxj" path="res://Scenes/MapEntity/Tree.tscn" id="6_3xe45"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ujiec"]
 texture = ExtResource("2_f5lg3")
@@ -262,4 +263,41 @@ targetSceneName = "Scene1"
 [node name="SceneEntrance" type="Node2D" parent="."]
 position = Vector2(-15, 135)
 
-[node name="WaterZone" parent="." instance=ExtResource("5_k6nly")]
+[node name="Stone" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(11, 55)
+
+[node name="Stone2" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(51, 26)
+
+[node name="Stone3" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(67, 59)
+
+[node name="Stone4" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(102, 23)
+
+[node name="Stone5" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-104, 59)
+
+[node name="Stone6" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-92, 59)
+
+[node name="Stone7" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-80, 59)
+
+[node name="Stone8" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-68, 59)
+
+[node name="Stone9" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-56, 59)
+
+[node name="Tree" parent="." instance=ExtResource("6_3xe45")]
+position = Vector2(-42, 54)
+
+[node name="Tree2" parent="." instance=ExtResource("6_3xe45")]
+position = Vector2(-43, 102)
+
+[node name="Stone10" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-43, 119)
+
+[node name="Stone11" parent="." instance=ExtResource("5_koabc")]
+position = Vector2(-43, 130)

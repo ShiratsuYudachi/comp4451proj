@@ -83,13 +83,11 @@ public partial class SpellCaster : Node2D
 
 	public void Cast(int index = 0)
 	{
-		if (index >= spells.Count){
-			GD.Print("No spell at index " + index);
+		if (index >= spells.Count || spells[index] == null){
+			// GD.Print("No spell at index " + index);
 			return;
 		}
 		spells[index].Evaluate(this);
-		// testEvaluationTree2.Evaluate(this);
-		// testEvaluationTree3.Evaluate(this);
 	}
 
 	public bool TryToConsumeMana(int amount)

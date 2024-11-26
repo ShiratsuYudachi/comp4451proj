@@ -164,12 +164,15 @@ public partial class GameScene : Node2D
     public static void SpawnEntity(String entityName, Vector2 position)
     {
         PackedScene entityScene = ResourceManager.GetScene(SceneResourceType.LivingEntity, entityName);
+        if (entityName == "WizardTower"){
+            entityScene = GD.Load<PackedScene>("res://Scenes/MapEntity/WizardTower.tscn");
+        }
         if (entityScene == null)
         {
             GD.PrintErr("Entity scene not found: " + entityName);
             return;
         }
-        LivingEntity entity = entityScene.Instantiate<LivingEntity>();
+        Entity entity = entityScene.Instantiate<Entity>();
         instance.AddChild(entity);
         entity.GlobalPosition = position;
     }

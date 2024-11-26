@@ -34,17 +34,35 @@ public partial class DungeonScene : GameScene
 		switch (_waveNumber){
 			case 1:
 				GameScene.SpawnEntity("Skeleton", new Vector2(-50, 0));
-				GameScene.SpawnEntity("Skeleton", new Vector2(0, 50));
-				GameScene.SpawnEntity("Skeleton", new Vector2(50, 0));
+				GameScene.SpawnEntity("Slime", new Vector2(0, 50));
 				GameScene.SpawnEntity("Skeleton", new Vector2(0, -50));
 				GD.Print("[INFO] DungeonScene: Started wave 1");
 				break;
 			case 2:
+				GameScene.SpawnEntity("Skeleton", new Vector2(-50, 0));
+				GameScene.SpawnEntity("Skeleton", new Vector2(50, 0)); 
+				GameScene.SpawnEntity("Skeleton", new Vector2(0, 50));
+				GameScene.SpawnEntity("Slime", new Vector2(-50, -50));
+				GameScene.SpawnEntity("Slime", new Vector2(50, -50));
+				GameScene.SpawnEntity("Slime", new Vector2(0, -50));
+				GD.Print("[INFO] DungeonScene: Started wave 2");
+				break;
+			case 3:
 				GameScene.SpawnEntity("Zombie", new Vector2(-50, 0));
 				GameScene.SpawnEntity("Zombie", new Vector2(0, 50));
 				GameScene.SpawnEntity("Zombie", new Vector2(50, 0));
 				GameScene.SpawnEntity("Zombie", new Vector2(0, -50));
+				GameScene.SpawnEntity("Necromancer", new Vector2(0, 0));
 				GD.Print("[INFO] DungeonScene: Started wave 2");
+				break;
+			case 4:
+				GameScene.SpawnEntity("WizardTower", new Vector2(-100, 0));
+				GameScene.SpawnEntity("WizardTower", new Vector2(100, 0));
+				GameScene.SpawnEntity("Necromancer", new Vector2(-50, 50));
+				GameScene.SpawnEntity("Necromancer", new Vector2(50, 50));
+				GameScene.SpawnEntity("Skeleton", new Vector2(-50, -50));
+				GameScene.SpawnEntity("Skeleton", new Vector2(50, -50));
+				GD.Print("[INFO] DungeonScene: Started wave 4");
 				break;
 			default:
 				levelCleared = true;

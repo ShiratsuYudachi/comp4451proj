@@ -24,12 +24,13 @@ offset_bottom = 313.0
 
 [node name="ParamNameLabel" type="Label" parent="VAlign"]
 layout_mode = 2
-text = "SpellPiece Configs"
+text = "SpellPiece Configs
+(ESC to close)"
 
 [node name="DoneButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 187.0
-offset_top = 7.0
-offset_right = 296.0
-offset_bottom = 38.0
+offset_left = 188.0
+offset_top = 26.0
+offset_right = 297.0
+offset_bottom = 57.0
 text = "Done"

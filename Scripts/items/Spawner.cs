@@ -8,7 +8,7 @@ public partial class Spawner : Node2D
 	[Export]
 	public int entityNumLimit = 5;
 
-	private float SPAWN_INTERVAL = 1f;
+	private float SPAWN_INTERVAL = 5f;
 
 	private float spawnCooldown = 0f;
 
@@ -24,8 +24,9 @@ public partial class Spawner : Node2D
 			spawnCooldown -= (float)delta;
 			if (spawnCooldown <= 0)
 			{
-				Node2D entity = entityScene.Instantiate<Node2D>();
-				this.AddChild(entity);
+				var randomOffset = new Vector2(GD.RandRange(-50, 50), GD.RandRange(-50, 50));
+				string entityName = GD.Randf() < 0.5f ? "Zombie" : "Skeleton";
+				GameScene.SpawnEntity(entityName, GlobalPosition + randomOffset);
 				spawnCooldown = SPAWN_INTERVAL;
 			}
 		}

@@ -8,7 +8,7 @@ public partial class WizardTower : MapEntity
     private int NUM_BULLETS = 3;
     public override void _Ready()
     {
-        MAX_HEALTH = 1000;
+        MAX_HEALTH = 300;
         health = MAX_HEALTH;
         group = Group.Enemy;
         base._Ready();

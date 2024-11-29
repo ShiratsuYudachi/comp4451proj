@@ -16,6 +16,7 @@ public partial class Necromancer : LivingEntity
         base._Ready();
         animatedSprite2D.Modulate = Colors.DimGray;
         group = Group.Enemy;
+        this.MAX_HEALTH = 2000;
         animatedSprite2D.AnimationFinished += () => { attackAnimationFinished = true; };
     }
     public override void _Process(double delta)

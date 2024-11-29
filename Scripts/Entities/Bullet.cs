@@ -42,7 +42,7 @@ public partial class Bullet : Node2D, IMassEntity, Chemistry.IMaterial
 	}
 
 	protected virtual void onHitEntity(Entity entity){
-		entity.OnHit(10, this.velocity/5, caster);
+		entity.OnHit(10, this.velocity/5, caster, element:Chemistry.Element.Pyro, elementAmount:10);
 	}
 	
 	public void OnHit(Area2D area)

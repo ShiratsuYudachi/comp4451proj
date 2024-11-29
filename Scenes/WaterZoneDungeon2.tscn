@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://criuqt3umcpxk"]
+
+[ext_resource type="Script" path="res://Scripts/Chemistry/WaterZone.cs" id="1_v5g28"]
+
+[node name="WaterZone" type="Area2D"]
+script = ExtResource("1_v5g28")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(30, -11)

@@ -126,6 +126,11 @@ public partial class GameScene : Node2D
         }
         PackedScene reactionTipLabelScene = ResourceManager.GetScene(SceneResourceType.ReactionTipLabel);
         ReactionTipLabel reactionTipLabel = reactionTipLabelScene.Instantiate<ReactionTipLabel>();
+        LabelSettings newSettings = new LabelSettings();
+        newSettings.FontSize = reactionTipLabel.LabelSettings.FontSize;
+        newSettings.Font = reactionTipLabel.LabelSettings.Font;
+        newSettings.OutlineSize = reactionTipLabel.LabelSettings.OutlineSize;
+        reactionTipLabel.LabelSettings = newSettings;
         reactionTipLabel.reaction = reaction;
         reactionTipLabel.GlobalPosition = worldPosition + new Vector2(5, 3);
         instance.AddChild(reactionTipLabel);
@@ -220,8 +225,13 @@ public partial class GameScene : Node2D
 
     public static void CreateExplosion(Vector2 position, float level)
     {
-        CreateAOE_Trigger(position, (int)(level * 5), (Entity entity) => {
-            entity.OnHit(level * 20);
+        CreateAOE_Trigger(position, (int)(50), (Entity entity) => {
+            // Calculate knockback direction and strength
+            Vector2 knockbackDir = (entity.GlobalPosition - position).Normalized();
+            float knockbackStrength = 50; // Base knockback force
+            
+            // Apply damage with knockback
+            entity.OnHit(70, knockbackDir * knockbackStrength);
         });
     }
 }

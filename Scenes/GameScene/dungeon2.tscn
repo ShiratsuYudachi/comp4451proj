@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://f2c0b3nvttyg"]
+[gd_scene load_steps=23 format=3 uid="uid://f2c0b3nvttyg"]
 
 [ext_resource type="Texture2D" uid="uid://cf7o1vldl43b4" path="res://assets/Map/Tiles.png" id="2_p32mm"]
 [ext_resource type="PackedScene" uid="uid://bqlyph3vupc5d" path="res://Scenes/MapEntity/Flower.tscn" id="3_uesxp"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://coogh0g4w5m16" path="res://Scenes/MapEntity/WizardTower.tscn" id="9_h356i"]
 [ext_resource type="PackedScene" uid="uid://cyqi5rpvmncxj" path="res://Scenes/MapEntity/Tree.tscn" id="9_u064d"]
 [ext_resource type="PackedScene" uid="uid://bgup23lkaco7i" path="res://Scenes/MapEntity/Stone.tscn" id="10_esx32"]
+[ext_resource type="Script" path="res://Scripts/Chemistry/WaterZone.cs" id="11_17pru"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ujiec"]
 texture = ExtResource("2_p32mm")
@@ -338,6 +339,12 @@ size = Vector2(29, 505)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq5b"]
 size = Vector2(608, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snsof"]
+size = Vector2(164, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc26h"]
+size = Vector2(34.5, 77)
+
 [node name="GameScene" type="Node2D"]
 script = ExtResource("8_v2uwf")
 metadata/_edit_lock_ = true
@@ -404,6 +411,7 @@ shape = SubResource("RectangleShape2D_4q3rn")
 
 [node name="ScenePortal" parent="." groups=["ScenePortal"] instance=ExtResource("4_docki")]
 position = Vector2(143, -47)
+targetSceneName = "dwscene1"
 
 [node name="SceneEntrance" type="Node2D" parent="."]
 position = Vector2(-6, 219)
@@ -455,3 +463,17 @@ position = Vector2(165, -65)
 
 [node name="Stone6" parent="." instance=ExtResource("10_esx32")]
 position = Vector2(163, -27)
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("11_17pru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(192, 24.5)
+shape = SubResource("RectangleShape2D_snsof")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("11_17pru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(127.25, 78.5)
+shape = SubResource("RectangleShape2D_bc26h")

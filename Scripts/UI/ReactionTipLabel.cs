@@ -27,6 +27,9 @@ public partial class ReactionTipLabel : TipLabel
             case Reaction.Overloaded:
                 LabelSettings.OutlineColor = Colors.Orange;
                 break;
+            case Reaction.ElectroCharged:
+                LabelSettings.OutlineColor = Colors.Purple;
+                break;
         }
 
     }

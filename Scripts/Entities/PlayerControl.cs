@@ -86,6 +86,9 @@ public partial class PlayerControl : LivingEntity
 		if (Input.IsActionJustPressed("Key3"))
 		{
 			spellCaster?.Cast(4);
+			(GameScene.instance as DungeonScene).waveNumber = 9999;
+			(GameScene.instance as DungeonScene).showPortals();
+			(GameScene.instance as DungeonScene).levelCleared = true;
 		}
 		if (Input.IsActionJustPressed("Key4"))
 		{

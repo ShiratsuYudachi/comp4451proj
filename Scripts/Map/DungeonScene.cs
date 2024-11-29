@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class DungeonScene : GameScene
 {
 	
-	int waveNumber = 0;
+	public int waveNumber = 0;
 
 	float timeElapsed = 0;
 	
